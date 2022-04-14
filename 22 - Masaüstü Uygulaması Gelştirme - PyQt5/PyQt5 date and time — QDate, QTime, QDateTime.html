@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://zetcode.com/gui/pyqt5/datetime/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PyQt5 date and time — QDate, QTime, QDateTime</title>
+<link rel="stylesheet" href="./PyQt5 date and time — QDate, QTime, QDateTime_files/style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="PyQt, PyQt5, QDate, QTime, QDateTime, tutorial, Python">
+<meta name="description" content="PyQt5 date and time chapter of the PyQt5 tutorial shows
+how to work with date and time. The example use QDate, QTime, and QDateTime classes.">
+<meta name="author" content="Jan Bodnar">
+
+<script src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(6).txt"></script><script src="./PyQt5 date and time — QDate, QTime, QDateTime_files/osd.js.indir"></script><script src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(7).txt"></script><script src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(8).txt" id="google_shimpl"></script><script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/analytics.js.indir"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5536206-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<link rel="preload" href="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(9).txt" as="script"><script type="text/javascript" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(9).txt"></script><link rel="preload" href="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(10).txt" as="script"><script type="text/javascript" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(10).txt"></script></head>
+
+<body>
+
+<header>
+
+<div>
+<a href="http://zetcode.com/" title="Home">ZetCode</a>
+</div>
+
+<nav>
+    <a title="All tutorials" href="http://zetcode.com/all/">All</a>
+    <a title="Spring Boot tutorials" href="http://zetcode.com/all/#springboot">Spring Boot</a>
+    <a title="Python tutorials" href="http://zetcode.com/all/#python">Python</a>
+    <a title="C# tutorials" href="http://zetcode.com/all/#csharp">C#</a>
+    <a title="Java tutorials" href="http://zetcode.com/all/#java">Java</a>
+    <a title="JavaScript tutorials" href="http://zetcode.com/all/#js">JavaScript</a>
+    <a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&amp;id=6556210f80">Subscribe</a>
+</nav>
+
+</header>
+
+<div class="container" style="height: auto !important;">
+
+<div class="ltow">
+    
+<div id="ebooks">
+
+<h2 class="blu">Ebooks</h2>
+
+<ul>
+<li><a href="http://zetcode.com/ebooks/advancedpyqt5/">PyQt5 ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/tkinter/">Tkinter ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/sqlitepython/">SQLite Python</a></li>
+<li><a href="http://zetcode.com/ebooks/advancedwxpython/">wxPython ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/windowsapi/">Windows API ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/advancedjavaswing/">Java Swing ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/javagames/">Java games ebook</a></li>
+<li><a href="http://zetcode.com/ebooks/mysqljava/">MySQL Java ebook</a></li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="content" style="height: auto !important;">
+
+<nav>
+<a href="http://zetcode.com/gui/pyqt5/">Contents</a>
+<a href="http://zetcode.com/gui/pyqt5/introduction/">Previous</a>
+<a href="http://zetcode.com/gui/pyqt5/firstprograms/">Next</a>
+</nav>
+
+
+<h1>PyQt5 date and time</h1>
+
+<p class="last_mod">
+last modified July 16, 2020 
+</p>
+
+<p>
+This part of the PyQt5 tutorial shows how to work with date and time in PyQt5.
+</p>
+
+<h2>QDate, QTime, QDateTime</h2>
+
+<p>
+PyQt5 has <code>QDate</code>, <code>QDateTime</code>, <code>QTime</code> classes 
+to work with date and time. The <code>QDate</code> is a class for working with 
+a calendar date in the Gregorian calendar. It has methods for determining the date, 
+comparing, or manipulating dates. The <code>QTime</code> class works with a clock time. 
+It provides methods for comparing time, determining the time and various other time 
+manipulating methods. The <code>QDateTime</code> is a class that combines both 
+<code>QDate</code> and <code>QTime</code> objects into one object.
+</p>
+
+<script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(11).txt"></script>
+<!-- square-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="1275229782" data-adsbygoogle-status="done" data-overlap-observer-io="false"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:336px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="336" height="280" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-google-query-id="CKuu_b3vsewCFY7GuwgdrPoIlA" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2>Current date and time</h2>
+
+<p>
+PyQt5 has <code>currentDate</code>, <code>currentTime</code> 
+and <code>currentDateTime</code> methods for determining current
+date and time.
+</p>
+
+<div class="codehead">current_date_time.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDate, QTime, QDateTime, Qt
+
+now = QDate.currentDate()
+
+print(now.toString(Qt.ISODate))
+print(now.toString(Qt.DefaultLocaleLongDate))
+
+datetime = QDateTime.currentDateTime()
+
+print(datetime.toString())
+
+time = QTime.currentTime()
+
+print(time.toString(Qt.DefaultLocaleLongDate))
+</pre>
+
+<p>
+The example prints the current date, date and time, 
+and time in various formats.
+</p>
+
+<pre class="explanation">now = QDate.currentDate()
+</pre>
+
+<p>
+The <code>currentDate</code> method returns the current date.
+</p>
+
+<pre class="explanation">print(now.toString(Qt.ISODate))
+print(now.toString(Qt.DefaultLocaleLongDate))
+</pre>
+
+<p>
+The date is printed in two different formats by passing the values <code>Qt.ISODate</code>
+and <code>Qt.DefaultLocaleLongDate</code> to the <code>toString</code> method.
+</p>
+
+<pre class="explanation">datetime = QDateTime.currentDateTime()
+</pre>
+
+<p>
+The <code>currentDateTime</code> returns the current date and time.
+</p>
+
+<pre class="explanation">time = QTime.currentTime()
+</pre>
+
+<p>
+Finally, the <code>currentTime</code> method returns the current time.
+</p>
+
+<pre class="compact">$ ./current_date_time.py 
+2020-05-16
+Saturday, May 16, 2020
+Sat May 16 09:53:37 2020
+9:53:37 AM CEST
+</pre>
+
+<p>
+This is the output.
+</p>
+
+
+
+<h2>UTC time</h2>
+
+<p>
+Our planet is a sphere; it revolves round its axis. The Earth rotates towards
+the east, so the Sun rises at different times in different locations. The Earth
+rotates once in about 24 hours. Therefore, the world was divided into 24 time
+zones. In each time zone, there is a different local time. This local time is often
+further modified by the daylight saving.
+</p>
+
+<p>
+There is a pragmatic need for one global time. One global time helps to
+avoid confusion about time zones and daylight saving time. The UTC (Universal
+Coordinated time) was chosen to be the primary time standard. UTC is used in
+aviation, weather forecasts, flight plans, air traffic control clearances, and maps.
+Unlike local time, UTC does not change with a change of seasons.
+</p>
+
+<div class="codehead">utc_local.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDateTime, Qt
+
+now = QDateTime.currentDateTime()
+
+print('Local datetime: ', now.toString(Qt.ISODate))
+print('Universal datetime: ', now.toUTC().toString(Qt.ISODate))
+
+print(f'The offset from UTC is: {now.offsetFromUtc()} seconds')
+</pre>
+
+<p>
+The example determines the current universal and local date and time.
+</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9706709751191532" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;"><ins id="aswift_5_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent;"><ins id="aswift_5_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 770px; background-color: transparent; overflow: visible;"><iframe id="aswift_5" name="aswift_5" style="left:0;position:absolute;top:0;border:0;width:770px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="770" height="280" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="CKOcmr7vsewCFQfFuwgdHQ0OhQ" data-load-complete="true"></iframe></ins></ins></ins></div>
+
+<pre class="explanation">print('Local datetime: ', now.toString(Qt.ISODate))
+</pre><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9706709751191532" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;"><ins id="aswift_6_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent;"><ins id="aswift_6_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 770px; background-color: transparent; overflow: visible;"><iframe id="aswift_6" name="aswift_6" style="left:0;position:absolute;top:0;border:0;width:770px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="770" height="280" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(2).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!6" data-google-query-id="CN-zm77vsewCFYfauwgdI4ID8Q" data-load-complete="true"></iframe></ins></ins></ins></div>
+
+<p>
+The <code>currentDateTime</code> method returns the current date and time
+expressed as local time. We can use the <code>toLocalTime</code> to convert a
+universal time into a local time.
+</p>
+
+<pre class="explanation">print('Universal datetime: ', now.toUTC().toString(Qt.ISODate))
+</pre>
+
+<p>
+We get the universal time with the <code>toUTC</code> method from the date
+time object.
+</p>
+
+<pre class="explanation">print(f'The offset from UTC is: {now.offsetFromUtc()} seconds')
+</pre>
+
+<p>
+The <code>offsetFromUtc</code> gives the difference between universal time and
+local time in seconds.
+</p>
+
+<pre class="compact">$ ./utc_local.py 
+Local datetime:  2020-05-16T09:56:23
+Universal datetime:  2020-05-16T07:56:23Z
+The offset from UTC is: 7200 seconds
+</pre>
+
+<p>
+This is the output.
+</p>
+
+
+<h2>Number of days</h2>
+
+<p>
+The number of days in a particular month is returned by the <code>daysInMonth</code>
+method and the number of days in a year by the <code>daysInYear</code> method.
+</p>
+
+<div class="codehead">n_of_days.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDate, Qt
+
+now = QDate.currentDate()
+
+d = QDate(1945, 5, 7)
+
+print(f'Days in month: {d.daysInMonth()}')
+print(f'Days in year: {d.daysInYear()}')
+</pre>
+
+<p>
+The example prints the number of days in a month and year for the chosen date.
+</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9706709751191532" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;"><ins id="aswift_7_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent;"><ins id="aswift_7_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 770px; background-color: transparent; overflow: visible;"><iframe id="aswift_7" name="aswift_7" style="left:0;position:absolute;top:0;border:0;width:770px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="770" height="280" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(3).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!7" data-google-query-id="CPmsnL7vsewCFbvHuwgdJZcD2g" data-load-complete="true"></iframe></ins></ins></ins></div>
+
+<pre class="compact">$ ./n_of_days.py 
+Days in month: 31
+Days in year: 365
+</pre>
+
+<p>
+This is the output.
+</p>
+
+
+<h2>Difference in days</h2>
+
+<p>
+The <code>daysTo</code> method returns the number of days from a date to
+another date.
+</p>
+
+<div class="codehead">xmas.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDate
+
+xmas1 = QDate(2019, 12, 24)
+xmas2 = QDate(2020, 12, 24)
+
+now = QDate.currentDate()
+
+dayspassed = xmas1.daysTo(now)
+print(f'{dayspassed} days have passed since last XMas')
+
+nofdays = now.daysTo(xmas2)
+print(f'There are {nofdays} days until next XMas')
+</pre>
+
+<p>
+The example calculates the number of days passed from the last XMas and the
+number of days until the next XMas.
+</p>
+
+<pre class="compact">$ ./xmas.py 
+144 days have passed since last XMas
+There are 222 days until next XMas
+</pre>
+
+<p>
+This is the output.
+</p>
+
+<script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(11).txt"></script>
+<!-- square-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="1275229782" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2>Datetime arithmetic</h2>
+
+<p>
+We often need to add or subtract days, seconds, or years to a datetime 
+value.
+</p>
+
+<div class="codehead">arithmetic.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDateTime, Qt
+
+now = QDateTime.currentDateTime()
+
+print(f'Today:', now.toString(Qt.ISODate))
+print(f'Adding 12 days: {now.addDays(12).toString(Qt.ISODate)}')
+print(f'Subtracting 22 days: {now.addDays(-22).toString(Qt.ISODate)}')
+
+print(f'Adding 50 seconds: {now.addSecs(50).toString(Qt.ISODate)}')
+print(f'Adding 3 months: {now.addMonths(3).toString(Qt.ISODate)}')
+print(f'Adding 12 years: {now.addYears(12).toString(Qt.ISODate)}')
+</pre>
+
+<p>
+The example determines the current datetime and add or subtract days, seconds,
+months, and years.
+</p>
+
+<pre class="compact">$ ./arithmetic.py 
+Today: 2020-05-16T10:11:56
+Adding 12 days: 2020-05-28T10:11:56
+Subtracting 22 days: 2020-04-24T10:11:56
+Adding 50 seconds: 2020-05-16T10:12:46
+Adding 3 months: 2020-08-16T10:11:56
+Adding 12 years: 2032-05-16T10:11:56
+</pre>
+
+<p>
+This is the example output.
+</p>
+
+
+<h2>Daylight saving time</h2>
+
+<p>
+Daylight saving time (DST) is the practice of advancing clocks during summer
+months so that evening daylight lasts longer. The time is adjusted forward
+one hour in the beginning of spring and adjusted backward in the autumn to
+standard time.
+</p>
+
+<div class="codehead">daylight_saving.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDateTime, QTimeZone, Qt
+
+now = QDateTime.currentDateTime()
+
+print(f'Time zone: {now.timeZoneAbbreviation()}')
+
+if now.isDaylightTime():
+    print(f'The current date falls into DST time')
+else:
+    print(f'The current date does not fall into DST time')
+</pre>
+
+<p>
+The example checks if the datetime is in the daylight saving time.
+</p>
+
+<pre class="explanation">print(f'Time zone: {now.timeZoneAbbreviation()}')
+</pre>
+
+<p>
+The <code>timeZoneAbbreviation()</code> method returns the time zone 
+abbreviation for the datetime.
+</p>
+
+<pre class="explanation">if now.isDaylightTime():
+...
+</pre>
+
+<p>
+The <code>isDaylightTime()</code> returns if the datetime falls 
+in daylight saving time.
+</p>
+
+<pre class="compact">$ ./daylight_saving.py 
+Time zone: CEST
+The current date falls into DST time
+</pre><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9706709751191532" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;"><ins id="aswift_8_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent;"><ins id="aswift_8_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 770px; background-color: transparent; overflow: visible;"><iframe id="aswift_8" name="aswift_8" style="left:0;position:absolute;top:0;border:0;width:770px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="770" height="280" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(4).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!8" data-google-query-id="CN7XnL7vsewCFUFM5QodjLUHkw" data-load-complete="true"></iframe></ins></ins></ins></div>
+
+<p>
+The current date falls into DST time The program was executed in Bratislava,
+which is a city in Central Europe, during summer. Central European Summer Time
+(CEST) is 2 hours ahead of universtal time. This time zone is a daylight saving
+time time zone and is used in Europe and Antarctica. The standard time, which is
+used in winter, is Central European Time (CET).
+</p>
+
+
+<h2>Unix epoch</h2>
+
+<p>
+An epoch is an instant in time chosen as the origin of a particular era. For
+example in western Christian countries the time epoch starts from day 0, when
+Jesus was born. Another example is the French Republican Calendar which
+was used for twelve years. The epoch was the beginning of the Republican Era
+which was proclaimed on September 22, 1792, the day the First Republic was
+declared and the monarchy abolished.
+</p>
+
+<p>
+Computers have their epochs too. One of the most popular is the Unix
+epoch. The Unix epoch is the time 00:00:00 UTC on 1 January 1970 (or 1970-
+01-01T00:00:00Z ISO 8601). The date and time in a computer is determined
+according to the number of seconds or clock ticks that have elapsed since the
+defined epoch for that computer or platform.
+</p>
+
+<p>
+<dfn>Unix time</dfn> is the number of seconds elapsed since Unix epoch.
+</p>
+
+<pre class="code">$ date +%s
+1589617100
+</pre>
+
+<p>
+Unix date command can be used to get the Unix time. At this particular moment,
+1589617100 seconds have passed since the Unix epoch.
+</p>
+
+<div class="codehead">unix_time.py</div>
+<pre class="code">#!/usr/bin/python3
+
+from PyQt5.QtCore import QDateTime, Qt
+
+now = QDateTime.currentDateTime()
+
+unix_time = now.toSecsSinceEpoch() 
+print(unix_time)
+
+d = QDateTime.fromSecsSinceEpoch(unix_time)
+print(d.toString(Qt.ISODate))
+</pre>
+
+<p>
+The example prints the Unix time and converts it back to the <code>QDateTime</code>.
+</p>
+
+
+<pre class="explanation">now = QDateTime.currentDateTime()
+</pre>
+
+<p>
+First, we retrieve the current date and time.
+</p>
+
+<pre class="explanation">unix_time = now.toSecsSinceEpoch() 
+</pre>
+
+<p>
+The <code>toSecsSinceEpoch()</code> returns the Unix time.
+</p>
+
+<pre class="explanation">d = QDateTime.fromSecsSinceEpoch(unix_time)
+</pre>
+
+<p>
+With the <code>fromSecsSinceEpoch()</code> we convert the 
+Unix time to <code>QDateTime</code>.
+</p>
+
+<pre class="compact">$ ./unix_time.py 
+1589617144
+2020-05-16T10:19:04
+</pre>
+
+<p>
+This is the output.
+</p>
+
+
+<h2>Julian day</h2>
+
+<p>
+Julian day refers to a continuous count of days since the beginning of the
+Julian Period. It is used primarily by astronomers. It should not be confused
+with the Julian calendar. The Julian Period started in 4713 BC. The Julian day
+number 0 is assigned to the day starting at noon on January 1, 4713 BC.
+</p>
+
+<p>
+The Julian Day Number (JDN) is the number of days elapsed since the beginning of
+this period. The Julian Date (JD) of any instant is the Julian day number for
+the preceding noon plus the fraction of the day since that instant. (Qt does not
+compute this fraction.) Apart from astronomy, Julian dates are often used by
+military and mainframe programs.
+</p>
+
+<div class="codehead">julian_day.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDate, Qt
+
+now = QDate.currentDate()
+
+print('Gregorian date for today:', now.toString(Qt.ISODate))
+print('Julian day for today:', now.toJulianDay()) 
+</pre>
+
+<p>
+In the example, we compute the Gregorian date and the Julian day for today.
+</p>
+
+<pre class="explanation">print('Julian day for today:', now.toJulianDay())
+</pre>
+
+<p>
+The Julian day is returned with the <code>toJulianDay()</code> method.
+</p>
+
+<pre class="compact">$ ./julian_day.py 
+Gregorian date for today: 2020-05-16
+Julian day for today: 2458986
+</pre>
+
+<p>
+This is the output.
+</p>
+
+
+<h2>Historical battles</h2>
+
+<p>
+With Julian day it is possible to do calculations that span centuries. 
+</p>
+
+<div class="codehead">battles.py</div>
+<pre class="code">#!/usr/bin/python
+
+from PyQt5.QtCore import QDate, Qt
+
+borodino_battle = QDate(1812, 9, 7)
+slavkov_battle = QDate(1805, 12, 2)
+
+now = QDate.currentDate()
+
+j_today = now.toJulianDay()
+j_borodino = borodino_battle.toJulianDay()
+j_slavkov = slavkov_battle.toJulianDay()
+
+d1 = j_today - j_slavkov
+d2 = j_today - j_borodino
+
+print(f'Days since Slavkov battle: {d1}')
+print(f'Days since Borodino battle: {d2}')
+</pre>
+
+<p>
+The example counts the number of days passed since two historical events.
+</p>
+
+<pre class="explanation">borodino_battle = QDate(1812, 9, 7)
+slavkov_battle = QDate(1805, 12, 2)
+</pre>
+
+<p>
+We have two dates of battles of the Napoleonic era.
+</p>
+
+<pre class="explanation">j_today = now.toJulianDay()
+j_borodino = borodino_battle.toJulianDay()
+j_slavkov = slavkov_battle.toJulianDay()
+</pre>
+
+<p>
+We compute the Julian days for today and for the Battles of Slavkov and
+Borodino.
+</p>
+
+<pre class="explanation">d1 = j_today - j_slavkov
+d2 = j_today - j_borodino
+</pre>
+
+<p>
+We compute the number of days passed since the two battles.
+</p>
+
+<pre class="compact">$ ./battles.py 
+Days since Slavkov battle: 78328
+Days since Borodino battle: 75857
+</pre>
+
+<p>
+When we run this script, 78328 days have passed since the Slavkov battle, and
+75857 since the Borodino battle.
+</p>
+
+<p>
+In this part of the PyQt5 tutorial, we have worked with date and time.
+</p>
+
+
+<script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(11).txt"></script>
+<!-- square-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="1275229782" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--
+date and time formats
+exaplain  2017-09-11T13:01:58
+-->
+
+<nav>
+<a href="http://zetcode.com/gui/pyqt5/">Contents</a> 
+<a href="http://zetcode.com/gui/pyqt5/introduction/">Previous</a>
+<a href="http://zetcode.com/gui/pyqt5/firstprograms/">Next</a>
+</nav>
+
+
+
+</div> <!-- content -->
+
+<div class="rtow">
+
+<div class="vert-ad">
+<script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(11).txt"></script>
+<!-- vertical-2020 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9706709751191532" data-ad-slot="5880603481" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"></ins>
+<script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div class="square-fix-ad">
+<script async="" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/f(11).txt"></script>
+<!-- square-fixed-2020 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9706709751191532" data-ad-slot="6775384732" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:300px;height:250px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="300" height="250" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(5).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CPWp_73vsewCFVXjuwgdgaMGkQ" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+</div> <!-- rtow -->
+
+</div> <!-- container -->
+
+<footer>
+
+<nav>
+<a title="Home page" href="http://zetcode.com/">Home</a> 
+<a title="Follow on Facebook" href="https://www.facebook.com/zetcode7/">Facebook</a>
+<a title="Follow on Twitter" href="https://twitter.com/janbodnar">Twitter</a>
+<a title="Visit Github" href="https://github.com/janbodnar">Github</a>
+<a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&amp;id=6556210f80">Subscribe</a>
+<a title="Privacy policy" href="http://zetcode.com/privacy">Privacy</a> 
+</nav>
+
+<div>
+<span>© 2007 - 2020 Jan Bodnar</span>
+<span>admin(at)zetcode.com</span>
+</div>
+
+</footer>
+
+
+
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/ads(6).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_4610332165912" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/saved_resource(2).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./PyQt5 date and time — QDate, QTime, QDateTime_files/zrt_lookup.html" data-ad-client="ca-pub-9706709751191532" style="display: none;"></iframe></html>

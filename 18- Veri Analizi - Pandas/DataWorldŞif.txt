@@ -1,0 +1,2 @@
+ad = yenicabi
+şif = Durmazmıydınızsiz456

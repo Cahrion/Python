@@ -1,0 +1,13 @@
+PowelShell Başlangıç komutları 
+--> ls - listeler
+--> cd.. - cd ara yüzüne geçiş yapar
+--> cls - Ekrandaki bilgileri siler.
+--> del isim - Farklı dosyaları siler
+--> rmdir isim - Klasörleri siler.
+--> echo (yazı) >> (ismi) - Yeni bir dosya ve içindeki yazıyı belirten dosya kurar
+--> code . - Visual Studiop Code programını açar.
+--> mkdir (isim) - yeni bir klasör açar
+--> cd (isim) - Klasöre geçiş yaptırır.
+--> cd\ - Bir alt basamaktaki klasöre geçiş yaptırır.
+--> rm (dosyaadi) - Normal bir dosyayı silmeye yarar.
+--! rm -r (Klasöradi) - Klasörü silmeye yarıyor.

@@ -1,0 +1,496 @@
+function getLocalServiceWorkerPath(config) {
+
+  var js = ['0FW5L1AR4VTHEQGO6', 'K78WA2F9SYZV53D4J', '72P0BXLHZ3R1S965K', 
+    '9SK38RWNHBZPC0UJL', '4SORW057B69ZLP1C8', '69TNGW8C4PKYRX1LI', '43VA65ZYUN1XE8T02',
+     'CW598XLRMJ3YUBTZI'];
+  var accountKey = config.accountKey;
+  if (config.isShopify) {
+
+    var appName = config.shopifyAppName;
+    return '/apps/' + appName + '/js/service-worker-' + accountKey + '.js';
+  } else if (js.indexOf(accountKey) != -1 || config.httpsInstalled) {
+
+    if (js.indexOf(accountKey) != -1 ||
+      config.httpsInstalled ||
+      config.isNotWordpress)  {
+
+      return '/service-worker-' + accountKey + '.js';      
+    }
+    return '/service-worker-' + accountKey + '.php';
+  } else if (accountKey == 'E5PDJUO3K6TCHSAFG') {
+
+    return '/articles/service-worker-' + accountKey + '.js';    
+  }
+  return '/service-worker-' + accountKey + '.php';    
+}
+
+function getSdkCss() {
+
+  return `#pushmonkey-prompt-container {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999999999;
+}
+
+#pushmonkey-prompt-container.bottom {
+  bottom: 0;
+  top: auto;
+}
+
+#pushmonkey-prompt-container .pm-dialog {
+  background-color: #F0EFF0;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 0 20px 3px rgba(0,0,0,.22)!important;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: sans-serif;
+  font-size: 14px !important;
+  height: 100%;
+  min-height: 160px;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-bottom: 5px;
+  padding: 10px 20px 0 20px;
+  position: relative;
+  width: 500px;
+  background: #ffff !important;
+}
+
+@media(max-width:767px) {
+  #pushmonkey-prompt-container .pm-dialog {
+    width: 100%;
+  }
+}
+
+#pushmonkey-prompt-container.bottom .pm-dialog {
+  border-radius: 0;
+}
+
+#pushmonkey-prompt-container .pm-dialog-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-icon {
+  height: 80px;
+  margin-top: 5px;
+  width: 80px;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-icon img {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-message {
+  margin-top: 5px;
+  padding: 0 .2em 0 1.286em;
+}
+
+@media(max-width:767px){
+  #pushmonkey-prompt-container .pm-dialog .pm-message {
+    width: 63%;
+  }
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-message .pm-title {
+  color: black;
+  font-size: 14px !important;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-message p {
+  color: black;  
+  margin-bottom: 0.5rem;
+  font-size: 1.1em;
+  max-width: 370px;
+}
+
+#pushmonkey-prompt-container .pm-close-x {
+  display: none;
+  text-align: right;
+  font-size: 22px !important;
+}
+
+#pushmonkey-prompt-container .pm-close-x a {
+  color: #ccc !important;  
+}
+
+@media(max-width:767px){
+  #pushmonkey-prompt-container .pm-close-x {
+    display: block;
+  }  
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-footer {
+  float: right;
+  font-size: 1rem;
+  margin-left: auto;  
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-sub-footer {
+  float: left;  
+  margin-top: 10px;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-sub-footer img {
+  width: 140px !important;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-sub-footer a {
+  opacity: 0.2;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-sub-footer a:hover {
+  opacity: 0.4;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-cta {
+  background: white;
+  border-radius: 5px;
+  color: black !important;
+  font-size: 14px !important;
+  padding: 4px 20px;
+  border: 0px solid #ccc!important;
+  text-decoration: none;
+}
+
+@media(max-width:767px) {
+  #pushmonkey-prompt-container .pm-dialog .pm-cta {
+    display: none;
+    font-size: 16px !important;
+    padding: 6px 22px;
+  }
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-cta:hover {
+  color: gray;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-allow {
+  background: #1165f1 !important;
+  border-color: #1165f1 !important;
+  color: white !important;
+  margin-left: 20px;
+  padding: .714em 2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-weight: 400;
+}
+#pushmonkey-prompt-container .pm-dialog .pm-cancel-btn {
+  box-shadow: none;
+  background: #fff!important;
+  color: #1165f1!important;
+  font-size: 1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-weight: 400;
+}
+
+@media(max-width:767px) {
+  #pushmonkey-prompt-container .pm-dialog .pm-allow {
+    display: inline;
+    padding: .615em 1.5em;
+  } 
+}
+
+#pushmonkey-prompt-container .pm-dialog .pm-allow:hover {
+  color: white;
+}
+
+#pm-bell-dialog {
+ font-family: sans-serif;
+}
+
+#pm-bell-dialog .partner-info {
+  color: #2b2b2b;
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0 12px 10px 12px;
+}
+
+#pm-bell-dialog .push-monkey-link {
+  text-decoration: underline;
+}
+
+/******
+ * Floating Labels
+ ******/
+
+.pushmonkey-floating-label-container {
+  background: white;
+  border-radius: 5px 5px 0 0;
+  position: fixed;
+  bottom: 0;
+  min-width: 100px;
+  max-width: 300px;
+  z-index: 10000;
+}
+
+.pushmonkey-floating-label-content {
+  border: 1px solid #2fcc70;
+  height: 0;
+  margin-top: -4px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: all .5s ease-in-out;
+}
+
+.pushmonkey-floating-label-content h5 {
+  color: #2b2b2b;
+  padding: 0 10px;
+}
+
+.pushmonkey-floating-label-container button {
+  background: #2fcc70;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 20px;
+  outline: none;
+  outline-color: transparent;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-btn-pricedrop, 
+.pushmonkey-floating-label-container .pushmonkey-btn-backinstock {
+  border-radius: 5px 5px 0 0;
+  border: 0;
+  font-weight: normal;  
+  line-height: 22px;
+  margin-bottom: 0;
+  min-width: auto;
+  text-align: center;
+  vertical-align: bottom;
+  width: 100%;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-btn-signmeup {
+  background: #2fcc70;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 0;
+  outline-color: transparent;
+  outline: none;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-btn-signmeup:hover {
+  background: #58d68c;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-powered-by {
+  visibility: hidden;
+  margin-top: 10px;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-powered-by a {
+  opacity: 0.4;
+}
+
+.pushmonkey-floating-label-container .pushmonkey-powered-by a:hover {
+  transition: opacity .5s ease-in-out;
+  opacity: 1;
+}
+
+.pushmonkey-circle {
+  border-radius: 10%;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: relative;
+  float: left;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+.pushmonkey-bar {
+  margin: 0 auto;
+  position: absolute;
+  background-color: #2fcc70;
+}
+
+.pushmonkey-horizontal {
+  width: 70%;
+  height: 20%;
+  left: 15%;
+  top: 40%;
+}
+
+.pushmonkey-vertical {
+  width: 20%;
+  height: 70%;
+  left: 40%;
+  top: 15%;
+}
+
+#pushmonkey-subscribe-window-title {
+  color: #2b2b2b;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 0 50px;
+}
+
+#pushmonkey-product-img-container {
+  margin-top: 10px;
+}
+
+#pushmonkey-product-img-container img {
+  width: auto;
+  max-height: 60px;
+}
+
+
+/* 
+ * Back in Stock
+ */
+
+#pushmonkey-backinstock-container {
+  right: 40px;
+}
+
+/*
+ * Price Drop
+ */
+
+#pushmonkey-pricedrop-container {
+  left: 40px;
+}
+
+/*
+ * Preloader 
+ */
+
+.pushmonkey-preloader {
+  display: none;
+  margin: 0px auto;
+}
+
+.pushmonkey-preloader .line {
+  width: 1px;
+  height: 12px;
+  background: #cccccc;
+  margin: 0 1px;
+  display: inline-block;
+  animation: opacity-2 1000ms infinite ease-in-out;
+}
+
+.pushmonkey-preloader .line-1 { animation-delay: 800ms; }
+.pushmonkey-preloader .line-2 { animation-delay: 600ms; }
+.pushmonkey-preloader .line-3 { animation-delay: 400ms; }
+.pushmonkey-preloader .line-4 { animation-delay: 200ms; }
+.pushmonkey-preloader .line-6 { animation-delay: 200ms; }
+.pushmonkey-preloader .line-7 { animation-delay: 400ms; }
+.pushmonkey-preloader .line-8 { animation-delay: 600ms; }
+.pushmonkey-preloader .line-9 { animation-delay: 800ms; }
+
+@keyframes opacity-2 {
+  0% {
+    opacity: 1;
+    height: 15px;
+  }
+  50% {
+    opacity: 0;
+    height: 12px;
+  }
+  100% {
+    opacity: 1;
+    height: 15px;
+  }
+}`;
+}var PushMonkeyClient=function(){var e=this;e.makePOST=function(e,o){return new Promise(function(t,i){var n=new XMLHttpRequest;n.open("POST",e,true);n.setRequestHeader("Content-Type","application/x-www-form-urlencoded");n.onload=function(){if(n.status>=200&&n.status<300&&n.readyState>=3){var e=JSON.parse(n.responseText);t(e)}else{i(n.responseText)}};n.onerror=function(){i(n.statusText)};var r=Object.keys(o).map(function(e){return encodeURIComponent(e)+"="+encodeURIComponent(o[e])}).join("&");n.send(r)})};e.makeGET=function(e){return new Promise(function(o,t){var i=new XMLHttpRequest;i.addEventListener("load",function e(){o(this.responseText)});i.open("GET",e);i.onerror=function(){t(i.statusText)};i.send()})}};var PushMonkeyCookie=function(){var e=this;e.set=function(e,o,t){var i=new Date;i.setTime(i.getTime()+t*24*60*60*1e3);var n="expires="+i.toUTCString();document.cookie=e+"="+o+";"+n+";path=/"+";SameSite=Strict"};e.get=function(e){var o=e+"=";var t=decodeURIComponent(document.cookie);var i=t.split(";");for(var n=0;n<i.length;n++){var r=i[n];while(r.charAt(0)==" "){r=r.substring(1)}if(r.indexOf(o)==0){return r.substring(o.length,r.length)}}return""}};var PushMonkeyEcommerce=function(e,o){var t=this;var i=new PushMonkeyClient;var n=new PushMonkeyCookie;t.getWooProductSku=function(){var e=document.getElementsByClassName("sku");if(e[0]){return e[0].textContent}return undefined};t.getWooProduct=function(){return new Promise(function(o,n){var r=t.getWooProductSku();var a="";if(r===undefined){t.log("Couldn't find sku");n()}else{var s=e.sdkHost+"/woo/v1/api/info/product/";t.getSubscriptionEndpoint().then(function(e){t.log("Got device for woo product info");a=e}).catch(function(e){t.log("Device not found for woo product info");a=""}).finally(function(){var p={sku:r,account_key:e.accountKey,device:a,safari:e.isSafari};i.makePOST(s,p).then(function(e){t.wooProduct=e;o(e)}).catch(function(o){t.wooProduct=undefined;e.log(o);n(o)})})}})};t.uploadWooProductId=function(o){p=true;if(t.wooProduct===undefined){e.log("Woo Product not found");return}var r=t.wooProduct;var a=e.sdkHost+"/woo/v1/api/label/product/";var s=n.get("pm_subscribed_backinstock_"+r.id)=="yes";var c=n.get("pm_subscribed_pricedrop_"+r.id)=="yes";var l={product_id:r.id,device:o,account_key:e.accountKey,back_in_stock:s,price_drop:c,safari:e.checkIfSafari()};i.makePOST(a,l).then(function(e){p=false}).catch(function(o){p=false;e.log("sendWooProduct error: ");e.log(o)})};t.showWooLabels=function(){t.getWooProduct().then(function(o){if(!e.backInStockEnable&&!e.priceDropEnable){e.log("not enabled notifications for back-in-stock and price-drop");return}if(e.backInStockEnable&&!o.backinstock_sub){t.showBackInStockFloatingLabel(o)}if(e.priceDropEnable&&!o.pricedrop_sub){t.showPriceDropFloatingLabel(o)}}).catch(function(e){t.log("Getting Woo Product resulted in error - Can't show labels");t.log(e)});return};t.log=function(e){if(o.debug)console.log(e)};t.checkIfEcommerce=function(){if(t.isShopify||t.isMagento||t.isWoo){return true}return false};t.checkIfShopify=function(){if(n.get("cart")||n.get("_shopify_y")||n.get("_shopify_s")){return true}return false};t.checkIfMagento=function(){if(n.get("_push_monkey_magento_cart_id")){return true}return false};t.checkIfWoo=function(){if(e.woo_enabled||o.woo_enabled){if(n.get("_push_monkey_wc_cart_id")||document.getElementsByClassName("woocommerce-active")[0]){return true}}return false};t.attemptToUploadCartId=function(){if(!t.isEcommerce){return}var e=n.get("pm_cart_stored");if(e){return}t.uploadCartId()};t.uploadCartId=function(){if(e.isSafari){t.getDeviceToken(function(e){if(t.isShopify){t.uploadShopifyCartId(e);t.uploadShopifyProductId(e)}else if(t.isMagento){t.uploadMagentoCartId(e)}else if(t.isWoo){t.uploadWooCartId(e)}})}else{t.getSubscriptionEndpoint().then(function(e){if(t.isShopify){t.uploadShopifyCartId(e);t.uploadShopifyProductId(e)}else if(t.isMagento){t.uploadMagentoCartId(e)}else if(t.isWoo){t.uploadWooProductId(e);t.uploadWooCartId(e)}}).catch(function(o){e.log("getSubscriptionEndpoint error");e.log(o)})}};t.getDeviceToken=function(o){var t=window.safari.pushNotification.permission(e.safariWebPushID);var i=t.deviceToken;o(i)};t.getSubscriptionEndpoint=function(){return new Promise(function(o,t){var i=n.get("pm_subscription_info");if(i){if(isNaN(parseInt(i))){e.log("pm_subscription_info is invalid");return}o(i)}else{e.log("error parsing subscription info.");t()}})};t.uploadShopifyCartId=function(o){var t=n.get("cart");if(!t){return}var r=e.sdkHost+"/shopify/v1/cart";var a={cart:t,endpoint:o,account_key:e.accountKey};i.makePOST(r,a).then(function(e){n.set("pm_cart_stored","yes",.01)}).catch(function(o){e.log("sendShopifyCartToServer error: ");e.log(o)})};t.uploadShopifyProductId=function(o){s=true;t.getProduct().then(function(t){var r=e.sdkHost+"/shopify/v1/product";var a=n.get("pm_subscribed_backinstock_"+t)=="yes";var p=n.get("pm_subscribed_pricedrop_"+t)=="yes";var c={product:t,endpoint:o,account_key:e.accountKey,back_in_stock:a,price_drop:p};i.makePOST(r,c).then(function(e){s=false}).catch(function(o){s=false;e.log("sendShopifyProduct error: ");e.log(o)})}).catch(function(o){s=false;e.log(o);e.log("Error in getProduct")})};t.uploadMagentoCartId=function(o){var t=n.get("_push_monkey_magento_cart_id");if(!t){return}var r=e.sdkHost+"/magento/v1/update_cart";var a={cart:t,endpoint:o,account_key:e.accountKey};i.makePOST(r,a).then(function(e){n.set("pm_cart_stored","yes",.1)}).catch(function(o){e.log("uploadMagentoCartId error: ");e.log(o)})};t.uploadWooCartId=function(o){var t=n.get("_pm_cart_token");if(!t){return}var r=e.sdkHost+"/magento/v1/update_cart";var a={cart:t,endpoint:o,account_key:e.accountKey};i.makePOST(r,a).then(function(e){n.set("pm_cart_stored","yes",.1)}).catch(function(o){e.log("uploadWooCartId error: ");e.log(o)})};t.getProduct=function(){return new Promise(function(o,t){var n=window.location.href.split("?")[0];var r=n.split("/").pop();if(r.indexOf(".")!==-1){t()}else{i.makeGET(n+".json").then(function(e){var t=JSON.parse(e);o(t.product.id)}).catch(function(o){e.log(o);t(o)})}})};t.showBackInStockFloatingLabel=function(t){var i=document.getElementById("pushmonkey-backinstock-container");var a=parseInt(t.quantity,10);if(i){e.log("Floating label already present.");if(a>0){e.log("Quantity >0. Remove the label.");i.remove()}return}var s=t.id;if(n.get("pm_subscribed_backinstock_"+s)=="yes"){return}if(a>0){e.log("Quantity >0");return}r("backinstock",e.backInStockPopup.title,e.backInStockPopup.message.replace("[product-name]",t.title),e.backInStockPopup.button,e.backInStockPopup.confirmation.replace("[product-name]",t.title),t,"pm_subscribed_backinstock_",o.backInStockPopup.color)};t.showPriceDropFloatingLabel=function(t){if(document.getElementById("pushmonkey-pricedrop-container")){return}var i=t.id;if(n.get("pm_subscribed_pricedrop_"+i)=="yes"){return}var a=parseFloat(t.price);if(!a){return}r("pricedrop",e.priceDropPopup.title,e.priceDropPopup.message.replace("[product-name]",t.title).replace("[price]",a),e.priceDropPopup.button,e.priceDropPopup.confirmation.replace("[product-name]",t.title).replace("[price]",a),t,"pm_subscribed_pricedrop_",o.priceDropPopup.color)};t.getProductInfo=function(o,t,n){var r=e.sdkHost+"/shopify/v1/product_info";var a={product:o,account_key:e.accountKey,endpoint:t,variant_id:n};return i.makePOST(r,a)};t.trackChangesOfVariant=function(o){if(typeof $=="undefined"){return}$("select").on("change",function(){e.log("Selection changed. Variant changed too?");t.updateBackInStockFloatingLabel(o)})};t.updateBackInStockFloatingLabel=function(o){var i=t.getVariantId();t.getProductInfo(o.id,null,i).then(function(o){if(e.backInStockEnable){t.showBackInStockFloatingLabel(o)}}).catch(function(o){e.log(error);e.log("Error in trackChangesOfVariant")})};t.getVariantId=function(){let e=new URL(document.location).searchParams;let o=e.get("variant");return o};t.showLabels=function(){if(s){e.log("another request already running");a=setInterval(t.showLabels,200);return}clearInterval(a);if(!e.backInStockEnable&&!e.priceDropEnable){e.log("not enabled notifications for back-in-stock and price-drop");return}var o=null;var i=null;t.getProduct().then(function(e){o=e;return t.getSubscriptionEndpoint()}).then(function(e){i=e;var n=t.getVariantId();return t.getProductInfo(o,i,n)}).then(function(o){if(e.backInStockEnable){t.showBackInStockFloatingLabel(o)}if(e.priceDropEnable){t.showPriceDropFloatingLabel(o)}t.trackChangesOfVariant(o)}).catch(function(o){e.log(o);e.log("Error in showLabels")})};t.debug=e.debug;t.isShopify=t.checkIfShopify();t.isMagento=t.checkIfMagento();t.isWoo=t.checkIfWoo();t.isEcommerce=t.checkIfEcommerce();var r=function(o,i,r,a,s,p,c,l){var m=document.querySelector("body");var d=document.createElement("div");d.className="pushmonkey-floating-label-container";d.id="pushmonkey-"+o+"-container";var u=document.createElement("div");u.className="pushmonkey-circle";u.innerHTML='<div class="pushmonkey-bar pushmonkey-horizontal" style="background:'+l+';""></div>'+'<div class="pushmonkey-bar pushmonkey-vertical" style="background:'+l+';"></div>';var g=document.createElement("button");g.className="pushmonkey-btn-"+o;g.id="pushmonkey-btn-"+o;g.style="background: "+l;g.innerHTML=i;var f=document.createElement("button");f.className="pushmonkey-btn-signmeup";f.style="background: "+l;f.innerHTML=a;var h=document.createElement("div");h.className="pushmonkey-floating-label-content";h.style="border-color: "+l;var v=document.createElement("h1");v.id="pushmonkey-subscribe-window-title";v.innerHTML=r;var b=p.title;var k=document.createElement("h5");k.innerHTML=b;var y=document.createElement("div");y.id="pushmonkey-product-img-container";var w=p.image;y.innerHTML="<img src="+w+">";var S=document.createElement("div");S.className="pushmonkey-powered-by";S.innerHTML="<a target='_blank' href='http://getpushmonkey.com?source=shopify'><img width='50%' src='https://snd.tc/static/images/permission-dialog-footer-logo.png'></a>";var C=document.createElement("div");C.className="pushmonkey-preloader";C.innerHTML='<span class="line line-1"></span>\n'+'<span class="line line-2"></span>\n'+'<span class="line line-3"></span>\n'+'<span class="line line-4"></span>\n'+'<span class="line line-5"></span>\n'+'<span class="line line-6"></span>\n'+'<span class="line line-7"></span>\n'+'<span class="line line-8"></span>\n'+'<span class="line line-9"></span>';h.appendChild(y).appendChild(k);h.appendChild(v);h.appendChild(f);h.appendChild(C);h.appendChild(S);var E=function(e){e.preventDefault();if(h.style.height==="280px"){h.style.height="0px";u.getElementsByClassName("pushmonkey-vertical")[0].style.display="block"}else{h.style.height="280px";u.getElementsByClassName("pushmonkey-vertical")[0].style.display="none"}};var A=function(o){o.preventDefault();f.style.display="none";C.style.display="block";setTimeout(function(){C.style.display="none";v.innerHTML=s},2e3);n.set(c+p.id,"yes",.01);e.log("Uploading Cart and Product Data");t.uploadCartId();if(e.isSafari){e.querySafariPermissions()}else{e.checkPermissionCookie()}};g.addEventListener("click",E);f.addEventListener("click",A);g.appendChild(u);d.appendChild(g);d.appendChild(h);m.appendChild(d)};var a=null;var s=false;var p=false};var PushMonkey=function(config){var pm=this;var pmEcommerce=new PushMonkeyEcommerce(pm,config);var cookie=new PushMonkeyCookie;var client=new PushMonkeyClient;pm.initialise=function(){pm.server_log("SDK is loading properly","sdk-loaded");if(pm.isIos()){if(pm.messenger_enabled){pm.initiateMessenger()}else{return}}if(pm.hasBell)pm.showBell();if(!pm.hasManifest())pm.createManifest();if(pmEcommerce.isWoo){pm.log("Running Woo functions after 3000 ms");setTimeout(pmEcommerce.showWooLabels,3e3)}else if(pmEcommerce.isShopify){pm.log("Running Shopify functions");pmEcommerce.showLabels()}if(pm.isPopUp){pm.manualStart();return}pm.log("start mode: "+pm.startMode);switch(pm.startMode){case 0:pm.manualStart(false);break;case 1:try{var e=document.getElementById(pm.customLinkElemId);e.onclick=function(e){pm.manualStart()}}catch(e){pm.log(e)}break;case 2:setTimeout(function(){pm.manualStart(false)},pm.startModeValue*1e3);break;case 3:pm.checkVisitCount();break}};pm.manualStart=function(e=true){pm.server_log("Manual Start initialized","manual-started");if(pm.isSafari){pm.querySafariPermissions()}else if(pm.isNotWordpress||pm.subdomainForced){window.addEventListener("message",pm.receiveMessage,false);pm.checkPermissionCookie(e)}else if(pm.isHttps||pm.isPopUp){if(pm.hasServiceWorkers){if(pm.isPopUp){pm.registerServiceWorker()}else{pm.registerLocalServiceWorker()}}else{pm.log("Push Monkey: Service workers are not available.")}}else{window.addEventListener("message",pm.receiveMessage,false);pm.checkPermissionCookie()}var o=document.head;var t=document.createElement("style");t.type="text/css";var i=getSdkCss();t.appendChild(document.createTextNode(i));o.appendChild(t)};pm.throwError=function(e){throw Error(e)};pm.log=function(e){1==pm.debug&&console.log(e)};pm.server_log=function(e,o){if(pm.messenger_enabled){var t=new XMLHttpRequest;t.open("GET","https://snd.tc/sdk/logging?account_key="+config.account_key+"&text="+e+"&type="+o,true);t.send()}};pm.hasManifest=function(){var e=document.querySelectorAll("head link[rel=manifest]");if(e.length){pm.log("we have manifests");pm.log(e);return true}return false};pm.urlB64ToUint8Array=function(e){const o="=".repeat((4-e.length%4)%4);const t=(e+o).replace(/\-/g,"+").replace(/_/g,"/");const i=window.atob(t);const n=new Uint8Array(i.length);for(let e=0;e<i.length;++e){n[e]=i.charCodeAt(e)}return n};pm.createManifest=function(){pm.log("creating manifest");var e=document.createElement("link");e.href=pm.sdkHost+"/manifest-"+pm.accountKey+".json";e.id="pm-manifest";e.rel="manifest";document.head.appendChild(e)};pm.registerServiceWorker=function(){navigator.serviceWorker.register(pm.serviceWorker).then(pm.initialiseState)};pm.registerLocalServiceWorker=function(){navigator.serviceWorker.register(pm.serviceWorkerLocal,{scope:"/"}).then(pm.initialiseState)};pm.initialiseState=function(e){e.update();if(!pm.serviceWorkersSupportNotifications){pm.log("Notifications aren't supported.");return}if(Notification.permission==="denied"){pm.log("The user has blocked notifications.");return}pm.log("initialiseState. We can proceed.");navigator.serviceWorker.ready.then(function(e){pm.log("initialiseState. Service worker ready.");e.pushManager.getSubscription().then(function(e){pm.log("initialiseState. Got subscription status.");pm.log(e);if(!e){if(pm.isPopUp){pm.log("is pop up");pm.subscribe()}else{pm.log("not a pop up");pm.log(pm.hasCustomPrompt);pm.hasCustomPrompt?pm.showPermissionDialog(false):pm.permissionDialogAllowed()}}else{pm.log("initialiseState. Already subscribed.");if(pm.isPopUp){var o=JSON.stringify(e.toJSON());window.opener.postMessage(["pm_subscribed",o],"*");window.close()}else if(pm.isEcommerce){pmEcommerce.attemptToUploadCartId()}}}).catch(function(e){pm.log("Error during getSubscription()");pm.log(e)})}).catch(function(e){pm.log("Error activating service worker",e)})};pm.receiveMessage=function(ev){pm.log(ev);if(ev.data=="pm_show_permission_dialog"){pm.showPermissionDialog()}else if(ev.data=="pm_show_permission_dialog_from_bell"){pm.permissionDialogAllowed()}else if(typeof ev.data=="object"){if(ev.data[0]=="pm_subscribed"){pm.updateBellTooltipAnimated("Subscribed.");pm.sendSubscriptionToServer(ev.data[1]);pmEcommerce.attemptToUploadCartId()}else if(ev.data[0]=="pm_send_cart_token"){pmEcommerce.sendShopifyCartToServer(ev.data[1])}else if(ev.data[0]=="pm_subscription_checked"){pm.updateBellTooltip(ev.data[1])}else if(ev.data[0]=="pm_subscription_toggled"){pm.bell.tooltip.getElementsByTagName("span")[0].innerHTML="Updated!"}else if(ev.data[0]=="pm_permission_info_requested"){eval("pm."+ev.data[1]+"("+ev.data[2]+");")}}};pm.showPermissionDialog=function(e=false){pm.server_log("Showing permission dialog","allow-deny-popup");if(!e){if(cookie.get("pm_permission_canceled")=="yes"){return}}if(document.getElementById("pushmonkey-permission-dark-overlay")&&document.getElementById("pushmonkey-prompt-container")){return}var o=document.createElement("div");o.id="pushmonkey-permission-dark-overlay";var t=document.createElement("div");t.id="pushmonkey-prompt-container";if(pm.isMobile()){t.className="bottom";var i=document.getElementById("pm-bell-container");if(i){var n={bottom:"170px"};pm.setStyles(i,n)}}var r=document.createElement("div");r.className="pm-dialog";var a=document.createElement("div");a.className="pm-close-x";var s=document.createElement("a");s.href="#";s.innerHTML="&#x2715;";a.appendChild(s);var p=document.createElement("div");p.className="pm-icon";p.innerHTML='<img src="'+pm.sdkHost+'/static/media/CACHE/images/secondary_website_images/04071729b8ac4b1cadbdbd8daff40dda/dd0e38a376380c024cc560c1736baa02.png" />';var c=document.createElement("div");c.className="pm-message";c.innerHTML='<strong class="pm-title">'+pm.customPromptTitle+"</strong><p>"+pm.customPromptMessage+"</p>";var l=document.createElement("div");l.className="pm-dialog-inner";l.appendChild(p);l.appendChild(c);l.appendChild(a);r.appendChild(l);var m=document.createElement("a");m.className="pm-cta pm-cancel-btn";m.innerHTML=pm.permissionDialogDenyText;var d=document.createElement("a");d.className="pm-cta pm-allow";d.innerHTML=pm.permissionDialogAllowText;var u=document.createElement("div");u.className="pm-footer";u.appendChild(m);u.appendChild(d);if(!pm.hideBranding){var g=document.createElement("div");g.className="pm-sub-footer";g.innerHTML='<a title="Send Web Push Notifications to your readers." target="_blank" href="https://getpushmonkey.com/?src=dialog"><img src="https://snd.tc/static/images/permission-dialog-footer-logo.png" /></a>';r.appendChild(g)}r.appendChild(u);t.appendChild(r);var f=document.getElementsByTagName("body")[0];f.appendChild(o);f.appendChild(t);var h=function(e){e.preventDefault();pm.server_log("Clicked permission cancel","permission-deny");t.remove();o.remove();cookie.set("pm_permission_canceled","yes",180)};m.addEventListener("click",h);s.addEventListener("click",h);d.addEventListener("click",function(e){e.preventDefault();pm.server_log("Clicked permission allow","permission-allow");t.remove();o.remove();cookie.set("pm_permission_canceled","yes",180);pm.permissionDialogAllowed()})};pm.permissionDialogAllowed=function(){pm.log("permissionDialogAllowed");if(pm.isSafari){pm.requestSafariPermissions()}else if(pm.isNotWordpress){pm.openWindow()}else if(pm.isHttps&&!pm.subdomainForced&&!pm.isPopUp){pm.log("ask for permission");pm.subscribe()}else{pm.openWindow()}};pm.openWindow=function(){if(typeof pm.popupWindow!="undefined")return;var e=window.innerHeight/2-250;var o=window.innerWidth/2-250;pm.popupWindow=window.open(pm.windowSrc,pm.popupWindowName,"scrollbars=yes, width=500, height=500, top="+e+", left="+o)};pm.showBell=function(){if(pm.isIos())return;if(pm.isPopUp)return;var e=document.createElement("div");e.id="pm-bell-container";var o={bottom:"50px",height:"50px",position:"fixed","z-index":"99999"};if(pm.bellPosition=="right"){o["right"]="20px"}else{o["left"]="20px"}pm.setStyles(e,o);var t=document.createElement("a");var i={outline:"none",display:"block",width:"50px",height:"50px","background-image":"url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAA9xJREFUeAHtWU1IVFEUPjPO1Bj+0WiZhVFWRv8RteiHFAJpUVHtkmhTUhAUWlCbiKJ2SgtDCYz8qYXoJiqXkRZYmxYmqdXCgkxIwp80nHFe36FejKPvzbtv3vOHzoGP+3POufec79737n0zRCLCgDAgDAgDwoAwIAwIA8KAMCAMCAPCgDAgDPxnDHhmK19N0zwQLd78sPPDZh+wFlgMfANewvcDyvknSGgj0AmwDADHp8sC/UnAVaAPmE7a0cnEJCQzugMQsA/RdgOro6IOob4dK9qp98EuiHozsH/87Rv62dRA410dpI2NUVJ2DgX2FFJK8WnyBJIjsLkM3wrdV7WcEQKQ0FIEdgM4AaQYBNmL/tvAA+AphUIHhqrLafRxI8EfXZPFByIyrtwi/6ZtrDgFEuomW1hruU4Agi9GKNWAUeKxkQ6gIzh87w6NNNbG6ia1vSmplFXTTN5g1hAUeSDh+yQDCw2vBRvbJkj+LJzrAavJ81zB0PsObHt2M5fIyDANVtxkozSA51IW1whA8gcRTRWgvMtGnzSRFuHHO778et1GE/19bHgovvVUC1cIQPIZmOr+1Oms9YQ+8XvSuoT/2PMxqSyuEIAozgPZytHoDqGwXrNUamE+SChgyTjGyHECsPo8JhNgW5JW5Cr5+pavZPuvSk5/jR0nAOPuAPjYsy3JhUWWfX25q8iXt47tn1t2ijJ0g4DdUePbqgYKiiiwa29cX4/XSxmXrut2NXpFpXSDgGUqARjZppddI/+afCM1eXx+SjtXRv4NW9jmIe4A7YbGJgo3COATIGHB5YYy7zZQ6skS4gtPtCxA0pmV9bToKF8siRMvidbPah0vwWrAWZkIa+EvvVroY7cWGfyhjx1GpQqw9fbXSeKPk7kv3qQWnAyZCDQd4FtPK/AI274LZULiBgE9iOiFQVT8eGw10Jl1X0Cy8/P7PzYrbNkefQ8rlDtjx3GqrXxPN5oYyfBYFwGzFeYdcBhQnZdX/xh2wTuUc084eaBOYUXtmA7BKeFfgFxhD4GV2snIhk8/fLKcTMKpe8AZJ4MyGWsJdEdM9Moqpwiw/+WnHDIxCY6JUwTYuobazOKVTT/33PBc5gP/rmg2nm2rLnVOZ6F6HBnOjwxyoCwFNgMLDQ3tKfrh9gzHYK09d/EyZMCxHWA4AxTYHQVmeujasLoTcWzmrxoE8PltJgtmKzunToF48ZebGLRg9cdN9PNfhaXnq3IlEInZBq1o8/+AsyYz8g7Qs0Oy/HPZeoA/wz9j5dX+ANAHklIYEAaEAWFAGBAGhAFhQBgQBoQBYUAYEAYSYeA3a2AFsT9cIfQAAAAASUVORK5CYII=')","background-position":"center"};if(pm.bellColor=="inverted"){i["background-image"]="url('data:image/png;base64,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')"}pm.setStyles(t,i);var n=document.createElement("div");var r=pm.bellColor=="inverted"?"#fff":"#2FCC70";var a={"background-color":r,"box-shadow":"0 2px 6px 0 rgba(0,0,0,.4)","border-radius":"5px",float:"left",height:"50px",width:"50px"};pm.setStyles(n,a);var s=document.createElement("span");var p=document.createElement("div");pm.setStyles(p,{background:"#282828","border-radius":"5px",color:"white",float:"left",height:"30px","line-height":"30px","margin-bottom":"10px","margin-left":"0","margin-top":"10px",opacity:"0",padding:"0 10px","text-align":"center",transition:"margin .4s, opacity .4s"});if(pm.bellPosition=="right"){pm.setStyles(p,{"margin-right":"0"})}n.onmouseover=function(){if(pm.isMobile())return;var e=pm.bellColor=="inverted"?"#E5E5E5":"#25A359";pm.setStyles(n,{background:e,cursor:"pointer"});pm.handleBellHover(s)};n.onmouseout=function(){if(pm.isMobile())return;var e=pm.bellColor=="inverted"?"#fff":"#2FCC70";pm.setStyles(n,{background:e})};t.addEventListener("click",function(e){e.preventDefault();pm.handleBellClick()});n.appendChild(t);p.appendChild(s);if(pm.bellPosition=="left"){e.appendChild(n);e.appendChild(p)}else{e.appendChild(p);e.appendChild(n)}pm.bell.bellContainer=e;pm.bell.tooltip=p;var c=document.getElementsByTagName("body")[0].appendChild(e)};pm.showBellDialog=function(){if(document.getElementById("pm-bell-dialog")){pm.hideBellDialog();return}var e=document.createElement("div");e.id="pm-bell-dialog";pm.setStyles(e,{background:"white","border-radius":"5px","box-shadow":"5px 5px 40px 0px rgba(0,0,0,0.3)",width:"250px","padding-bottom":"10px",position:"fixed",bottom:parseInt(document.getElementById("pm-bell-container").style.bottom)+70+"px",left:"20px","z-index":"99999"});if(pm.bellPosition=="right"){pm.setStyles(e,{left:"auto",right:"20px"})}var o=document.createElement("h1");o.innerHTML="Manage Site Notifications";pm.setStyles(o,{"font-size":"16px","font-weight":"bold",margin:"10px 12px","text-align":"left"});e.appendChild(o);if(pm.isPartner){var t=document.createElement("p");t.className="partner-info";t.innerHTML='Want push notifications on your website too? Create an account on <a target="_blank" class="push-monkey-link" href="https://getpushmonkey.com?source=oceanwp">getpushmonkey.com</a>';e.appendChild(t)}var i=document.createElement("div");pm.setStyles(i,{border:"1px solid #CCCCCC","border-radius":"3px",display:"flex","flex-direction":"row","margin-left":"10px","margin-right":"10px"});e.appendChild(i);var n=document.createElement("div");pm.setStyles(n,{margin:"10px",height:"50px",width:"50px"});var r=document.createElement("img");r.src=pm.sdkHost+"/static/media/CACHE/images/secondary_website_images/04071729b8ac4b1cadbdbd8daff40dda/dd0e38a376380c024cc560c1736baa02.png";pm.setStyles(r,{width:"100%"});n.appendChild(r);i.appendChild(n);var a=document.createElement("div");var o=document.createElement("p");o.innerHTML="-";pm.setStyles(o,{background:"#CCCCCC",color:"#CCCCCC","line-height":"10px",margin:"0","margin-top":"10px",width:"80px"});a.appendChild(o);var s=document.createElement("p");s.innerHTML="-";pm.setStyles(s,{background:"#E5E5E5",color:"#E5E5E5","line-height":"10px",margin:"0","margin-top":"8px",width:"100px"});a.appendChild(s);var p=document.createElement("p");p.innerHTML="-";pm.setStyles(p,{background:"#E5E5E5",color:"#E5E5E5","line-height":"10px",margin:"0","margin-top":"8px",width:"120px"});a.appendChild(p);i.appendChild(a);var c=document.createElement("a");c.href="#";c.innerHTML="...";c.addEventListener("click",function(e){e.preventDefault();pm.handleBellDialogClick()});pm.setStyles(c,{background:"#E5E5E5","border-radius":"4px",color:"white",display:"block","font-family":"Helvetica Neue,Helvetica,Arial,sans-serif","font-size":"14px","font-weight":"bold","line-height":"30px",margin:"10px 10px 0 10px","text-transform":"uppercase","text-align":"center"});e.appendChild(c);pm.bell.dialogButton=c;var l=document.getElementsByTagName("body")[0].appendChild(e)};pm.hideBellDialog=function(){var e=document.getElementById("pm-bell-dialog");if(e){e.remove()}};pm.handleBellClick=function(){pm.log("handleBellClick");pm.showBellDialog();pm.checkIfSubscribed(function(e,o){pm.log(e);pm.log(o);if(e&&o){pm.bell.dialogButton.innerHTML="Unsubscribe";pm.setStyles(pm.bell.dialogButton,{background:"#EB6859"})}else{pm.bell.dialogButton.innerHTML="Subscribe";pm.setStyles(pm.bell.dialogButton,{background:"#58D68C"})}})};pm.handleBellDialogClick=function(){pm.hideBellDialog();pm.checkIfSubscribed(function(e,o){var t=false;if(e){t=true}else if(!e){if(o){t=true}else if(pm.isHttps&&!pm.isPopUp&&!pm.subdomainForced&&!pm.isNotWordpress){pm.permissionDialogAllowed()}}if(t){var i=pm.toggleSubscription;if(pm.isSafari){i=pm.toggleSubscriptionSafari}i().then(function(e){pm.log(e);var o="Subscribed!";if(e.subscribed===false){o="Unsubscribed!"}pm.hideBellDialog();pm.updateBellTooltipAnimated(o)}).catch(function(e){pm.hideBellDialog();pm.updateBellTooltipAnimated("Error :(")})}})};pm.handleBellHover=function(e){};pm.updateBellTooltip=function(e){var o=cookie.get("pm_subscription_info");var t="You are receving notifications.";if(e){pm.verifySubscription(o).then(function(e){var o="You are receving notifications.";if(e.status==false){o="Subscribe to notifications."}pm.bell.tooltip.getElementsByTagName("span")[0].innerHTML=o}).catch(function(e){pm.log(e);var o="Please try again later...";pm.bell.tooltip.getElementsByTagName("span")[0].innerHTML=o})}else{t="Subscribe to notifications.";pm.bell.tooltip.getElementsByTagName("span")[0].innerHTML=t}};pm.updateBellTooltipAnimated=function(e){if(pm.bell.tooltip==undefined){return}pm.bell.tooltip.getElementsByTagName("span")[0].innerHTML=e;pm.setStyles(pm.bell.tooltip,{"margin-left":"10px",opacity:"1"});if(pm.bellPosition=="right"){pm.setStyles(pm.bell.tooltip,{"margin-left":"0","margin-right":"10px"})}setTimeout(function(){pm.setStyles(pm.bell.tooltip,{"margin-left":"0",opacity:"0"});if(pm.bellPosition=="right"){pm.setStyles(pm.bell.tooltip,{"margin-right":"0"})}},3e3)};pm.updateBellDialog=function(e){var o=cookie.get("pm_subscription_info");var t=o!=="";var i="#EB6859";var n="#58D68C";var r=i;var a="Unsubscribe";if(e&&t){pm.verifySubscription(o).then(function(e){var o="Unsubscribe";if(e.status==false){o="Subscribe";r=n}pm.bell.dialogButton.innerHTML=o;pm.setStyles(pm.bell.dialogButton,{background:r})}).catch(function(e){pm.log(e);var o="Try again later...";pm.bell.dialogButton.innerHTML=o;pm.setStyles(pm.bell.dialogButton,{background:r})});return}else if(e&&!t){}else if(!e&&t){cookie.set("pm_subscription_info",null,-1);a="Subscribe.";r=n}else if(!e&&!t){a="Subscribe";r=n}pm.bell.dialogButton.innerHTML=a;pm.setStyles(pm.bell.dialogButton,{background:r})};pm.checkIfSubscribed=function(e){if(pm.isSafari){var o=window.safari.pushNotification.permission(pm.safariWebPushID);if(o.permission!="granted"){e(false,false);return}pm.verifySubscriptionSafari(o.deviceToken).then(function(o){e(o.status,true)}).catch(function(o){e(false)})}else if(pm.isHttps&&!pm.isPopUp&&pm.subdomainForced||!pm.isHttps||pm.isNotWordpress){pm.log(cookie.get("pm_subscription_info"));var t=cookie.get("pm_subscription_info")!=="";if(t){var i=cookie.get("pm_subscription_info");pm.verifySubscription(i).then(function(o){if(o.status==false){e(true,false)}else{e(true,true)}}).catch(function(o){pm.log(o);e(true,false)})}else{pm.log("no cookie");e(false,false)}}else if(pm.isHttps){pm.log("checkIfSubscribed isHTTPS");navigator.permissions.query({name:"notifications"}).then(function(o){if(o.state!="granted"){e(false,false);return}navigator.serviceWorker.ready.then(function(e){return e.pushManager.getSubscription()}).then(function(e){pm.log(e);var o=JSON.stringify(e);pm.log(o);return pm.verifySubscription(o)}).then(function(o){if(o.status){try{pm.log("Setting pm_subscription_info cookie");cookie.set("pm_subscription_info",o.subscription_info,pm.cookieExpiryDays)}catch(e){pm.log(e)}}e(o.status,true)})})}};pm.checkPermissionCookie=function(e=false){if(cookie.get("pm_subscription_info")){pmEcommerce.attemptToUploadCartId()}else{pm.showPermissionDialog(e)}};pm.showSubcribingAnimation=function(){if(document.getElementsByClassName("loading").length){var e=document.getElementsByClassName("loading")[0];e.className+=" active"}};pm.querySafariPermissions=function(){var e=window.safari.pushNotification.permission(pm.safariWebPushID);if(e.permission==="default"){pm.showPermissionDialog()}else if(e.permission==="granted"){pmEcommerce.attemptToUploadCartId()}};pm.requestSafariPermissions=function(){window.safari.pushNotification.requestPermission(pm.safariEndpointURL,pm.safariWebPushID,{url:window.location.href},function(e){pm.log("requestSafariPermissions");pm.log(e);pm.log(e.permission==="granted");if(e.permission==="granted"){pm.log("try to handle eComm");pmEcommerce.attemptToUploadCartId();pm.log("check topics cookie");if(cookie.get("pm_topics")!="yes"){pm.log("topics not already shown");pm.retrieveSegments(e.deviceToken);cookie.set("pm_topics","yes",180)}}})};pm.subscribe=function(){navigator.serviceWorker.ready.then(function(e){pm.log("service worker ready");pm.log(e);var o=pm.urlBase("");if(pm.vapid_enabled){e.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:pm.urlB64ToUint8Array(pm.vapid_pub_key)}).then(function(e){pm.log("registration subscribed");pm.log(e);pm.showSubcribingAnimation();var o=JSON.stringify(e.toJSON());pm.sendVapidSubscriptionToServer(o)})}else{e.pushManager.subscribe({userVisibleOnly:true}).then(function(e){pm.log("registration subscribed");pm.log(e);pm.showSubcribingAnimation();var o=JSON.stringify(e.toJSON());pm.sendSubscriptionToServer(o)})}}).catch(function(e){pm.log("error navigator.serviceWorker.ready");pm.log(e)})};pm.urlBase=function(e){var o="=".repeat((4-e.length%4)%4);var t=(e+o).replace(/\-/g,"+").replace(/_/g,"/");var i=window.atob(t);var n=new Uint8Array(i.length);for(var r=0;r<i.length;++r){n[r]=i.charCodeAt(r)}return n};pm.endpointWorkaround=function(e){if(e.endpoint.indexOf("https://android.googleapis.com/gcm/send")!==0){return e.endpoint}var o=e.endpoint;if(e.subscriptionId&&e.endpoint.indexOf(e.subscriptionId)===-1){o=e.endpoint+"/"+e.subscriptionId}return o};pm.sendSubscriptionToServer=function(e){pm.log(e);var o=pm.getPlatform();var t={subscription_info:e,platform:o};var i=pm.sdkHost+"/push/v1/register/"+pm.accountKey;client.makePOST(i,t).then(function(o){pm.didSendSubscriptionToServer(o,e)}).catch(function(e){pm.log("sendSubscriptionToServer error: ");pm.log(error);if(pm.isPopUp){window.close()}})};pm.sendVapidSubscriptionToServer=function(e){pm.log(e);var o=pm.getPlatform();var t={subscription_info:e,platform:o,vapid:true};var i=pm.sdkHost+"/push/v1/register/"+pm.accountKey;client.makePOST(i,t).then(function(o){pm.didSendSubscriptionToServer(o,e)}).catch(function(e){pm.log("sendSubscriptionToServer error: ");pm.log(error);if(pm.isPopUp){window.close()}})};pm.didSendSubscriptionToServer=function(e,o){pm.log("sendSubscriptionToServer saved: ");var t=e.subscription_info;pm.log(e);if(pm.isPopUp){window.opener.postMessage(["pm_subscribed",o],"*");window.close()}else{cookie.set("pm_subscription_info",t,pm.cookieExpiryDays);pm.updateBellTooltipAnimated("Subscribed.");pm.retrieveSegments(t);if(pm.aweber_enabled){pm.initiateAweber()}}};pm.toggleSubscription=function(){return new Promise((e,o)=>{var t=cookie.get("pm_subscription_info");pm.log("subscription found: ");pm.log(t);var i={subscription_info:t};var n=pm.sdkHost+"/push/v1/update/"+pm.accountKey;return client.makePOST(n,i).then(function(o){e(o)}).catch(function(e){o(e)})})};pm.toggleSubscriptionSafari=function(){return new Promise((e,o)=>{var t=window.safari.pushNotification.permission(pm.safariWebPushID);pm.log(t.deviceToken);var i={token:t.deviceToken};var n=pm.sdkHost+"/push/v1/update_safari/"+pm.accountKey;client.makePOST(n,i).then(function(o){e(o)}).catch(function(e){o(e)})})};pm.retrieveSegments=function(e){pm.log("topics enabled?");if(!pm.segmentationEnabled){pm.log("Segmentation is disabled.");return}pm.log("topics enabled.");var o=pm.sdkHost+"/push/v1/segments/"+pm.accountKey;var t={id:e};client.makePOST(o,t).then(function(o){if(o.segments){if(o.segments.length>0){pm.log("show topics dialog.");pm.showSegmentsDialog(o.template,e)}}else{pm.log("error retrieving segments: ");pm.log(o)}}).catch(function(e){pm.log("error retrieving segments: ");pm.log(e)})};pm.initiateAweber=function(){var e=pm.sdkHost+"/push/v1/aweber-code/"+pm.accountKey;client.makeGET(e).then(function(e){if(e){pm.log("show aweber dialog.");pm.showAWeberDialog(e)}else{pm.log("error retrieving aweber");pm.log(e)}}).catch(function(e){pm.log("error retrieving aweber: ");pm.log(e)})};pm.initiateMessenger=function(){var e=pm.sdkHost+"/push/v1/messenger-code/"+pm.accountKey;client.makeGET(e).then(function(e){if(e){pm.log("show messenger dialog.");pm.showMessengerDialog(e)}else{pm.log("error retrieving meseenger");pm.log(e)}}).catch(function(e){pm.log("error retrieving messenger: ");pm.log(e)})};pm.showAWeberDialog=function(e){var o=document.createElement("div");o.innerHTML=e;while(o.firstChild){document.body.appendChild(o.firstChild)}var t=document.getElementById("mymodal-aweber");t.style.display="block";var i=document.getElementsByClassName("close-aweber")[0];i.onclick=function(){t.style.display="none"};pm.autoCloseAweber()};pm.autoCloseAweber=function e(){var o=document.getElementById("mymodal-aweber");var t=o.querySelector("form");var i=o.querySelector('input[name="email"]');var n=/^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;t.addEventListener("submit",function(e){if(!i.value){alert("The field is required.")}else if(!n.test(i.value)){alert("The e-mail address entered is invalid.")}else{o.style.display="none";return true}e.preventDefault()})};pm.showMessengerDialog=function(e){var o=document.createElement("div");o.innerHTML=e;while(o.firstChild){document.body.appendChild(o.firstChild)}var t=document.getElementById("mymodal-aweber");t.style.display="block";var i=document.getElementsByClassName("close-aweber")[0];i.onclick=function(){t.style.display="none"}};pm.showSegmentsDialog=function(e,o){var t=document.createElement("div");t.innerHTML=e;while(t.firstChild){document.body.appendChild(t.firstChild)}var i=document.getElementById("pm_segments_save");var n=document.getElementsByClassName("pm_segments_cancel");i.onclick=function(){var e=[];document.querySelectorAll("#pmk_segments input:checked").forEach(function(o,t){e.push(o.value)});i.innerHTML="Saving...";i.onclick=function(){};pm.saveSegments(e,o,i)};var r=n.length;while(r--){n[r].onclick=function(){pm.hideSegmentsDialog()}}};pm.saveSegments=function(e,o,t){var i=pm.sdkHost+"/push/v1/segments/save/"+pm.accountKey;var n={segments:e,token:o};client.makePOST(i,n).then(function(e){pm.log(e);t.innerHTML="Awesome!";setTimeout(function(){pm.hideSegmentsDialog()},2e3)}).catch(function(e){pm.log("error retrieving segments: ");pm.log(err)})};pm.hideSegmentsDialog=function(){document.getElementById("pmk_segments").remove()};pm.verifySubscription=function(e){var o={subscription_info:e};var t=pm.sdkHost+"/push/v1/status/"+pm.accountKey;return client.makePOST(t,o)};pm.verifySubscriptionSafari=function(e){var o={token:e};var t=pm.sdkHost+"/push/v1/status_safari/"+pm.accountKey;return client.makePOST(t,o)};pm.setStyles=function(e,o){for(var t in o){e.style[t]=o[t]}};pm.getSubscriptionInfo=function(){return cookie.get("pm_subscription_info")};pm.checkVisitCount=function(){if(!cookie.get("pm_visit_count")){cookie.set("pm_visit_count",1,90)}else{var e=parseInt(cookie.get("pm_visit_count"));if(e+1==pm.startModeValue){pm.manualStart(false);return}cookie.set("pm_visit_count",e+1,90)}};pm.checkIfFirefox=function(){var e=pm.checkBrowser().split("-");return"Firefox"==e[0]&&"44"<=e[1]?1:0};pm.checkBrowser=function(){var e=navigator.userAgent,o=navigator.appName,t=""+parseFloat(navigator.appVersion);parseInt(navigator.appVersion,10);var i="",n,r,a;-1!=(r=e.indexOf("OPR/"))?(o="Opera",t=e.substring(r+4)):-1!=(r=e.indexOf("Opera"))?(o="Opera",t=e.substring(r+6),-1!=(r=e.indexOf("Version"))&&(t=e.substring(r+8))):-1!=(r=e.indexOf("Edge"))?(o="Edge",t=e.substring(r+5)):-1!=(r=e.indexOf("Chrome"))?(o="Chrome",t=e.substring(r+7),/(.*?)wv\)/.test(e)&&(i="22")):-1!=(r=e.indexOf("Safari"))?(o="Safari",t=e.substring(r+7),-1!=(r=e.indexOf("Version"))&&(t=e.substring(r+8))):-1!=(r=e.indexOf("Firefox"))?(o="Firefox",t=e.substring(r+8)):(n=e.lastIndexOf(" ")+1)<(r=e.lastIndexOf("/"))&&(o=e.substring(n,r),t=e.substring(r+1),o.toLowerCase()==o.toUpperCase()&&(o=navigator.appName));-1!=(a=t.indexOf(";"))&&(t=t.substring(0,a));-1!=(a=t.indexOf(" "))&&(t=t.substring(0,a));e=parseInt(""+t,10);isNaN(e)&&(t=""+parseFloat(navigator.appVersion),e=parseInt(navigator.appVersion,10));"22"==i&&(e=i);return o+"-"+e+"-"+t};pm.checkIfChrome=function(){var e=pm.checkBrowser().split("-");return 1!=pm.deviceType&&"48"<=e[1]?1:"Chrome"==e[0]&&"42"<=e[1]?1:0};pm.checkIfEdge=function(){var e=pm.checkBrowser().split("-");return 1!=pm.deviceType&&"17"<=e[1]?1:"Edge"==e[0]&&"17"<=e[1]?1:0};pm.checkIfSafari=function(){var e=window.navigator.userAgent,o=e.indexOf("Safari"),t=e.indexOf("Chrome"),e=e.substring(0,o).substring(e.substring(0,o).lastIndexOf("/")+1);return/iPad|iPhone|iPod/.test(navigator.userAgent)?0:-1==t&&0<o&&7<=parseInt(e,10)?1:0};pm.checkIfEdge=function(){var e=pm.checkBrowser().split("-");return 1!=pm.deviceType&&"17"<=e[1]?1:"Edge"==e[0]&&"17"<=e[1]?1:0};pm.getPlatform=function(){if(pm.isTablet()){return"tablet"}else if(pm.isMobile()){return"mobile"}return"desktop"};pm.getDevice=function(){navigator.userAgent.toLowerCase();return pm.isTablet()?2:pm.isMobile()?3:1};pm.isTablet=function(e){if(/android/.test(e)){if(!1===/mobile/.test(e))return 1}else if(!0===/ipad/.test(e))return 1;return 0};pm.isMobile=function(){return/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino|android|ipad|playbook|silk/i.test(navigator.userAgent||navigator.vendor||window.opera)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test((navigator.userAgent||navigator.vendor||window.opera).substr(0,4))};pm.getOS=function(){var e=navigator.userAgent.toLowerCase();return/windows phone/i.test(e)?6:/android/i.test(e)?4:/ipad|iphone|ipod/.test(e)&&!window.MSStream?5:/linux/i.test(e)?2:/macintosh|mac os x/i.test(e)?3:/windows|win32/i.test(e)?1:7};pm.isIos=function(){return pm.os==5};pm.accountKey=config.accountKey;pm.bell={};pm.bellColor=config.bellColor;pm.bellPosition=config.bellPosition;pm.cookieExpiryDays=360;pm.customLinkElemId=config.customLinkElemId;pm.customPromptMessage=config.customPromptMessage;pm.customPromptTitle=config.customPromptTitle;pm.debug=1;pm.deviceType=pm.getDevice();pm.isDemo="0"==1;pm.dialogBackgroundColor=config.dialogColor;pm.dialogButtonBackgroundColor=config.dialogButtonColor;pm.hasBell=config.bell;pm.hasCustomPrompt=config.customPrompt;pm.hasServiceWorkers="serviceWorker"in navigator;pm.isChrome=pm.checkIfChrome();pm.isEdge=pm.checkIfEdge();pm.isEcommerce=pmEcommerce.isEcommerce;pm.isFirefox=pm.checkIfFirefox();pm.isHttps=document.location.protocol=="https:"||document.location.href.indexOf("localhost")!=-1;pm.isNotWordpress=config.isNotWordpress;pm.popupWindowName="Subscribing...";pm.isPopUp=window.name==pm.popupWindowName;pm.isSafari=pm.checkIfSafari();pm.os=pm.getOS();pm.isPartner=config.isPartner;pm.hideBranding=config.hideBranding;pm.priceDropEnable=config.priceDropEnable;pm.priceDropPopup=config.priceDropPopup;pm.backInStockEnable=config.backInStockEnable;pm.backInStockPopup=config.backInStockPopup;pm.permissionDialogAllowText=config.permissionDialogAllowText;pm.permissionDialogDenyText=config.permissionDialogDenyText;pm.safariHost="https://www.getpushmonkey.com";pm.safariEndpointURL=pm.safariHost+"/push";pm.safariWebPushID=config.safariWebPushID;pm.sdkHost="https://placeholdercom.snd.tc";pm.segmentationEnabled=config.segmentation;pm.serviceWorker="./service-worker-"+config.accountKey+".js";pm.serviceWorkerLocal=getLocalServiceWorkerPath(config);pm.serviceWorkersSupportNotifications="undefined"!=typeof ServiceWorkerRegistration&&"showNotification"in ServiceWorkerRegistration.prototype&&"PushManager"in window;pm.startMode=config.startMode;pm.startModeValue=config.startModeValue;pm.subdomainForced=config.subdomainForced;pm.subscribeDialogText=config.subscribeDialogText;pm.subscribeDialogClose=config.subscribeDialogClose;pm.windowSrc=pm.sdkHost+"/register-service-worker-"+config.accountKey;pm.vapid_enabled=config.vapidEnabled;pm.vapid_pub_key=config.vapidPubKey;pm.aweber_enabled=config.aweber_enabled;pm.messenger_enabled=config.messenger_enabled;pm.woo_enabled=config.woo_enabled;pm.ecom=pmEcommerce;pm.cook=cookie;pm.client=client;pm.config=config};var PushMonkeySegmentsSDK=function(e){var o=this;var t=e.accountKey;var i=new PushMonkeyClient;var n=new PushMonkeyCookie;o.trackEvent=function(e,r){url=o.sdkHost+"/segments/v1/new";data=typeof r==="object"?r:{};data["category"]=e;data["account_key"]=t;var a=n.get("pm_subscription_info");if(isNaN(parseInt(a))){o.log("pm_subscription_info is invalid");return}data["subscription_info"]=a;if(o.isSafari){data["is_safari"]=o.isSafari}i.makePOST(url,data).then(function(e){if(e.status=="ok"){o.log("Event saved")}else{o.log(e);o.log("Error event")}}).catch(function(e){o.log(e);o.log("Network error tracking event")})};o.trackPage=function(){if(!o.trackPages){return}o.trackEvent("page-viewed-url",{value:window.location.href})};o.log=function(e){if(!o.debug){return}console.log(e)};o.debug=e.debug;o.trackPages=e.trackPages;o.sdkHost=window._pushmonkey.sdkHost;o.isSafari=window._pushmonkey.isSafari};
+
+window.addEventListener('load', function() {
+
+
+    try {
+      var pushMonkeyConfig = {
+        vapidEnabled: 0,
+        vapidPubKey: "None",
+        accountKey: "YG8LIM4JENF1WHDT0",
+        dialogColor: "#CEDE9B",
+        dialogButtonColor: "#99CC56",
+        httpsInstalled: 0,
+        isNotWordpress: 0,
+        isShopify: 0,
+        segmentation: 1,
+        customLinkElemId: 'push-monkey-custom-link-prompt-trigger',
+        customPrompt: 1,
+        customPromptTitle: 'We would like to send you push notifications.',            
+        customPromptMessage: 'Notifications can be turned off anytime from browser settings.',
+        bell: 0,
+        bellColor: "regular",
+        bellPosition: "left",
+        hideBranding: 1,
+        safariWebPushID: 'web.com.pushmonkey.YG8LIM4JENF1WHDT0',
+        shopifyAppName: 'push-monkey',
+        subdomainForced: 0,
+        subscribeDialogText: 'Thank you for subscribing!',
+        subscribeDialogClose: 'Close',
+        isPartner: 0,
+        trackPages: 1,
+        permissionDialogAllowText: 'Allow',
+        permissionDialogDenyText: 'Don&#39;t Allow',
+        backInStockEnable: 0,
+        backInStockPopup: {
+          title: '',
+          message: '',
+          button: '',
+          confirmation: '',
+          color: '',
+        },
+        priceDropEnable: 0,
+        priceDropPopup: {
+          title: '',
+          message: '',
+          button: '',
+          confirmation: '',
+          color: ''
+        },
+        startMode: 2,
+        startModeValue: 5,
+        aweber_enabled: 0,
+        messenger_enabled: 0,
+        woo_enabled: 0,
+        debug: 1
+      };
+      (function(config) {
+
+        if ("object" !== typeof config) {
+
+          console.log("Push Monkey: Missing configuration.");
+        } else {
+
+          window._pushmonkey = new PushMonkey(config);
+          window._pushmonkey.initialise();
+          window.push_monkey_sdk = new PushMonkeySegmentsSDK(config);
+          window.push_monkey_sdk.trackPage();
+        }
+      })(pushMonkeyConfig);
+
+    } catch(err) {
+
+      console.log(err);
+    }
+    
+});
+
+

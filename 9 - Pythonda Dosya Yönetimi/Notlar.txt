@@ -1,0 +1,2 @@
+icabi : 28.0 , 44.0 , 100.0 
+Ortalaması ve belgesi: 57.333333333333336,Ucundan geçti belgesi.

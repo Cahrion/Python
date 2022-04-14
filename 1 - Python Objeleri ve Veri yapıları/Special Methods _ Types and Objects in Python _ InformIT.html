@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.informit.com/articles/article.aspx?p=453682&seqNum=6 -->
+<html class=" js no-touch hashchange borderradius boxshadow fontface generatedcontent video no-flash localstorage" xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:scr="urn:scr.this" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/d527718953"></script><script src="./Special Methods _ Types and Objects in Python _ InformIT_files/nr-1177.min.js.indir"></script><script type="text/javascript" async="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/ec.js.indir"></script><script type="text/javascript" async="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/analytics.js.indir"></script><script type="text/javascript" async="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/f.txt"></script><script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/1.txt"></script><script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/1(1).txt"></script><script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/moatframe.js.indir"></script><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="google-site-verification" content="GOY_g4NwXq6XtpsZA7EQ4BAj8lXrMv5tqMk5Einwj5M"><script type="text/javascript" async="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/recaptcha__tr.js.indir"></script><script async="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/gtm.js.indir"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"d527718953","applicationID":"90967276","transactionName":"bwBbMhBWVkYFV0RbClZKdDAhGHlHEF1TXgBLJlYIFkVXWQhRQh0hXRFYDw5E","queueTime":0,"applicationTime":178,"agent":"","atts":""}</script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"d527718953",applicationID:"90967276"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(c(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(5),c=e(6),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,n){s[n]=i(p+n,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(l+"tracer",[u.now(),e,t],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&d("lcp",[t[t.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var n=Math.round(e.timeStamp),t={type:e.type};n<=p.now()?t.fid=p.now()-n:n>p.offset&&n<=Date.now()?(n-=p.offset,t.fid=p.now()-n):n=p.now(),g=!0,d("timing",["fi",n,t])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(4),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e){function n(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,n,!1)}n.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],5:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],6:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],7:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function t(t,r,i,o){if(!p.aborted||o){e&&e(t,r,i);for(var a=n(i),c=v(t),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[t]];return d&&d.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(t)}function y(e,n){u(e,function(e,t){n=n||"feature",w[t]=n,n in s||(s[n]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(5),s={},d={},p=n.exports=i();p.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(w,function(n,t){e[n]||(e[n]=t)});var t=a();f("mark",["onload",t+E.offset],null,"api"),f("timing",["load",t]);var r=l.createElement("script");r.src="https://"+e.agent,n.parentNode.insertBefore(r,n)}}function i(){"complete"===l.readyState&&o()}function o(){f("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-E.offset}var c=(new Date).getTime(),f=e("handle"),u=e(5),s=e("ee"),d=e(3),p=window,l=p.document,m="addEventListener",v="attachEvent",g=p.XMLHttpRequest,y=g&&g.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:g,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var h=""+location,w={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1177.min.js"},b=g&&y&&y[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:c,now:a,origin:h,features:{},xhrWrappable:b,userAgent:d};e(1),e(2),l[m]?(l[m]("DOMContentLoaded",o,!1),p[m]("load",r,!1)):(l[v]("onreadystatechange",i),p[v]("onload",r)),f("mark",["firstbyte",c],null,"api");var x=0,O=e(7)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(6),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof t?t(r,a):t||{}}catch(u){p([u,"",[r,a,i],c])}s(n+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(n+"err",[r,a,d],c),d}finally{s(n+"end",[r,a,f],c)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<n.length;f++)c=n[f],a=e[c],r(a)||(e[c]=t(a,u?c+i:i,o,c))}function s(t,r,i){if(!f||n){var o=f;f=!0;try{e.emit(t,r,i,n)}catch(a){p([a,t,r,i])}f=o}}function d(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){p([r])}for(var i in e)c.call(e,i)&&(n[i]=e[i]);return n}function p(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);</script><meta name="viewport" content="width=device-width, initial-scale=1"><title>Special Methods | Types and Objects in Python | InformIT</title><link href="./Special Methods _ Types and Objects in Python _ InformIT_files/style-blessed1.css" rel="stylesheet" type="text/css" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link href="./Special Methods _ Types and Objects in Python _ InformIT_files/style.css" rel="stylesheet" type="text/css" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link href="./Special Methods _ Types and Objects in Python _ InformIT_files/print.css" rel="stylesheet" media="print" type="text/css" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.informit.com/display/InformIT/images/objects/touch_icons/apple-touch-icon-144x144-precomposed.png" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.informit.com/display/InformIT/images/objects/touch_icons/apple-touch-icon-114x114-precomposed.png" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.informit.com/display/InformIT/images/objects/touch_icons/apple-touch-icon-72x72-precomposed.png" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><link rel="apple-touch-icon-precomposed" href="https://www.informit.com/display/InformIT/images/objects/touch_icons/apple-touch-icon-precomposed.png" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/modernizr.custom.js.indir" type="text/javascript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/jquery.js.indir" type="text/JavaScript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/global.js.indir" type="text/JavaScript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><!--[if lte IE 8]><script language="JavaScript" src="/display/common/javascript/respond.min.js" type="text/JavaScript"></script><![endif]--><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/swfobject.js.indir" type="text/JavaScript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/jquery-ui-1.12.0.custom.min.js.indir" type="text/JavaScript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/fastclick.min.js.indir" type="text/JavaScript" xmlns:msxsl="urn:schemas-microsoft-com:xslt"></script><link rel="canonical" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6">
+            <link rel="prev" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=5">
+            <link rel="next" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=7">
+        
+                <meta name="pageType" content="Articles and Sample Chapters">
+            <meta name="publishedDate" content="Mar 17, 2006">
+                <meta name="description" content="All the data stored in a Python program is built around the concept of an object. Objects include fundamental data types such as numbers, strings, lists, and dictionaries. It&#39;s also possible to create user-defined objects in the form of classes or extension types. This chapter describes the Python object model and provides an overview of the built-in data types. ">
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+        <link rel="shortcut icon" href="https://www.informit.com/display/InformIT/images/objects/favicon.ico?v=20200506"><script language="JavaScript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/e-commerce-data-layer.js.indir" type="text/JavaScript"></script><script>
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-594Q94P');
+            </script><script src="./Special Methods _ Types and Objects in Python _ InformIT_files/api.js.indir"></script><style type="text/css">.at-icon{fill:#fff;border:0}.at-icon-wrapper{display:inline-block;overflow:hidden}a .at-icon-wrapper{cursor:pointer}.at-rounded,.at-rounded-element .at-icon-wrapper{border-radius:12%}.at-circular,.at-circular-element .at-icon-wrapper{border-radius:50%}.addthis_32x32_style .at-icon{width:2pc;height:2pc}.addthis_24x24_style .at-icon{width:24px;height:24px}.addthis_20x20_style .at-icon{width:20px;height:20px}.addthis_16x16_style .at-icon{width:1pc;height:1pc}#at16lb{display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:1001;background-color:#000;opacity:.001}#at_complete,#at_error,#at_share,#at_success{position:static!important}.at15dn{display:none}#at15s,#at16p,#at16p form input,#at16p label,#at16p textarea,#at_share .at_item{font-family:arial,helvetica,tahoma,verdana,sans-serif!important;font-size:9pt!important;outline-style:none;outline-width:0;line-height:1em}* html #at15s.mmborder{position:absolute!important}#at15s.mmborder{position:fixed!important;width:250px!important}#at15s{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);float:none;line-height:1em;margin:0;overflow:visible;padding:5px;text-align:left;position:absolute}#at15s a,#at15s span{outline:0;direction:ltr;text-transform:none}#at15s .at-label{margin-left:5px}#at15s .at-icon-wrapper{width:1pc;height:1pc;vertical-align:middle}#at15s .at-icon{width:1pc;height:1pc}.at4-icon{display:inline-block;background-repeat:no-repeat;background-position:top left;margin:0;overflow:hidden;cursor:pointer}.addthis_16x16_style .at4-icon,.addthis_default_style .at4-icon,.at4-icon,.at-16x16{width:1pc;height:1pc;line-height:1pc;background-size:1pc!important}.addthis_32x32_style .at4-icon,.at-32x32{width:2pc;height:2pc;line-height:2pc;background-size:2pc!important}.addthis_24x24_style .at4-icon,.at-24x24{width:24px;height:24px;line-height:24px;background-size:24px!important}.addthis_20x20_style .at4-icon,.at-20x20{width:20px;height:20px;line-height:20px;background-size:20px!important}.at4-icon.circular,.circular .at4-icon,.circular.aticon{border-radius:50%}.at4-icon.rounded,.rounded .at4-icon{border-radius:4px}.at4-icon-left{float:left}#at15s .at4-icon{text-indent:20px;padding:0;overflow:visible;white-space:nowrap;background-size:1pc;width:1pc;height:1pc;background-position:top left;display:inline-block;line-height:1pc}.addthis_vertical_style .at4-icon,.at4-follow-container .at4-icon{margin-right:5px}html>body #at15s{width:250px!important}#at15s.atm{background:none!important;padding:0!important;width:10pc!important}#at15s_inner{background:#fff;border:1px solid #fff;margin:0}#at15s_head{position:relative;background:#f2f2f2;padding:4px;cursor:default;border-bottom:1px solid #e5e5e5}.at15s_head_success{background:#cafd99!important;border-bottom:1px solid #a9d582!important}.at15s_head_success a,.at15s_head_success span{color:#000!important;text-decoration:none}#at15s_brand,#at15sptx,#at16_brand{position:absolute}#at15s_brand{top:4px;right:4px}.at15s_brandx{right:20px!important}a#at15sptx{top:4px;right:4px;text-decoration:none;color:#4c4c4c;font-weight:700}#at15sptx:hover{text-decoration:underline}#at16_brand{top:5px;right:30px;cursor:default}#at_hover{padding:4px}#at_hover .at_item,#at_share .at_item{background:#fff!important;float:left!important;color:#4c4c4c!important}#at_share .at_item .at-icon-wrapper{margin-right:5px}#at_hover .at_bold{font-weight:700;color:#000!important}#at_hover .at_item{width:7pc!important;padding:2px 3px!important;margin:1px;text-decoration:none!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover{margin:0!important}#at_hover .at_item.athov,#at_hover .at_item:focus,#at_hover .at_item:hover,#at_share .at_item.athov,#at_share .at_item:hover{background:#f2f2f2!important;border:1px solid #e5e5e5;color:#000!important;text-decoration:none}.ipad #at_hover .at_item:focus{background:#fff!important;border:1px solid #fff}.at15t{display:block!important;height:1pc!important;line-height:1pc!important;padding-left:20px!important;background-position:0 0;text-align:left}.addthis_button,.at15t{cursor:pointer}.addthis_toolbox a.at300b,.addthis_toolbox a.at300m{width:auto}.addthis_toolbox a{margin-bottom:5px;line-height:initial}.addthis_toolbox.addthis_vertical_style{width:200px}.addthis_button_facebook_like .fb_iframe_widget{line-height:100%}.addthis_button_facebook_like iframe.fb_iframe_widget_lift{max-width:none}.addthis_toolbox a.addthis_button_counter,.addthis_toolbox a.addthis_button_facebook_like,.addthis_toolbox a.addthis_button_facebook_send,.addthis_toolbox a.addthis_button_facebook_share,.addthis_toolbox a.addthis_button_foursquare,.addthis_toolbox a.addthis_button_linkedin_counter,.addthis_toolbox a.addthis_button_pinterest_pinit,.addthis_toolbox a.addthis_button_tweet{display:inline-block}.addthis_toolbox span.addthis_follow_label{display:none}.addthis_toolbox.addthis_vertical_style span.addthis_follow_label{display:block;white-space:nowrap}.addthis_toolbox.addthis_vertical_style a{display:block}.addthis_toolbox.addthis_vertical_style.addthis_32x32_style a{line-height:2pc;height:2pc}.addthis_toolbox.addthis_vertical_style .at300bs{margin-right:4px;float:left}.addthis_toolbox.addthis_20x20_style span{line-height:20px}.addthis_toolbox.addthis_32x32_style span{line-height:2pc}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact,.addthis_toolbox.addthis_pill_combo_style a{float:left}.addthis_toolbox.addthis_pill_combo_style a.addthis_button_tweet{margin-top:-2px}.addthis_toolbox.addthis_pill_combo_style .addthis_button_compact .at15t_compact{margin-right:4px}.addthis_default_style .addthis_separator{margin:0 5px;display:inline}div.atclear{clear:both}.addthis_default_style .addthis_separator,.addthis_default_style .at4-icon,.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300bs,.addthis_default_style .at300m{float:left}.at300b img,.at300bo img{border:0}a.at300b .at4-icon,a.at300m .at4-icon{display:block}.addthis_default_style .at300b,.addthis_default_style .at300bo,.addthis_default_style .at300m{padding:0 2px}.at300b,.at300bo,.at300bs,.at300m{cursor:pointer}.addthis_button_facebook_like.at300b:hover,.addthis_button_facebook_like.at300bs:hover,.addthis_button_facebook_send.at300b:hover,.addthis_button_facebook_send.at300bs:hover{opacity:1}.addthis_20x20_style .at15t,.addthis_20x20_style .at300bs{overflow:hidden;display:block;height:20px!important;width:20px!important;line-height:20px!important}.addthis_32x32_style .at15t,.addthis_32x32_style .at300bs{overflow:hidden;display:block;height:2pc!important;width:2pc!important;line-height:2pc!important}.at300bs{overflow:hidden;display:block;background-position:0 0;height:1pc;width:1pc;line-height:1pc!important}.addthis_default_style .at15t_compact,.addthis_default_style .at15t_expanded{margin-right:4px}#at_share .at_item{width:123px!important;padding:4px;margin-right:2px;border:1px solid #fff}#at16p{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);z-index:10000001;position:absolute;top:50%;left:50%;width:300px;padding:10px;margin:0 auto;margin-top:-185px;margin-left:-155px;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#5e5e5e}#at_share{margin:0;padding:0}#at16pt{position:relative;background:#f2f2f2;height:13px;padding:5px 10px}#at16pt a,#at16pt h4{font-weight:700}#at16pt h4{display:inline;margin:0;padding:0;font-size:9pt;color:#4c4c4c;cursor:default}#at16pt a{position:absolute;top:5px;right:10px;color:#4c4c4c;text-decoration:none;padding:2px}#at15sptx:focus,#at16pt a:focus{outline:thin dotted}#at15s #at16pf a{top:1px}#_atssh{width:1px!important;height:1px!important;border:0!important}.atm{width:10pc!important;padding:0;margin:0;line-height:9pt;letter-spacing:normal;font-family:arial,helvetica,tahoma,verdana,sans-serif;font-size:9pt;color:#444;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtJREFUeNpiZGBgaGAgAjAxEAlGFVJHIUCAAQDcngCUgqGMqwAAAABJRU5ErkJggg==);padding:4px}.atm-f{text-align:right;border-top:1px solid #ddd;padding:5px 8px}.atm-i{background:#fff;border:1px solid #d5d6d6;padding:0;margin:0;box-shadow:1px 1px 5px rgba(0,0,0,.15)}.atm-s{margin:0!important;padding:0!important}.atm-s a:focus{border:transparent;outline:0;transition:none}#at_hover.atm-s a,.atm-s a{display:block;text-decoration:none;padding:4px 10px;color:#235dab!important;font-weight:400;font-style:normal;transition:none}#at_hover.atm-s .at_bold{color:#235dab!important}#at_hover.atm-s a:hover,.atm-s a:hover{background:#2095f0;text-decoration:none;color:#fff!important}#at_hover.atm-s .at_bold{font-weight:700}#at_hover.atm-s a:hover .at_bold{color:#fff!important}.atm-s a .at-label{vertical-align:middle;margin-left:5px;direction:ltr}.at_PinItButton{display:block;width:40px;height:20px;padding:0;margin:0;background-image:url(//s7.addthis.com/static/t00/pinit00.png);background-repeat:no-repeat}.at_PinItButton:hover{background-position:0 -20px}.addthis_toolbox .addthis_button_pinterest_pinit{position:relative}.at-share-tbx-element .fb_iframe_widget span{vertical-align:baseline!important}#at16pf{height:auto;text-align:right;padding:4px 8px}.at-privacy-info{position:absolute;left:7px;bottom:7px;cursor:pointer;text-decoration:none;font-family:helvetica,arial,sans-serif;font-size:10px;line-height:9pt;letter-spacing:.2px;color:#666}.at-privacy-info:hover{color:#000}.body .wsb-social-share .wsb-social-share-button-vert{padding-top:0;padding-bottom:0}.body .wsb-social-share.addthis_counter_style .addthis_button_tweet.wsb-social-share-button{padding-top:40px}.body .wsb-social-share.addthis_counter_style .addthis_button_facebook_like.wsb-social-share-button{padding-top:21px}@media print{#at4-follow,#at4-share,#at4-thankyou,#at4-whatsnext,#at4m-mobile,#at15s,.at4,.at4-recommended{display:none!important}}@media screen and (max-width:400px){.at4win{width:100%}}@media screen and (max-height:700px) and (max-width:400px){.at4-thankyou-inner .at4-recommended-container{height:122px;overflow:hidden}.at4-thankyou-inner .at4-recommended .at4-recommended-item:first-child{border-bottom:1px solid #c5c5c5}}</style><style type="text/css">.at-branding-logo{font-family:helvetica,arial,sans-serif;text-decoration:none;font-size:10px;display:inline-block;margin:2px 0;letter-spacing:.2px}.at-branding-logo .at-branding-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////+GlNUkcc1QAAAB1JREFUeNpiYIQDBjQmAwMmkwEM0JnY1WIxFyDAABGeAFEudiZsAAAAAElFTkSuQmCC")}.at-branding-logo .at-branding-icon,.at-branding-logo .at-privacy-icon{display:inline-block;height:10px;width:10px;margin-left:4px;margin-right:3px;margin-bottom:-1px;background-repeat:no-repeat}.at-branding-logo .at-privacy-icon{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAKCAMAAABR24SMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF8fr9ot/xXcfn2/P5AKva////////AKTWodjhjAAAAAd0Uk5T////////ABpLA0YAAAA6SURBVHjaJMzBDQAwCAJAQaj7b9xifV0kUKJ9ciWxlzWEWI5gMF65KUTv0VKkjVeTerqE/x7+9BVgAEXbAWI8QDcfAAAAAElFTkSuQmCC")}.at-branding-logo span{text-decoration:none}.at-branding-logo .at-branding-addthis,.at-branding-logo .at-branding-powered-by{color:#666}.at-branding-logo .at-branding-addthis:hover{color:#333}.at-cv-with-image .at-branding-addthis,.at-cv-with-image .at-branding-addthis:hover{color:#fff}a.at-branding-logo:visited{color:initial}.at-branding-info{display:inline-block;padding:0 5px;color:#666;border:1px solid #666;border-radius:50%;font-size:10px;line-height:9pt;opacity:.7;transition:all .3s ease;text-decoration:none}.at-branding-info span{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.at-branding-info:before{content:'i';font-family:Times New Roman}.at-branding-info:hover{color:#0780df;border-color:#0780df}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style type="text/css"></style><script src="./Special Methods _ Types and Objects in Python _ InformIT_files/f(1).txt"></script></head><body class="r site-wide"><div id="mcxInvitationModal" style="display: none; background: rgba(0, 0, 0, 0.3); z-index: 100001; height: 100%; width: 100%; position: fixed; top: 0px; left: 0px; overflow: hidden; text-align: center; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; vertical-align: baseline; cursor: default; margin: 0px; padding: 0px; font-weight: 400; text-indent: 0px; text-shadow: none; line-height: 1.4; font-size: 100% !important; font-family: &#39;Open Sans&#39;, Helvetica, sans-serif !important; float: none !important;">    <div id="mcxFloating" style="border-radius: 22px; position: relative; margin-top: 5%; display: inline-block; background: rgba(0, 0, 0, 0.35); margin-left: auto !important; margin-right: auto !important; padding: 0.5em !important;">        <div id="mcxCenter" style="border-radius: 16px; display: block; background-color: rgb(255, 255, 255); position: relative; min-width: 300px; max-width: 600px; max-height: 800px; padding: 0.1em !important;">            <div id="mcxContainer" style="border-radius: 16px; display: block; background-color: rgb(255, 255, 255); position: relative; padding: 1em !important;">                <div id="mcxInvitationContainer">                    <div>                        <div id="mcxLogos" style="overflow: hidden; display: block; position: relative; margin-bottom: 1em !important;">                            <img id="mcxCompLogo" alt="Pearson logo" style="margin-top: 0px; height: auto; float: left !important;" src="./Special Methods _ Types and Objects in Python _ InformIT_files/pearsonlogo.png">                        </div>                        <p id="mcxText1" style="margin-bottom: 0.6em; color: rgb(68, 68, 68); font-size: 18px;">                            Thank you for visiting Pearson today. We would like your opinions on how we can make your website                            experience better. When you have completed your visit please take a few minutes to provide your feedback.                        </p>                        <a id="declineSurvey" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" onclick="McxSiteInterceptOnExit.declineSurvey()" style="color: rgb(0, 122, 156); padding-right: 18px;">                            No Thanks                        </a>                        <a id="btn" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" onclick="McxSiteInterceptOnExit.acceptSurvey()" style="border: medium none; border-radius: 2px; display: inline-block; min-width: 8.33333em; text-align: center; text-decoration: none; margin: 0px 0px 0.66667em 0.27778em; line-height: 2.83333em; background-color: rgb(0, 122, 156); color: rgb(255, 255, 255); font-size: 12pt; font-weight: bold; font-family: &#39;Open Sans&#39;, Helvetica, sans-serif !important;">                            Yes, I'll help!                        </a>                    </div>                    <a id="privacyPolicy" href="http://www.informit.com/about/privacy.aspx" target="_blank" title="Privacy Policy" style="color: rgb(0, 122, 156); font-size: 11px; padding: 0px 15px;">                        Privacy Policy                    </a>                </div>                <div id="mcxSurveyContainer"></div>            </div>        </div>    </div></div><input id="partner-int-id" type="hidden" value="53"><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594Q94P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="strap" class="sitewide" style="height: 34px;"><div class="cranium block-sunshine-yellow" style="height: 34px;">
+  <div id="sitewidestrap" role="complementary" aria-describedby="sitewide-promodesc-g348" aria-labelledby="sitewide-promotitle-g348" class="strap-marketing sixteen columns alpha omega clearfix">
+    <p id="sitewide-promotitle-g348" class="strap-marketing-heading">EVERYDAY DISCOUNT OFFER</p>
+    <p id="strap-marketing-control" class="strap-marketing-p">Buy 2 or more eligible titles and save 35%*—use code <strong>BUY2</strong>. <a href="https://www.informit.com/promotions/resource-center-directory-140876?utm_source=site&amp;utm_medium=strap&amp;utm_campaign=buy2">Shop now.</a></p>
+  </div>
+</div></div><div class="wrapper">
+
+<div id="rContent" class="articleProduct content clearfix">
+<p class="crumb gtm_crumb">
+            <a href="https://www.informit.com/">Home</a>
+            &gt;
+            <a href="https://www.informit.com/articles/index.aspx">Articles</a>
+            &gt;
+            <a href="https://www.informit.com/articles/index.aspx?st=66385">Software Development &amp; Management</a>
+            &gt;
+            <a href="https://www.informit.com/articles/index.aspx?st=98723">Object Technology</a>
+</p>
+    <div id="columnOne" class="ten columns alpha rFull">
+        <div id="articleContent" class="clearfix">
+            <div id="articleHeader" class="clearfix">
+                    <h1><a href="https://www.informit.com/articles/article.aspx?p=453682">Types and Objects in Python</a></h1>
+                                <ul class="list-article-author">
+                        <li class="authorName"> By <a rel="author" href="https://www.informit.com/authors/bio/f8ad6362-07d6-4ef4-8c71-6f5400cd15fa">David M. Beazley</a></li>
+                    <li>Mar 17, 2006</li>
+                </ul>
+            </div>
+            <div class="articleTools clearfix box">
+                    <div id="articleTOC">
+                        <p>
+                            <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" class="TOC"><span class="ss-icon">📄</span> <span class="linkText">Contents</span></a>
+                        </p>
+                        <div id="articleTOCList" class="TOCcontent">
+                            <a class="tocClose ss-icon" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#">␡</a>                        
+                            <ol>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682">Terminology</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=2">Object Identity and Type</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=3">Reference Counting and Garbage Collection</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=4">References and Copies</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=5">Built-in Types</a>
+                                            </li>
+                                            <li class="currentPageInfo">
+                                                Special Methods
+                                            </li>
+                                            <li>
+                                                <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=7">Performance Considerations</a>
+                                            </li>
+                            </ol>                            
+                        </div>
+                    </div>
+                <div class="articleInteraction">
+                    <ul>
+                        <li>
+                            <a href="https://www.informit.com/articles/printerfriendly/453682" title="Print"><span class="ss-icon">⎙</span> <span class="linkText">Print</span></a>
+                        </li>
+                        <li>
+
+<script type="text/javascript">
+    addthis_pub = 'informit';
+    addthis_logo = 'https://www.informit.com/display/InformIT/images/header/informit.png';
+    addthis_logo_background = '596770';
+    addthis_logo_color = '596770';
+    addthis_brand = 'informIT';
+    addthis_options = 'email, delicious, digg, facebook, google, newsvine, reddit, slashdot, stumbleupon, technorati, twitter, more';
+</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, &#39;&#39;, &#39;[URL]&#39;, &#39;[TITLE]&#39;)" onmouseout="addthis_close()" onclick="return addthis_sendto()"><span class="ss-icon">+</span> <span class="linkText">Share This</span></a>
+<script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/addthis_widget.js.indir"></script>
+
+                        </li>
+                    </ul>
+                </div>
+                    <div class="pagination">
+            <a class="paginationPrevious" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=5">&lt;<span class="pagination-nodisplay"> Back</span></a>
+        <span class="paginationLocation"><span class="pagination-bold">Page 6</span><span class="pagination-nodisplay"> of 7</span></span>
+            <a class="paginationNext" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=7"><span class="pagination-nodisplay">Next </span>&gt;</a>
+    </div>
+                
+            </div> <!-- end articletools -->
+            <div id="articleText">
+
+                    <a class="relatedBookLink" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#">This chapter is from the book <span class="ss-icon"></span></a>
+                    <div class="relatedBook relatedBookWide">
+                        <div class="header">
+                            <h3>This chapter is from the book</h3>
+                        </div>
+                        <div class="productArea clearfix">
+                            <a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682"><img src="./Special Methods _ Types and Objects in Python _ InformIT_files/ShowCover.aspx" alt="Python Essential Reference, 3rd Edition" class="product"></a><a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="title">Python Essential Reference, 3rd Edition</a>
+                            <br>
+                            <br>
+                            <a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="button">Learn More</a>
+                                <a href="https://www.informit.com/buy.aspx?isbn=9780672328626&amp;w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="buy button"><span class="ss-icon"></span>Buy</a>
+                        </div>
+                    </div>
+                    <div class="relatedBook slide">
+                        <div class="header graydient">
+                            <h3 class="relatedHide">This chapter is from the book</h3>
+                            <h3 class="relatedShow"><a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" class="mobileClose">This chapter is from the book <span class="ss-icon"></span></a></h3>
+                        </div>
+                        <div class="productArea graydient clearfix">
+                            <a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682"><img src="./Special Methods _ Types and Objects in Python _ InformIT_files/ShowCover.aspx" alt="Python Essential Reference, 3rd Edition" class="product"></a><a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="title">Python Essential Reference, 3rd Edition</a>
+                            <br>
+                            <br>
+                            <a href="https://www.informit.com/store/python-essential-reference-9780672328626?w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="button">Learn More</a>
+                                <a href="https://www.informit.com/buy.aspx?isbn=9780672328626&amp;w_ptgrevartcl=Types+and+Objects+in+Python_453682" class="buy button"><span class="ss-icon"></span>Buy</a>
+                        </div>
+                    </div>
+
+                <h2>Special Methods</h2>
+<p>All the built-in data types implement a collection of special object methods.
+The names of special methods are always preceded and followed by double
+underscores (<tt>__</tt>). These methods are automatically triggered by the
+interpreter as a program executes. For example, the operation x<tt> + </tt>y is
+mapped to an internal method, x<tt>.__add__(</tt>y<tt>)</tt>, and an indexing
+operation, x<tt>[</tt>k<tt>]</tt>, is mapped to
+x<tt>.__getitem__(</tt>k<tt>)</tt>. The behavior of each data type depends
+entirely on the set of special methods that it implements.</p>
+<p>User-defined classes can define new objects that behave like the built-in
+types simply by supplying an appropriate subset of the special methods described
+in this section. In addition, built-in types such as lists and dictionaries can
+be specialized (via inheritance) by redefining some of the special methods.</p>
+<h3>Object Creation, Destruction, and Representation</h3>
+<p>The methods in Table 3.9 create, initialize, destroy, and represent objects.
+<tt>__new__()</tt> is a static method that is called to create an instance
+(although this method is rarely redefined). The <tt>__init__()</tt> method
+initializes the attributes of an object and is called immediately after an
+object has been newly created. The <tt>__del__()</tt> method is invoked when an
+object is about to be destroyed. This method is invoked only when an object is
+no longer in use. It’s important to note that the statement <tt>del </tt>x
+only decrements an object’s reference count and doesn’t necessarily
+result in a call to this function. Further details about these methods can be
+found in Chapter 7.</p>
+<h4>Table 3.9 Special Methods for Object Creation, Destruction, and
+Representation</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Description</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__new__(</tt>cls<tt> [,*</tt>args <tt>[,**</tt>kwargs<tt>]])</tt></p>
+</td>
+<td>
+<p>A static method called to create a new instance</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__init__(</tt>self<tt> [,*</tt>args <tt>[,**</tt>kwargs<tt>]])</tt></p>
+</td>
+<td>
+<p>Called to initialize a new instance</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__del__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Called to destroy an instance</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__repr__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Creates a full string representation of an object</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__str__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Creates an informal string representation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__cmp__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>Compares two objects and returns negative, zero, or positive</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__hash__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Computes a 32-bit hash index</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__nonzero__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Returns <tt>0</tt> or <tt>1</tt> for truth-value testing</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__unicode__(self)</tt></p>
+</td>
+<td>
+<p>Creates a Unicode string representation</p>
+</td>
+</tr>
+</tbody></table>
+<p>The <tt>__new__()</tt> and <tt>__init__()</tt> methods are used
+to create and initialize new instances. When an object is created by calling
+<tt>A(</tt>args<tt>)</tt>, it is translated into the following steps:</p>
+<pre>x = A.__new__(A,args)
+is isinstance(x,A): x.__init__(args)</pre>
+<p>The <tt>__repr__()</tt> and <tt>__str__()</tt> methods create string
+representations of an object. The <tt>__repr__()</tt> method normally returns an
+expression string that can be evaluated to re-create the object. This method is
+invoked by the built-in <tt>repr()</tt> function and by the backquotes operator
+(<tt>´</tt>). For example:</p>
+<pre>a = [2,3,4,5]   # Create a list
+s = repr(a)     # s = '[2, 3, 4, 5]'
+                # Note : could have also used s = ´a´
+b = eval(s)     # Turns s back into a list</pre>
+<p>If a string expression cannot be created, the convention is for
+<tt>__repr__()</tt> to return a string of the form
+<tt>&lt;...</tt>message<tt>...&gt;</tt>, as shown here:</p>
+<pre>f = open("foo")
+a = repr(f)    # a = "&lt;open file ‘foo’, mode ‘r’ at dc030&gt;"</pre>
+<p>The <tt>__str__()</tt> method is called by the built-in <tt>str()</tt>
+function and by the <tt>print</tt> statement. It differs from
+<tt>__repr__()</tt> in that the string it returns can be more concise and
+informative to the user. If this method is undefined, the <tt>__repr__()</tt>
+method is invoked.</p>
+<p>The <tt>__cmp__(</tt>self<tt>,</tt>other<tt>)</tt> method is used by all the
+comparison operators. It returns a negative number if self<tt> &lt; </tt>other,
+zero if self<tt> == </tt>other, and positive if self<tt> &gt; </tt>other. If
+this method is undefined for an object, the object will be compared by object
+identity. In addition, an object may define an alternative set of comparison
+functions for each of the relational operators. These are known as rich
+comparisons and are described shortly. The <tt>__nonzero__()</tt> method is used
+for truth-value testing and should return <tt>0</tt> or <tt>1</tt> (or
+<tt>True</tt> or <tt>False</tt>). If undefined, the <tt>__len__()</tt> method is
+invoked to determine truth.</p>
+<p>Finally, the <tt>__hash__()</tt> method computes an integer hash key used in
+dictionary operations (the hash value can also be returned using the built-in
+function <tt>hash()</tt>). The value returned should be identical for two
+objects that compare as equal. Further-more, mutable objects should not define
+this method; any changes to an object will alter the hash value and make it
+impossible to locate an object on subsequent dictionary lookups. An object
+should not define a <tt>__hash__()</tt> method without also defining
+<tt>__cmp__()</tt>.</p>
+<h3>Attribute Access</h3>
+<p>The methods in Table 3.10 read, write, and delete the attributes of an object
+using the dot (<tt>.</tt>) operator and the <tt>del</tt> operator,
+respectively.</p>
+<h4>Table 3.10 Special Methods for Attribute Access</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Description</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__getattribute__(</tt>self<tt>,</tt>name<tt>)</tt></p>
+</td>
+<td>
+<p>Returns the attribute self<tt>.</tt>name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__getattr__(</tt>self<tt>, </tt>name<tt>)</tt></p>
+</td>
+<td>
+<p>Returns the attribute self<tt>.</tt>name if not found through normal
+attribute lookup.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__setattr__(</tt>self<tt>, </tt>name<tt>, </tt>value<tt>)</tt></p>
+</td>
+<td>
+<p>Sets the attribute self<tt>.</tt>name<tt> = </tt>value. Overrides the
+default mechanism.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__delattr__(</tt>self<tt>, </tt>name<tt>)</tt></p>
+</td>
+<td>
+<p>Deletes the attribute self<tt>.</tt>name.</p>
+</td>
+</tr>
+</tbody></table><p>An example will illustrate:</p>
+<pre>class Foo(object):
+   def __init__(self):
+      self.x = 37
+
+f = Foo()
+
+a = f.x    # Invokes __getattribute__(f,"x")
+b = f.y    # Invokes __getattribute__(f,"y") --&gt; Not found
+           # Then invokes __getattr__(f,"y")
+
+f.x = 42   # Invokes __setattr__(f,"x",42)
+f.y = 93   # Invokes __setattr__(f,"y",93)
+
+del f.y    # Invokes __delattr__(f,"y")</pre>
+<p>Whenever an attribute is accessed, the <tt>__getattribute__()</tt> method is
+always invoked. If the attribute is located, it is returned. Otherwise, the
+<tt>__getattr__()</tt> method is invoked. The default behavior of
+<tt>__getattr__()</tt> is to raise an <tt>AttributeError</tt> exception. The
+<tt>__setattr__()</tt> method is always invoked when setting an attribute, and
+the <tt>__delattr__()</tt> method is always invoked when deleting an
+attribute.</p>
+<p>A subtle aspect of attribute access concerns a special kind of attribute
+known as a <em>descriptor</em>. A descriptor is an object that implements one or
+more of the methods in Table 3.11.</p>
+<h4>Table 3.11 Special Methods for Descriptor Attributes</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Description</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__get__(</tt>self<tt>,</tt>instance<tt>,</tt>owner<tt>)</tt></p>
+</td>
+<td>
+<p>Returns an attribute value or raises <tt>AttributeError</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__set__(</tt>self<tt>,</tt>instance<tt>,</tt>value<tt>)</tt></p>
+</td>
+<td>
+<p>Sets the attribute to value</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__delete__(</tt>self<tt>,</tt>instance<tt>)</tt></p>
+</td>
+<td>
+<p>Deletes the attribute</p>
+</td>
+</tr>
+</tbody></table><p>Essentially, a descriptor attribute knows how to compute, set,
+and delete its own value whenever it is accessed. Typically, it is used to
+provide advanced features of classes such as static methods and properties. For
+example:</p>
+<pre>class SimpleProperty(object):
+  def __init__(self,fget,fset):
+    self.fget = fget
+    self.fset = fset
+  def __get__(self,instance,cls):
+    return self.fget(instance)    # Calls instance.fget()
+  def __set__(self,instance,value)
+    return self.fset(instance,value) # Calls instance.fset(value)
+
+
+class Circle(object):
+   def __init__(self,radius):
+     self.radius = radius
+   def getArea(self):
+     return math.pi*self.radius**2
+   def setArea(self):
+     self.radius = math.sqrt(area/math.pi)
+   area = SimpleProperty(getArea,setArea)</pre>
+<p>In this example, the class <tt>SimpleProperty</tt> defines a descriptor in
+which two functions, fget and fset, are supplied by the user to get and set the
+value of an attribute (note that a more advanced version of this is already
+provided using the <tt>property()</tt> function described in Chapter 7). In the
+<tt>Circle</tt> class that follows, these functions are used to create a
+descriptor attribute called <tt>area</tt>. In subsequent code, the <tt>area</tt>
+attribute is accessed transparently.</p>
+<pre>c = Circle(10)
+a = c.area       # Implicitly calls c.getArea()
+c.area = 10.0    # Implicitly calls c.setArea(10.0)</pre>
+<p>Underneath the covers, access to the attribute <tt>c.area</tt> is being
+translated into an operation such as
+<tt>Circle.__dict__[</tt><tt>‘</tt><tt>area</tt><tt>’</tt><tt>].__get__(c,Circle).</tt></p>
+<p>It is important to emphasize that descriptors can only be created at the
+class level. It is not legal to create descriptors on a per-instance basis by
+defining descriptor objects inside <tt>__init__()</tt> and other methods.</p>
+<h3>Sequence and Mapping Methods</h3>
+<p>The methods in Table 3.12 are used by objects that want to emulate sequence
+and mapping objects.</p>
+<h4>Table 3.12 Methods for Sequences and Mappings</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Description</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__len__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>Returns the length of self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__getitem__(</tt>self<tt>, </tt>key<tt>)</tt></p>
+</td>
+<td>
+<p>Returns self<tt>[</tt>key<tt>]</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__setitem__(</tt>self<tt>, </tt>key<tt>, </tt>value<tt>)</tt></p>
+</td>
+<td>
+<p>Sets self<tt>[</tt>key<tt>] = </tt>value</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__delitem__(</tt>self<tt>, </tt>key<tt>)</tt></p>
+</td>
+<td>
+<p>Deletes self<tt>[</tt>key<tt>]</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__getslice__(</tt>self<tt>,</tt>i<tt>,</tt>j<tt>)</tt></p>
+</td>
+<td>
+<p>Returns self<tt>[</tt>i<tt>:</tt>j<tt>]</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__setslice__(</tt>self<tt>,</tt>i<tt>,</tt>j<tt>,</tt>s<tt>)</tt></p>
+</td>
+<td>
+<p>Sets self<tt>[</tt>i<tt>:</tt>j<tt>] = </tt>s</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__delslice__(</tt>self<tt>,</tt>i<tt>,</tt>j<tt>)</tt></p>
+</td>
+<td>
+<p>Deletes self<tt>[</tt>i<tt>:</tt>j<tt>]</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__contains__(</tt>self<tt>,</tt>obj<tt>)</tt></p>
+</td>
+<td>
+<p>Returns <tt>True</tt> if obj is in self; otherwise, returns False</p>
+</td>
+</tr>
+</tbody></table><p>Here's
+  an example:</p>
+
+<pre>a = [1,2,3,4,5,6]
+len(a)              # __len__(a)
+x = a[2]            # __getitem__(a,2)
+a[1] = 7            # __setitem__(a,1,7)
+del a[2]            # __delitem__(a,2)
+x = a[1:5]          # __getslice__(a,1,5)
+a[1:3] = [10,11,12] # __setslice__(a,1,3,[10,11,12])
+del a[1:4]          # __delslice__(a,1,4)</pre>
+<p>The <tt>__len__</tt> method is called by the built-in <tt>len()</tt> function
+to return a nonnegative length. This function also determines truth values
+unless the <tt>__nonzero__()</tt> method has also been defined.</p>
+<p>For manipulating individual items, the <tt>__getitem__()</tt> method can
+return an item by key value. The key can be any Python object, but is typically
+an integer for sequences. The <tt>__setitem__()</tt> method assigns a value to
+an element. The <tt>__delitem__()</tt> method is invoked whenever the
+<tt>del</tt> operation is applied to a single element.</p>
+<p>The slicing methods support the slicing operator
+s<tt>[</tt>i<tt>:</tt>j<tt>]</tt>. The <tt>__getslice__()</tt> method returns a
+slice, which is normally the same type of sequence as the original object. The
+indices i and j must be integers, but their interpretation is up to the method.
+Missing values for i and j are replaced with <tt>0</tt> and <tt>sys.maxint</tt>,
+respectively. The <tt>__setslice__()</tt> method assigns values to a slice.
+Similarly, <tt>__delslice__()</tt> deletes all the elements in a slice.</p>
+<p>The <tt>__contains__()</tt> method is used to implement the <tt>in</tt>
+operator.</p>
+<p>In addition to implementing the methods just described, sequences and
+mappings implement a number of mathematical methods, including
+<tt>__add__()</tt>, <tt>__radd__()</tt>, <tt>__mul__()</tt>, and
+<tt>__rmul__()</tt> to support concatenation and sequence replication. These
+methods are described shortly.</p>
+<p>Finally,
+  Python
+  supports
+  an extended
+  slicing
+  operation
+  that's
+  useful
+  for
+  working
+  with
+  multidimensional
+  data
+  structures
+  such
+  as matrices
+  and
+  arrays.
+  Syntactically,
+  you
+  specify
+  an extended
+  slice
+as follows:</p>
+
+<pre>a = m[0:100:10]          # Strided slice (stride=10)
+b = m[1:10, 3:20]        # Multidimensional slice
+c = m[0:100:10, 50:75:5] # Multiple dimensions with strides
+m[0:5, 5:10] = n         # extended slice assignment
+del m[:10, 15:]          # extended slice deletion</pre>
+<p>The general format for each dimension of an extended slice is
+i<tt>:</tt>j<tt>[:</tt>stride<tt>]</tt>, where stride is optional. As with
+ordinary slices, you can omit the starting or ending values for each part of a
+slice. In addition, a special object known as the <tt>Ellipsis</tt> and written
+as <tt>...</tt> is available to denote any number of trailing or leading
+dimensions in an extended slice:</p>
+<pre>a = m[..., 10:20]  # extended slice access with Ellipsis
+m[10:20, ...] = n</pre>
+<p>When using extended slices, the <tt>__getitem__()</tt>,
+<tt>__setitem__()</tt>, and <tt>__delitem__()</tt> methods implement access,
+modification, and deletion, respectively. However, instead of an integer, the
+value passed to these methods is a tuple containing one or more slice objects
+and at most one instance of the <tt>Ellipsis</tt> type. For example,</p>
+<pre>a = m[0:10, 0:100:5, ...]</pre>
+<p>invokes <tt>__getitem__()</tt> as follows:</p>
+<pre>a = __getitem__(m, (slice(0,10,None), slice(0,100,5), Ellipsis))</pre>
+<p>Python strings, tuples, and lists currently provide some support for extended
+slices, which is described in Chapter 4. Special-purpose extensions to Python,
+especially those with a scientific flavor, may provide new types and objects
+with advanced support for extended slicing operations.</p>
+<h3>Iteration</h3>
+<p>If an object, obj, supports iteration, it must provide a method,
+obj<tt>.__iter__()</tt>, that returns an iterator object. The iterator object
+iter, in turn, must implement a single method, iter<tt>.next()</tt>, that
+returns the next object or raises <tt>StopIteration</tt> to signal the end of
+iteration. Both of these methods are used by the implementation of the
+<tt>for</tt> statement as well as other operations that implicitly perform
+iteration. For example, the statement <tt>for x in s</tt> is carried out by
+performing steps equivalent to the following:</p>
+<pre>_iter = s.__iter__()
+while 1:
+  try:
+     x = _iter.next()
+  except StopIteration:
+     break
+  # Do statements in body of for loop
+  ...</pre>
+<h3>Mathematical Operations</h3>
+<p>Table 3.13 lists special methods that objects must implement to emulate
+numbers. Mathematical operations are always evaluated from left to right; when
+an expression such as x<tt> + </tt>y appears, the interpreter tries to invoke
+the method x<tt>.__add__(</tt>y<tt>)</tt>. The special methods beginning with r
+support operations with reversed operands. These are invoked only if the left
+operand doesn’t implement the specified operation. For example, if x in
+x<tt> + </tt>y doesn’t support the <tt>__add__()</tt> method, the
+interpreter tries to invoke the method y<tt>.__radd__(</tt>x<tt>)</tt>.</p>
+<h4>Table 3.13 Methods for Mathematical Operations</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Result</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__add__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self <tt>+</tt> other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__sub__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> - </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__mul__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> * </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__div__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> / </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__truediv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self <tt>/</tt> other (future)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__floordiv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> // </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__mod__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> % </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__divmod__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p><tt>divmod(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__pow__(</tt>self<tt>,</tt>other<tt> [,</tt>modulo<tt>])</tt></p>
+</td>
+<td>
+<p>self<tt> ** </tt>other<tt>, pow(</tt>self<tt>, </tt>other<tt>,
+</tt>modulo<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__lshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &lt;&lt; </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &gt;&gt; </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__and__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &amp; </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__or__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> | </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__xor__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> ^ </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__radd__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> + </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rsub__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> - </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rmul__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> * </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rdiv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> / </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rtruediv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> / </tt>self (future)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rfloordiv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other <tt>// </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rmod__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> % </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rdivmod__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p><tt>divmod(</tt>other<tt>,</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rpow__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> ** </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rlshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> &lt;&lt; </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rrshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> &gt;&gt; </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rand__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> &amp; </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ror__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> | </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__rxor__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>other<tt> ^ </tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__iadd__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> += </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__isub__(</tt>self<tt>,</tt>other<tt>)</tt> </p>
+</td>
+<td>
+<p>self<tt> -= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__imul__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> *= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__idiv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> /= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__itruediv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> /= </tt>other (future)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ifloordiv__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> //= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__imod__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> %= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ipow__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> **= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__iand__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &amp;= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ior__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> |= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ixor__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> ^= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ilshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &lt;&lt;= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__irshift__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &gt;&gt;= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__neg__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p>–self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__pos__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>+</tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__abs__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>abs(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__invert__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>~</tt>self</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__int__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>int(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__long__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>long(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__float__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>float(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__complex__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>complex(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__oct__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>oct(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__hex__(</tt>self<tt>)</tt></p>
+</td>
+<td>
+<p><tt>hex(</tt>self<tt>)</tt></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__coerce__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p><tt>Type coercion</tt></p>
+</td>
+</tr>
+</tbody></table><p>The methods <tt>__iadd__()</tt>, <tt>__isub__()</tt>, and so
+forth are used to support in-place arithmetic operators such as <tt>a+=b</tt>
+and <tt>a-=b</tt> (also known as <em>augmented assignment</em>). A distinction
+is made between these operators and the standard arithmetic methods because the
+implementation of the in-place operators might be able to provide certain
+customizations such as performance optimizations. For instance, if the self
+parameter is not shared, it might be possible to modify its value in place
+without having to allocate a newly created object for the result.</p>
+<p>The three flavors of division operators, <tt>__div__()</tt>,
+<tt>__truediv__()</tt>, and <tt>__floordiv__()</tt>, are used to implement true
+division (<tt>/</tt>) and truncating division (<tt>//</tt>) operations. The
+separation of division into two types of operators is a relatively recent change
+to Python that was started in Python 2.2, but which has far-reaching effects. As
+of this writing, the default behavior of Python is to map the <tt>/</tt>
+operator to <tt>__div__()</tt>. In the future, it will be remapped to
+<tt>__truediv__()</tt>. This latter behavior can currently be enabled as an
+optional feature by including the statement <tt>from __future__ import
+division</tt> in a program.</p>
+<p>The conversion methods <tt>__int__()</tt>, <tt>__long__()</tt>,
+<tt>__float__()</tt>, and <tt>__complex__()</tt> convert an object into one of
+the four built-in numerical types. The <tt>__oct__()</tt> and <tt>__hex__()</tt>
+methods return strings representing the octal and hexadecimal values of an
+object, respectively.</p>
+<p>The <tt>__coerce__(</tt>x<tt>,</tt>y<tt>)</tt> method is used in conjunction
+with mixed-mode numerical arithmetic. This method returns either a 2-tuple
+containing the values of x and y converted to a common numerical type, or
+<tt>NotImplemented</tt> (or <tt>None</tt>) if no such conversion is possible. To
+evaluate the operation x<tt> </tt>op<tt> </tt>y, where op is an operation such
+as <tt>+</tt>, the following rules are applied, in order:</p>
+<ol>
+<li><p>If x has a <tt>__coerce__()</tt> method, replace x and y with the values
+returned by x<tt>.__coerce__(</tt>y<tt>)</tt>. If <tt>None</tt> is returned,
+skip to step 3.</p></li>
+<li><p>If x has a method <tt>__</tt>op<tt>__()</tt>, return
+x.<tt>__</tt>op<tt>__</tt>(y<tt>)</tt>. Otherwise, restore x and y to their
+original values and continue.</p></li>
+<li><p>If y has a <tt>__coerce__()</tt> method, replace x and y with the values
+returned by y<tt>.__coerce__(</tt>x<tt>)</tt>. If <tt>None</tt> is returned,
+raise an exception.</p></li>
+<li><p>If y has a method <tt>__</tt>rop<tt>__()</tt>, return
+y<tt>.__</tt>rop<tt>__(</tt>x<tt>)</tt>. Otherwise, raise an exception.</p></li>
+</ol>
+<p>Although strings define a few arithmetic operations, the
+<tt>__coerce__()</tt> method is not used in mixed-string operations involving
+standard and Unicode strings.</p>
+<p>The interpreter supports only a limited number of mixed-type operations
+involving the built-in types, in particular the following:</p>
+<ul>
+<li><p>If x is a string, x<tt> % </tt>y invokes the string-formatting operation,
+regardless of the type of <tt>y</tt>.</p></li>
+<li><p>If x is a sequence, x<tt> + </tt>y invokes sequence
+concatenation.</p></li>
+<li><p>If either x or y is a sequence and the other operand is an integer, x<tt>
+* </tt>y invokes sequence repetition.</p></li>
+</ul>
+<h3>Comparison Operations</h3>
+<p>Table 3.14 lists special methods that objects can implement to provide
+individualized versions of the relational operators (<tt>&lt;</tt>,
+<tt>&gt;</tt>, <tt>&lt;=</tt>, <tt>&gt;=</tt>, <tt>==</tt>, <tt>!=</tt>).
+These are known as rich comparisons. Each of these functions takes two arguments
+and is allowed to return any kind of object, including a Boolean value, a list,
+or any other Python type. For instance, a numerical package might use this to
+perform an element-wise comparison of two matrices, returning a matrix with the
+results. If a comparison can’t be made, these functions may also raise an
+exception.</p>
+<h4>Table 3.14 Methods for Comparisons</h4>
+<table><tbody><tr>
+<td>
+<p><strong><strong>Method</strong></strong></p>
+</td>
+<td>
+<p><strong><strong>Result</strong></strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__lt__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &lt; </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__le__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &lt;= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__gt__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &gt; </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ge__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> &gt;= </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__eq__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> == </tt>other</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><tt>__ne__(</tt>self<tt>,</tt>other<tt>)</tt></p>
+</td>
+<td>
+<p>self<tt> != </tt>other</p>
+</td>
+</tr>
+</tbody></table><h3>Callable Objects</h3>
+<p>Finally, an object can emulate a function by providing the
+<tt>__call__(</tt>self<tt> [,*</tt>args<tt> [, </tt>**kwargs<tt>]])</tt> method.
+If an object, x, provides this method, it can be invoked like a function. That
+is, x<tt>(</tt>arg1<tt>, </tt>arg2<tt>, ...)</tt> invokes
+x<tt>.__call__(</tt>self<tt>, </tt>arg1<tt>, </tt>arg2<tt>, ...)</tt>.</p>
+
+            </div>
+            <div class="articleTools clearfix box">
+                    <div class="pagination">
+            <a class="paginationPrevious" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=5">&lt;<span class="pagination-nodisplay"> Back</span></a>
+        <span class="paginationLocation"><span class="pagination-bold">Page 6</span><span class="pagination-nodisplay"> of 7</span></span>
+            <a class="paginationNext" href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=7"><span class="pagination-nodisplay">Next </span>&gt;</a>
+    </div>
+
+                <div class="articleInteraction">
+                    <ul>
+                        <li>
+
+<script type="text/javascript">
+    addthis_pub = 'informit';
+    addthis_logo = 'https://www.informit.com/display/InformIT/images/header/informit.png';
+    addthis_logo_background = '596770';
+    addthis_logo_color = '596770';
+    addthis_brand = 'informIT';
+    addthis_options = 'email, delicious, digg, facebook, google, newsvine, reddit, slashdot, stumbleupon, technorati, twitter, more';
+</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, &#39;&#39;, &#39;[URL]&#39;, &#39;[TITLE]&#39;)" onmouseout="addthis_close()" onclick="return addthis_sendto()"><span class="ss-icon">+</span> <span class="linkText">Share This</span></a>
+<script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/addthis_widget.js.indir"></script>
+
+                        </li>
+                        <li class="last">
+                            <a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#addToWishList" class="jsLoadFrame dialogOpener"><span class="ss-icon">🔖</span> <span class="linkText">Save To Your Account</span></a>               
+                        </li>
+                    </ul>
+                      
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div id="columnTwo" class="six columns omega rFull">
+<div id="promotions" class="tabwidget prop">
+	<h3>Related Resources</h3>
+	<ul class="tabs clearfix">
+		<li class="selected"><a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" onclick="tabWidget(1,&#39;promotions&#39;); return false;">Store</a></li>
+		<li><a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#" onclick="tabWidget(2,&#39;promotions&#39;); loadWidget(&#39;promotions&#39;, 1, &#39;/Related/Articles/453682?stateIntId=98723&#39;); return false;">Articles</a></li>		
+	</ul>
+	<div class="container on">
+
+    <div class="buckets-image-51 cf">
+        <div class="productCover">
+            <a href="https://www.informit.com/store/effective-python-90-specific-ways-to-write-better-python-9780134853987?w_ptgrevartcl=Effective+Python%3a+90+Specific+Ways+to+Write+Better+Python_2820188">
+                <img src="./Special Methods _ Types and Objects in Python _ InformIT_files/ShowCover(1).aspx" alt="Effective Python: 90 Specific Ways to Write Better Python" class="product">
+            </a>
+        </div>
+
+        <ul class="buckets-list left">
+            <li class="buckets-list-title">
+                <a href="https://www.informit.com/store/effective-python-90-specific-ways-to-write-better-python-9780134853987" class="title">
+                    Effective Python: 90 Specific Ways to Write Better Python, 2nd Edition
+                </a>
+            </li>
+            <li class="buckets-image-51-author">By <a href="https://www.informit.com/authors/bio/aa0426d9-8484-4763-bcc4-1bb6a432056f">Brett Slatkin</a></li>
+            <li class="buckets-image-51-price">Book $39.99</li>
+        </ul>
+    </div><!--buckets-image-51 -->
+    <div class="buckets-image-51 cf">
+        <div class="productCover">
+            <a href="https://www.informit.com/store/effective-python-90-specific-ways-to-write-better-python-9780134854762?w_ptgrevartcl=Effective+Python%3a+90+Specific+Ways+to+Write+Better+Python_2820370">
+                <img src="./Special Methods _ Types and Objects in Python _ InformIT_files/ShowCover(2).aspx" alt="Effective Python: 90 Specific Ways to Write Better Python" class="product">
+            </a>
+        </div>
+
+        <ul class="buckets-list left">
+            <li class="buckets-list-title">
+                <a href="https://www.informit.com/store/effective-python-90-specific-ways-to-write-better-python-9780134854762" class="title">
+                    Effective Python: 90 Specific Ways to Write Better Python, 2nd Edition
+                </a>
+            </li>
+            <li class="buckets-image-51-author">By <a href="https://www.informit.com/authors/bio/aa0426d9-8484-4763-bcc4-1bb6a432056f">Brett Slatkin</a></li>
+            <li class="buckets-image-51-price">eBook (Watermarked) $31.99</li>
+        </ul>
+    </div><!--buckets-image-51 -->
+    <div class="buckets-image-51 cf">
+        <div class="productCover">
+            <a href="https://www.informit.com/store/deep-learning-illustrated-a-visual-interactive-guide-9780135116692?w_ptgrevartcl=Deep+Learning+Illustrated%3a+A+Visual%2c+Interactive+Guide+to+Artificial+Intelligence_2832601">
+                <img src="./Special Methods _ Types and Objects in Python _ InformIT_files/ShowCover(3).aspx" alt="Deep Learning Illustrated: A Visual, Interactive Guide to Artificial Intelligence" class="product">
+            </a>
+        </div>
+
+        <ul class="buckets-list left">
+            <li class="buckets-list-title">
+                <a href="https://www.informit.com/store/deep-learning-illustrated-a-visual-interactive-guide-9780135116692" class="title">
+                    Deep Learning Illustrated: A Visual, Interactive Guide to Artificial Intelligence
+                </a>
+            </li>
+            <li class="buckets-image-51-author">By <a href="https://www.informit.com/authors/bio/edd1b932-57d7-4648-a115-ce5a5298c258">Jon Krohn</a>, <a href="https://www.informit.com/authors/bio/89ac9c69-e6e0-4342-a407-0b7170ba2421">Grant Beyleveld</a>, <a href="https://www.informit.com/authors/bio/de6f9d3c-f5d5-4f9a-ac24-aaefc7012173">Aglaé Bassens</a></li>
+            <li class="buckets-image-51-price">Book $39.99</li>
+        </ul>
+    </div><!--buckets-image-51 -->
+    <p class="buckets-see-all">
+        <a href="https://www.informit.com/store/index.aspx?st=98723">See All Related Store Items</a>
+    </p>
+
+	</div>
+	<div class="container"></div>
+	<div class="container"></div>
+	<div class="container"></div>
+</div>
+        
+        
+    </div>
+
+    <script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/waypoints.min.js.indir"></script>
+    <script type="text/javascript" src="./Special Methods _ Types and Objects in Python _ InformIT_files/jquery.fitvids.min.js.indir"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {    
+            $('#articleText').fitVids();
+            if (document.documentElement.clientWidth > 960) {
+                $('#rContent').waypoint(function() {
+                    $('.relatedBook.slide').slideToggle();
+                    $('.relatedBookLink').slideToggle();
+                }, { offset: -300 }); 
+            } else {
+                console.log('narrow');
+                $('#rContent').waypoint(function() {
+                    $('.relatedBook.slide').slideToggle();
+                    $('.relatedBookLink').slideToggle();
+                }, { offset: -10 }); 
+
+                $('#articleContent').waypoint(function() {
+                    $('.relatedBook.slide').slideToggle();
+                    $('.relatedBookLink').slideToggle();
+                }, { offset: 'bottom-in-view' }); 
+            }
+                          
+            $('.relatedBookLink').on('click touchstart', function() {
+                $('.relatedBookLink').toggleClass('active');
+                $('.relatedBook.slide').toggleClass('active');
+                return false;              
+            });
+            $('.mobileClose').on('click touchstart', function() {
+                $('.relatedBookLink').toggleClass('active');
+                $('.relatedBook.slide').toggleClass('active');
+                return false;              
+            }); 
+            if (!$('.sidebar').children().is('.title, .theholder')) {
+                $('.sidebar').css('padding', '2em 1em 1em 1em');
+            }              
+        });
+    </script>
+</div><div id="header"><div class="cranium"><div class="branding"><div id="hLogo"><a href="https://www.informit.com/" accesskey="0" title="Home" class="logo"><!--[if lte IE 8]><img src="/display/informIT/images/header/informit.png" alt="InformIT" /><![endif]--></a></div></div><div class="tagline">books, eBooks, and digital learning</div><a href="https://www.informit.com/articles/article.aspx?p=453682&amp;seqNum=6#menu" class="menu-link ss-icon"></a><div id="headerLinks" class="clearfix">
+                
+    <div id="cartLink" class="headerLink c">
+        <span class="bighead ss-icon"></span>
+        <a href="https://memberservices.informit.com/cart/buy.aspx?partner=53">
+            <span class="bighead">View </span>Your Cart
+        </a>
+    </div>
+
+    <div class="hi">
+            <a href="https://memberservices.informit.com/my_account/register.aspx?partner=53">Join</a><span>|</span><a href="https://memberservices.informit.com/my_account/login.aspx?partner=53">Sign In</a>
+    </div>
+
+              <form name="headersearchform" id="headersearchform" class="s" method="GET" action="https://www.informit.com/search/index.aspx" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><label for="headersearchform">Search</label><input onfocus="checkClear(this,&#39;Search&#39;);" type="text" name="query" id="query" value="Search"><input type="submit" id="searchbutton" class="ss-icon" value="🔎"></form></div></div></div><div id="siteNav"><div class="cranium clearfix"><ul id="nav"><li class="mobile search"><form name="headersearchform" id="headersearchform" class="s" method="GET" action="https://www.informit.com/search/index.aspx" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><label for="headersearchform">Search</label><input onfocus="checkClear(this,&#39;Search&#39;);" type="text" name="query" id="query" value="Search"><input type="submit" id="searchbutton" class="ss-icon" value="🔎"></form></li>
+                
+    <li class="mobile">
+        <a href="https://memberservices.informit.com/cart/buy.aspx?partner=53">
+            <span class="ss-icon cart"> </span> View Your Cart
+        </a>
+    </li>
+
+    <li class="mobile">
+        <a href="https://memberservices.informit.com/my_account/login.aspx?partner=53">
+            <span class="ss-icon">👤</span> Sign In
+        </a>
+    </li>
+    <li class="mobile">
+        <a href="https://memberservices.informit.com/my_account/register.aspx?partner=53">Join</a>
+    </li>
+
+              <li><a class="arrow" href="https://www.informit.com/store/">Store</a><ul class="column1 sib" style="min-height: 408px;"><li><a href="https://www.informit.com/store/index.aspx?st=66374">
+                        Business &amp; Management
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=60403">Certification</a></li><li><a href="https://www.informit.com/store/index.aspx?st=98435">
+                        Cloud Computing &amp; Virtualization
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=60406">Data</a></li><li><a href="https://www.informit.com/store/index.aspx?st=99185">Digital Photography</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60390">Engineering</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60380">
+                        Graphics &amp; Web Design
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=60356">
+                        Home &amp; Office Computing
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=60367">Information Technology</a></li></ul><ul class="column2 sib" style="min-height: 408px;"><li><a href="https://www.informit.com/store/index.aspx?st=98412">
+                        Mobile Application Development &amp; Programming
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=60382">Networking</a></li><li><a href="https://www.informit.com/store/index.aspx?st=67290">Open Source</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60428">Operating Systems, Server</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60370">Programming</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60408">Security</a></li><li><a href="https://www.informit.com/store/index.aspx?st=66379">
+                        Software Development &amp; Management
+                      </a></li><li><a href="https://www.informit.com/store/index.aspx?st=66380">Web Development</a></li><li><a href="https://www.informit.com/store/index.aspx?st=60379">Web Services</a></li></ul></li><li><a class="arrow" href="https://www.informit.com/formats/">Formats</a><ul><li><a href="https://www.informit.com/store/browse/books">Books</a></li><li><a href="https://www.informit.com/store/browse/ebooks">eBooks</a></li><li><a href="https://www.informit.com/store/browse/practice-tests">Practice Tests</a></li><li><a href="https://www.informit.com/store/browse/software">Software</a></li><li><a href="https://www.informit.com/store/browse/video">Video</a></li><li><a href="https://www.informit.com/store/browse/web-editions">Web Editions</a></li></ul></li><li><a href="https://www.informit.com/promotions/">Deals &amp; Promotions</a></li><li><a href="https://www.informit.com/promotions/video-training-for-it-pros-developers-sys-admins-devops-140499">Video Training</a></li><li><a href="https://www.safaribooksonline.com/?utm_source=informit&amp;utm_medium=referral&amp;utm_campaign=publisher&amp;utm_content=global+top+nav">Safari</a></li><li><a class="arrow" href="https://www.informit.com/imprint/">Imprints</a><ul class="imprints"><li><a href="https://www.informit.com/imprint/index.aspx?st=61085">Addison-Wesley Professional</a></li><li><a href="https://www.adobepress.com/">Adobe Press</a></li><li><a href="https://www.ciscopress.com/">Cisco Press</a></li><li><a href="https://www.informit.com/promotions/pearson-ft-press-141135">FT Press</a></li><li><a href="https://www.informit.com/promotions/ibm-press-141142">IBM Press</a></li><li><a href="https://www.microsoftpressstore.com/">Microsoft Press Store</a></li><li><a href="https://www.peachpit.com/">Peachpit</a></li><li><a href="https://www.pearsonitcertification.com/">Pearson IT Certification</a></li><li><a href="http://www.quepublishing.com/">Que Publishing</a></li><li><a href="https://www.informit.com/imprint/index.aspx?st=61091">Sams Publishing</a></li><li><a href="https://www.pearsonitcertification.com/promotions/vmware-press-138356">VMware Press</a></li></ul></li><li><a class="arrow" href="https://www.informit.com/explore/">Explore</a><ul class="last"><li><a href="https://www.informit.com/about/">About</a></li><li><a href="https://www.informit.com/affiliates/">Affiliate Program</a></li><li><a href="https://www.informit.com/authors/">Authors</a></li><li><a href="https://www.informit.com/articles/">Chapters &amp; Articles</a></li><li><a href="https://www.informit.com/about/contact_us/">Contact Us</a></li><li><a href="https://www.informit.com/promotions/">Deals &amp; Promotions</a></li><li><a href="https://www.informit.com/promotions/resource-center-directory-140876">Popular Topics</a></li><li><a href="https://www.informit.com/store/register.aspx">Product Registration</a></li><li><a href="https://www.informit.com/newsletters/">Special Offers &amp; Newsletter</a></li><li><a href="https://www.informit.com/promotions/video-training-for-it-pros-developers-sys-admins-devops-140499">Video Training</a></li></ul></li><li><a class="arrow" href="https://www.informit.com/promotions/informits-community-resource-center-139745">Community</a><ul class="last"><li><a href="https://www.informit.com/press/">Press and Media Relations</a></li><li><a href="https://www.informit.com/promotions/share-your-knowledge-and-become-a-community-reviewer-140471">Product Review Team</a></li><li><a href="https://www.informit.com/user_groups/">User Groups</a></li></ul></li></ul></div></div><div id="footer"><ul class="links"><li><a href="https://www.informit.com/about/">About</a></li><li><a href="https://www.informit.com/affiliates/">Affiliates</a></li><li><a href="https://www.informit.com/about/contact_us/">Contact Us</a></li><li><a href="https://www.informit.com/about/faq.aspx">FAQ</a></li><li><a href="https://www.informit.com/about/legal.aspx">Legal Notice</a></li><li><a href="https://www.informit.com/cart/ordering.aspx">Ordering Information</a></li><li><a href="https://www.informit.com/about/privacy.aspx">Privacy Notice</a></li><li><a href="https://www.informit.com/press/">Press</a></li><li><a href="https://www.informit.com/promotions/">Promotions</a></li><li><a href="https://www.informit.com/site_map/">Site Map</a></li><li><a href="https://www.informit.com/about/write_for_us.aspx">Write for Us</a></li></ul><div itemscope="itemscope" itemtype="http://schema.org/Corporation">
+          ©  2020 Pearson Education, <span itemprop="name">Informit</span>. All rights reserved.<br><div itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress"><span itemprop="streetAddress">221 River Street</span>, <span itemprop="addressLocality">Hoboken</span>, <span itemprop="addressRegion">NJ </span><span itemprop="postalCode">07030</span></div></div></div><div id="strap"><div class="cranium"><div id="pearsonTopLogoLink"><svg viewBox="0 0 51.76765 15.628456" version="1.1" id="svg9820" inkscape:version="0.92.0 r15299" sodipodi:docname="pearson2.svg" height="26px" width="86px" xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-322.74252,-246.72015)"><g id="g9840" transform="matrix(0.26458333,0,0,0.26458333,322.81316,246.8401)"><path id="thumbprint" d="M 42.276232,3.7858309 C 54.714779,10.777218 57.611024,26.451707 48.955648,42.312014 41.350062,56.252206 24.741785,62.206111 12.366029,55.110202 -0.0116891,48.010421 -2.4271887,28.207297 2.8924046,16.812419 10.615724,0.2630388 28.532805,-3.9410845 42.276232,3.7858309" inkscape:connector-curvature="0" style="fill:#007fa3;"></path><path id="interrobang" d="m 41.987785,15.811714 c 2.435122,2.56467 3.192541,6.455226 2.770662,9.647031 -0.484669,3.638928 -2.721606,7.006872 -6.440024,9.238619 -2.949224,1.773009 -6.82462,2.477567 -10.637224,2.512408 -0.0314,0.596165 -0.151091,2.649837 -0.21192,2.975018 -0.0883,0.478093 -0.259014,0.737463 -0.46701,1.004576 -0.410105,0.528419 -1.120431,0.867149 -1.826832,1.066516 -0.559234,0.154848 -1.114544,0.224529 -1.508951,0.224529 -0.06475,0 -0.129507,-0.0058 -0.194261,-0.01161 -0.414029,-0.04646 -0.875152,-0.240015 -1.159675,-0.551646 -0.284523,-0.315503 -0.445425,-0.710366 -0.482707,-1.159425 l -0.0314,-0.406476 c -0.08045,-0.348408 -0.521952,-18.03205 -0.437576,-17.716547 0.06475,-2.119482 3.532006,-2.487246 5.41378,-2.113675 1.885699,0.373571 1.408878,2.634351 1.35786,5.411937 0,0 -0.09026,3.652478 -0.2649,7.512064 2.401764,-0.09097 4.309047,-0.766497 6.09271,-1.639453 3.604608,-1.765267 5.511891,-4.469301 5.511891,-8.45083 0,-3.981529 -3.928375,-8.441151 -11.178799,-8.441151 -7.250423,0 -10.362512,1.803979 -13.872934,4.668667 -0.790777,0.64649 -1.401029,1.296852 -1.975961,1.724619 -0.576894,0.427768 -2.109392,0.493578 -2.517535,-0.509062 -0.4964431,-1.207815 0.427765,-2.554992 0.971302,-3.20729 0.853568,-1.023932 2.955111,-3.085346 5.286235,-4.283483 2.670589,-1.374276 5.935732,-2.85501 10.482209,-2.96921 4.112824,-0.100651 10.60779,0.226465 15.285736,5.439036 M 26.26251,45.0896 c -0.378709,-0.29034 -0.80255,-0.489707 -1.232278,-0.572937 -0.145204,-0.02904 -0.296296,-0.04452 -0.443463,-0.04452 -0.808436,0 -1.603138,0.439381 -2.121165,1.176845 -0.43169,0.611649 -0.610252,1.345241 -0.496443,2.053671 0.07456,0.454866 0.245278,0.847793 0.500367,1.140069 0.284523,0.329052 0.720137,0.582615 1.261711,0.735528 0.311994,0.08517 0.631837,0.13162 0.95168,0.13162 h 0.002 c 0.698552,0 1.326464,-0.209044 1.815058,-0.596164 0.567083,-0.458738 0.875153,-1.107164 0.869266,-1.833014 -0.0078,-0.841986 -0.419916,-1.664616 -1.106695,-2.191099" inkscape:connector-curvature="0" style="fill:#ffffff"></path></g></g></svg><span class="pearson-logotype">Pearson</span></div></div></div></div><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; top: -9999px; z-index: 100000;"><iframe id="_atssh161" title="AddThis utility frame" style="height: 1px; width: 1px; position: absolute; top: 0px; z-index: 100000; border: 0px; left: 0px;" src="./Special Methods _ Types and Objects in Python _ InformIT_files/sh.f48a1a04fe8dbf021b4cda1d.html"></iframe></div><style id="service-icons-0"></style>
+<div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable" aria-describedby="addToWishList" aria-labelledby="ui-id-1" style="display: none;"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Save To My Account</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close</button></div><div id="addToWishList" class="dialogBox ui-dialog-content ui-widget-content">
+                         <iframe id="wishListSrc" src="./Special Methods _ Types and Objects in Python _ InformIT_files/addTo.html"></iframe>
+                    </div></div><script type="text/javascript" id="" src="./Special Methods _ Types and Objects in Python _ InformIT_files/clientExtensibility.js.indir"></script></body></html>

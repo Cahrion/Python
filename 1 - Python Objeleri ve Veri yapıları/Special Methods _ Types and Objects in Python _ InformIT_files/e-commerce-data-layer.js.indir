@@ -1,0 +1,966 @@
+﻿"use strict";
+var dataLayer = window.dataLayer || [];
+let impressionPosition = 0;
+var gtmManager =
+    {
+        productImpressions: function () {
+
+            var products = [];
+            let position = impressionPosition;
+            var list_category = $('.gtm_crumb').length > 0 ? $.trim(getLastValueofURI(getLastValueofURI($('.gtm_crumb').text(), '>'), '/')) : 'Search Results';
+
+            // collect gtm deal 
+            if ($('.gtm_deal').length > 0) {
+                $('.gtm_deal').each(function (index, element) {
+                    var productObj = {
+                        name: $.trim($(element).find('.gtm_name').text()),
+                        id: $(element).find('#gtm_isbn13').val(),
+                        position: ++position,
+                        price: new Number(parseFloat($.trim($(element).find('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                        category: $.trim($(element).find('.gtm_deal_category').attr('alt'))
+                    };
+
+                    if (isValidProductObject(productObj)) {
+                        products.push(productObj);
+                        addPositionElement($(element), productObj.position);
+
+                        // bind click event
+                        $(element).find('.gtm_href').each(function (i, e) {
+                            bindClickEvent(e, 'StoreDeal#Click', 'productClicks');
+                        });
+
+                        $(element).find('.gtm_buy').each(function (i, e) {
+                            bindClickEvent(e, 'StoreDeal#Click', 'detailAddToCart');
+                        });
+
+                    } else { --position; }
+                });
+            }
+
+            $('.gtm_product_list').find('.gtm_product').each(function (index, element) {
+                var product =
+                    {
+                        name: $.trim($(element).find('.gtm_title').text()),
+                        id: $.trim(getLastValueofURI($(element).find('.gtm_title').attr('href'), "-"))
+                    }
+
+                $(element).find('.gtm_category_n_price').each(function (index2, element2) {
+                    let product_category = $(element).find('#gtm_category').length > 0 ?
+                        $(element).find('#gtm_category').val() :
+                        $.trim($(element2).text().split("$")[0]);
+
+                    var productObj = {
+                        name: product.name,
+                        id: product.id,
+                        list: list_category,
+                        position: ++position,
+                        price: new Number(parseFloat($(element2).text().split("$")[1].replace(/,/g, ''))).toFixed(2),
+                        category: product_category,
+
+                    };
+
+                    if (isValidProductObject(productObj)) {
+                        products.push(productObj);
+                        addPositionElement($(element), productObj.position);
+                    } else { --position; }
+                });
+
+            });
+
+            // collect promo template products
+            if ($('.gtm_promo_template_product_list').length > 0) {
+                $('.gtm_promo_template_product_list').find('.gtm_product').each(function (index, element) {
+                    let price = $(element).find('#customerPrice').length > 0 ? $(element).find('#customerPrice').val() : $(element).find('.gtm_price').text().split("$")[1].replace(/,/g, '');
+
+                    var productObj = {
+                        name: $(element).find('#productName').val(),
+                        id: $(element).find('#isbn13').val(),
+                        list: 'Deals & Promotions',
+                        position: ++position,
+                        price: new Number(parseFloat(price)).toFixed(2),
+                        category: $.trim($(element).find('#displayName').val()),
+
+                    };
+
+                    products.push(productObj);
+                    addPositionElement($(element), productObj.position);
+                });
+            }
+
+            if ($('.gtm_browse_comingsoon').length > 0) {
+                $('.gtm_browse_comingsoon').find('.gtm_product').each(function (index, element) {
+                    let price = $(element).find('.gtm_price').text().split('(')[0].split('$')[1].replace(/,/g, '');
+                    var productObj = {
+                        name: $(element).find('.gtm_title').text(),
+                        id: $(element).find('#gtm_isbn').val(),
+                        list: 'Coming Soon',
+                        position: ++position,
+                        price: new Number(parseFloat(price)).toFixed(2),
+                        category: $.trim($(element).find('#gtm_category').val())
+                    };
+
+                    products.push(productObj);
+                    addPositionElement($(element), productObj.position);
+                });
+            }
+
+            if ($('.gtm_browse_just_release').length > 0) {
+                $('.gtm_browse_just_release').find('.gtm_product').each(function (index, element) {
+                    let price = $(element).find('.gtm_price').text().split('(')[0].split('$')[1].replace(/,/g, '');
+                    var productObj = {
+                        name: $(element).find('.gtm_title').text(),
+                        id: $(element).find('#gtm_isbn').val(),
+                        list: 'Just Released',
+                        position: ++position,
+                        price: new Number(parseFloat(price)).toFixed(2),
+                        category: $.trim($(element).find('#gtm_category').val())
+                    };
+
+                    products.push(productObj);
+                    addPositionElement($(element), productObj.position);
+                });
+            }
+
+            if (products.length > 0) {
+                var ecommerceObj = {
+                    'currencyCode': 'USD',                 // Local currency is optional.
+                    'impressions': products
+                };
+
+                this._pushToGtmDataLayer(null, ecommerceObj);
+            }
+        },
+
+        productClicks: function (object, type) {
+            var products = [];
+            var list_category = $('.gtm_crumb').length > 0 ? $.trim(getLastValueofURI(getLastValueofURI($('.gtm_crumb').text(), '>'), '/')) : 'Search Results';
+
+            if (type == 'StartReading#Click') {
+                let element = object;
+                var productObj =
+                    {
+                        name: $.trim($(element).closest('#bibCol').find('h1').text()),
+                        id: $(element).find('#gtm_isbn13').val(),
+                        category: $.trim($(element).closest('.buyOption').find('h3').text()),
+                        position: $(element).closest('.buyOption').find('#gtm_position').val()
+                    };
+                list_category = 'Product Details - Start Reading';
+            }
+            else if (type == 'ThingsYouMightLike#Click' || type == 'Default#Click') {
+                let element = object;
+                let product_category = $(element).closest('.gtm_product').find('#gtm_category').length > 0 ?
+                    $(element).closest('.gtm_product').find('#gtm_category').val() :
+                    $.trim($(element).closest('.gtm_product').find('.gtm_category_n_price').text().split("$")[0]);
+
+                let price = $(element).closest('.gtm_product').find('.gtm_price').length ?
+                    $(element).closest('.gtm_product').find('.gtm_price').text().split('(')[0].split('$')[1].replace(/,/g, ''):
+                    $(element).closest('.gtm_product').find('.gtm_category_n_price').text().split("$")[1].replace(/,/g, '');
+
+                var productObj =
+                    {
+                        name: $.trim($(element).closest('.gtm_product').find('.gtm_title').text()),
+                        id: $.trim(getLastValueofURI($(element).closest('.gtm_product').find('.gtm_title').attr('href'), "-")),
+                        position: $(element).closest('.gtm_product').find('#gtm_position').val(),
+                        price: new Number(parseFloat(price)).toFixed(2),
+                        category: product_category
+                    }
+                list_category = type == 'ThingsYouMightLike#Click' ? 'Things You Might Like' : list_category;
+            }
+            else if (type == 'Promotion#PlainList') {
+                let clicked_isbn = object;
+                productObj =
+                    {
+                        name: $.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#productName').val()),
+                        id: $.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#isbn13').val()),
+                        price: new Number(parseFloat($.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#customerPrice').val()))).toFixed(2),
+                        category: $.trim($.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#displayName').val())),
+                        position: $('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#gtm_position').val()
+                    }
+                list_category = 'Deals & Promotions';
+            }
+            else if (type == "Promotion") {
+                let element = object;
+                productObj =
+                    {
+                        name: $.trim($(element).closest('.gtm_product').find('#productName').val()),
+                        id: $.trim($(element).closest('.gtm_product').find('#isbn13').val()),
+                        price: new Number(parseFloat($.trim($(element).closest('.gtm_product').find('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                        category: $.trim($.trim($(element).closest('.gtm_product').find('#displayName').val())),
+                        position: $(element).closest('.gtm_product').find('#gtm_position').val()
+                    }
+                list_category = 'Deals & Promotions';
+            }
+            else if (type == "Deal#Click") {
+                let element = object;
+                productObj =
+                    {
+                        name: $.trim($('.gtm_product').find('.gtm_title').text()),
+                        id: $.trim($('#gtm_isbn').val()),
+                        price: new Number(parseFloat($.trim($('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                        category: $.trim($('.gtm_category').text())
+                    }
+                list_category = 'Deal';                
+            }
+            else if (type == 'StoreDeal#Click') {
+                let element = object;
+                productObj = {
+                    name: $.trim($(element).closest('.gtm_deal').find('.gtm_name').text()),
+                    id: $(element).closest('.gtm_deal').find('#gtm_isbn13').val(),
+                    position: $(element).closest('.gtm_deal').find('#gtm_position').val(),
+                    price: new Number(parseFloat($.trim($(element).closest('.gtm_deal').find('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                    category: $.trim($.trim($(element).closest('.gtm_deal').find('.gtm_deal_category').attr('alt')).split(' ')[0])
+                };
+                list_category = 'Deal';
+            }
+
+            if (isValidProductObject(productObj)) {
+                products.push(productObj);
+
+                var ecommerceObj = {
+                    'click': {
+                        'actionField': { 'list': list_category },      // Optional list property.
+                        'products': products
+                    }
+                };
+
+                this._pushToGtmDataLayer("productClick", ecommerceObj);
+            }
+        },
+
+        promotionClick: function (object, type) {
+
+            var promotionObj = null;
+            var regx_id = /^\d+$/;
+            var regx_creative = /^[A-Za-z&0-9\s-:\.\+\,]+$/;
+
+            if (type == 'Deal#Click') {
+                let element = object;
+                promotionObj =
+                    {
+                        name: $.trim($(element).closest('.gtm_deal').find('.gtm_name').text()),
+                        id: $.trim($(element).closest('.gtm_deal').find('#gtm_deal_id').val()),
+                        creative: $.trim($(element).closest('.gtm_deal').find('.gtm_creative').text()),
+                        position: $.trim($(element).closest('.gtm_deal').find('#gtm_position').val())
+                    }
+            }
+            else if (type == "FlexSlider#Click") {
+                let element = object;
+                promotionObj =
+                    {
+                        name: $.trim($(element).find('img').attr('alt')),
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+            }
+            else if (type == 'Connected#Click') {
+                let element = object;
+                let id = $.trim(getLastValueofURI($.trim($(element).attr('href')), '-'));
+                promotionObj =
+                    {
+                        name: $.trim($(element).text()),
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+            }
+            else if (type == 'Banner#Click') {
+                let element = object;
+                let id = getLastValueofURI(getLastValueofURI(getLastValueofURI($.trim($(element).attr('href')), '/'), '-'), '=');
+                let creative = isValidStr(getLastValueofURI($.trim($(element).attr('href')), '/').replace(id, '').replace(/[-]/g, ' '), regx_creative) ?
+                    getLastValueofURI($.trim($(element).attr('href')), '/').replace(id, '').replace(/[-]/g, ' ') :
+                    undefined;
+
+                promotionObj = {
+                    name: $.trim($(element).find('img').attr('alt')),
+                    position: $.trim($(element).find('#gtm_position').val())
+                };
+
+                if (isValidStr(id, regx_id)) {
+                    promotionObj.id = id;
+                }
+                if (creative != undefined) {
+                    promotionObj.creative = creative;
+                }
+            }
+            else if (type == 'JustRelase&CommingSoon#Click') {
+                let element = $(object).closest('.gtm_product');
+                let type = $(object).closest('.gtm_promo_just_released').length > 0 ? 'Just Released' :
+                    $(object).closest('.gtm_promo_comingsoon').length > 0 ? 'Coming Soon' : undefined;
+                promotionObj =
+                    {
+                        name: $.trim($(element).find('.gtm_title').text()),
+                        id: $.trim(getLastValueofURI($.trim($(element).find('.gtm_title').attr('href')), '-')),
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+                if (type != undefined) {
+                    promotionObj.creative = type;
+                }
+            }
+            else if (type == 'BestSellers#Click') {
+                let element = $(object).closest('.buckets-image-51-small');
+                promotionObj =
+                    {
+                        name: $.trim($(element).find('.buckets-list-title').text()),
+                        id: $.trim(getLastValueofURI($.trim($(element).find('.buckets-list-title').find('a').attr('href')), '/')),
+                        creative: 'Best Sellers in the Store',
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+            }
+            else if (type == 'NewReleases#Click') {
+                let element = $(object).closest('.buckets-image-51-small');
+                promotionObj =
+                    {
+                        name: $.trim($(element).find('.buckets-list-title').text()),
+                        id: $.trim(getLastValueofURI($.trim($(element).find('.buckets-list-title').find('a').attr('href')), '/')),
+                        creative: 'New Releases in the Store',
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+            }
+            else if (type == 'SiteWideStrap#Click') {
+                let element = $(object).closest('#sitewidestrap');
+                let promoText = '';
+                $('#sitewidestrap').find('p').each(function (index, element) {
+                    promoText = promoText + ' ' + $(element).text();
+                });
+                promotionObj =
+                    {
+                        name: promoText,
+                        creative: 'Sitewide Strap',
+                        position: $.trim($(element).find('#gtm_position').val())
+                    }
+            }
+
+            if (isValidPromotionObj(promotionObj)) {
+                var ecommerceObj = {
+                    'promoClick': {
+                        'promotions': promotionObj
+                    }
+                };
+
+                this._pushToGtmDataLayer('promotionClick', ecommerceObj);
+            }
+        },
+
+        promotionImpressions: function () {
+            var promotions = [];
+            var promotionObj = null;
+            let position = 0;
+            var regx_id = /^\d+$/;
+            var regx_creative = /^[A-Za-z&0-9\s-:\.\+\,]+$/;
+
+            //read site wide stripe
+            if ($('#sitewidestrap').length > 0) {
+                let promoText = '';
+                $('#sitewidestrap').find('p').each(function (index, element) {
+                    promoText = promoText + ' ' + $(element).text();
+                });
+                promotionObj =
+                    {
+                        name: promoText,
+                        creative: 'Sitewide Strap',
+                        position: ++position
+                    }
+
+                if (isValidPromotionObj(promotionObj)) {
+                    promotions.push(promotionObj);
+                    addPositionElement($('#sitewidestrap'), promotionObj.position);
+                    if ($('#sitewidestrap').has('a')) {
+                        $('#sitewidestrap').find('a').each(function (index, element) {
+                            bindClickEvent($(element), 'SiteWideStrap#Click', 'promotionClick');
+                        });
+                    }
+                }
+            }
+
+            //collect flexslider promotions - peachpit, adobepress
+            if ($('.gtm_flexslider').length > 0 && $('.gtm_flexslider').find('li').length > 0) {
+                $('.gtm_flexslider').find('li').each(function (index, element) {
+                    let id = getLastValueofURI($.trim($(element).find('a').attr('href')), '-');
+                    promotionObj =
+                        {
+                            name: $.trim($(element).find('img').attr('alt')),
+                            position: ++position
+                        }
+
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element).find('a'), promotionObj.position);
+                        bindClickEvent($(element).find('a'), 'FlexSlider#Click', 'promotionClick');
+                    }
+                });
+            }
+
+            //collect banner promotions
+            if ($('.gtm_img_promo').length > 0 && ($('.gtm_img_promo').find('.pst.freeform').length > 0 || $('.gtm_img_promo').find('.pstFree').length > 0)) {
+                if ($('.gtm_img_promo').find('.pst.freeform').length > 0) {
+                    $('.gtm_img_promo').each(function () {
+                        $(this).find('.pst.freeform').find('img').each(function (index, element) {
+                            let name = $(element).attr('alt');
+
+                            if (name != undefined && $(element).parent().is('a')) {
+                                let id = getLastValueofURI(getLastValueofURI(getLastValueofURI($.trim($(element).parent().attr('href')), '/'), '-'), '=');
+                                let creative = isValidStr(getLastValueofURI($.trim($(element).closest('a').attr('href')), '/').replace(id, '').replace(/[-]/g, ' '), regx_creative) ?
+                                    getLastValueofURI($.trim($(element).closest('a').attr('href')), '/').replace(id, '').replace(/[-]/g, ' ') :
+                                    undefined;
+
+                                // creating promo object
+                                promotionObj = {
+                                    name: $.trim(name),
+                                    position: ++position
+                                };
+
+                                if (isValidStr(id, regx_id)) {
+                                    promotionObj.id = id;
+                                }
+                                if (creative != undefined) {
+                                    promotionObj.creative = creative;
+                                }
+
+                                if (isValidPromotionObj(promotionObj)) {
+                                    promotions.push(promotionObj);
+                                    addPositionElement($(element), promotionObj.position);
+                                    bindClickEvent($(element).parent(), 'Banner#Click', 'promotionClick'); // this parent is href
+                                }
+                            }
+
+                        })
+                    });
+                }
+                if ($('.gtm_img_promo').find('.pstFree').length > 0) {
+                    $('.gtm_img_promo').each(function () {
+                        $(this).find('.pstFree').find('img').each(function (index, element) {
+                            let name = $(element).attr('alt');
+
+                            if (name != undefined && $(element).parent().is('a')) {
+                                let id = getLastValueofURI(getLastValueofURI(getLastValueofURI($.trim($(element).parent().attr('href')), '/'), '-'), '=');
+                                let creative = isValidStr(getLastValueofURI($.trim($(element).parent().attr('href')), '/').replace(id, '').replace(/[-]/g, ' '), regx_creative) ?
+                                    getLastValueofURI($.trim($(element).parent().attr('href')), '/').replace(id, '').replace(/[-]/g, ' ') :
+                                    undefined;
+
+                                // creating promo object
+                                promotionObj = {
+                                    name: $.trim(name),
+                                    position: ++position
+                                };
+
+                                if (isValidStr(id, regx_id)) {
+                                    promotionObj.id = id;
+                                }
+                                if (creative != undefined) {
+                                    promotionObj.creative = creative;
+                                }
+
+                                if (isValidPromotionObj(promotionObj)) {
+                                    promotions.push(promotionObj);
+                                    addPositionElement($(element), promotionObj.position);
+                                    bindClickEvent($(element).parent(), 'Banner#Click', 'promotionClick'); // this parent is href
+                                }
+                            }
+                        })
+                    });
+                }
+            }
+
+            //collect large banner
+            if ($('.gtm_largebanner').length > 0) {
+                $('.gtm_largebanner').each(function (index, element) {
+                    $(element).find('img').each(function (index2, element2) {
+                        let name = $(element2).attr('alt');
+                        if (name != undefined && $(element2).parent().is('a')) {
+                            let id = getLastValueofURI(getLastValueofURI(getLastValueofURI($.trim($(element2).parent().attr('href')), '/'), '-'), '=');
+
+                            // creating promo object
+                            promotionObj = {
+                                name: $.trim(name),
+                                id: id,
+                                position: ++position
+                            };
+
+                            if (isValidPromotionObj(promotionObj)) {
+                                promotions.push(promotionObj);
+                                addPositionElement($(element2), promotionObj.position);
+                                bindClickEvent($(element2).parent(), 'Banner#Click', 'promotionClick'); // this parent is href
+                            }
+                        }
+                    });
+                });
+            }
+
+            //collect connected on peachpit
+            if ($('.gtm_img_promo').find('.gtm_connected').length > 0) {
+                $('.gtm_img_promo').find('.gtm_connected').each(function (index, element) {
+                    promotionObj =
+                        {
+                            name: $.trim($(element).text()),
+                            position: ++position
+                        };
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element), promotionObj.position);
+                        bindClickEvent($(element), 'Connected#Click', 'promotionClick');
+                    }
+                });
+            }
+
+            //collect deals on the page
+            $('.gtm_deal').each(function (index, element) {
+                promotionObj =
+                    {
+                        name: $.trim($(element).find('.gtm_name').text()),
+                        id: $.trim($(element).find('#gtm_deal_id').val()),
+                        creative: $.trim($(element).find('.gtm_creative').text()),
+                        position: ++position
+                    }
+
+                if (isValidPromotionObj(promotionObj)) {
+                    promotions.push(promotionObj);
+                    addPositionElement($(element), promotionObj.position);
+                    // bind click event
+                    $(element).find('.gtm_href').each(function (i, e) {
+                        bindClickEvent(e, 'Deal#Click', 'promotionClick');
+                    });
+
+                    $(element).find('.gtm_buy').each(function (i, e) {
+                        bindClickEvent(e, 'DealHome#Click', 'detailAddToCart');
+                    });
+                }
+            });
+
+            //collect new releases in the store
+            if ($('.gtm_promo_new_releases').length > 0) {
+                $('.gtm_promo_new_releases').find('.buckets-image-51-small').each(function (index, element) {
+                    promotionObj =
+                        {
+                            name: $.trim($(element).find('.buckets-list-title').text()),
+                            id: $.trim(getLastValueofURI($.trim($(element).find('.buckets-list-title').find('a').attr('href')), '/')),
+                            creative: 'New Releases in the Store',
+                            position: ++position
+                        }
+
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element), promotionObj.position);
+                        bindClickEvent($(element).find('a'), 'NewReleases#Click', 'promotionClick');
+                        bindClickEvent($(element).find('.coverImage'), 'NewReleases#Click', 'promotionClick');
+                    }
+                });
+            }
+
+            //collect best sellers in the store
+            if ($('.gtm_promo_best_sellers').length > 0) {
+                $('.gtm_promo_best_sellers').find('.buckets-image-51-small').each(function (index, element) {
+                    promotionObj =
+                        {
+                            name: $.trim($(element).find('.buckets-list-title').text()),
+                            id: $.trim(getLastValueofURI($.trim($(element).find('.buckets-list-title').find('a').attr('href')), '/')),
+                            creative: 'Best Sellers in the Store',
+                            position: ++position
+                        }
+
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element), promotionObj.position);
+                        bindClickEvent($(element).find('a'), 'BestSellers#Click', 'promotionClick');
+                        bindClickEvent($(element).find('.coverImage'), 'BestSellers#Click', 'promotionClick');
+                    }
+                });
+            }
+
+            //collect just released - cisco
+            if ($('.gtm_promo_just_released').length > 0) {
+                $('.gtm_promo_just_released').find('.gtm_product').each(function (index, element) {
+                    promotionObj =
+                        {
+                            name: $.trim($(element).find('.gtm_title').text()),
+                            id: $.trim(getLastValueofURI($.trim($(element).find('.gtm_title').attr('href')), '-')),
+                            creative: 'Just Released',
+                            position: ++position
+                        }
+
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element), promotionObj.position);
+                    }
+                });
+            }
+
+            //collect coming soon - cisco
+            if ($('.gtm_promo_comingsoon').length > 0) {
+                $('.gtm_promo_comingsoon').find('.gtm_product').each(function (index, element) {
+                    promotionObj =
+                        {
+                            name: $.trim($(element).find('.gtm_title').text()),
+                            id: $.trim(getLastValueofURI($.trim($(element).find('.gtm_title').attr('href')), '-')),
+                            creative: 'Coming Soon',
+                            position: ++position
+                        }
+
+                    if (isValidPromotionObj(promotionObj)) {
+                        promotions.push(promotionObj);
+                        addPositionElement($(element), promotionObj.position);
+                    }
+                });
+            }
+
+            if (promotions.length > 0) {
+                var ecommerceObj = {
+                    'promoView': {
+                        'promotions': promotions
+                    }
+                };
+
+                this._pushToGtmDataLayer(null, ecommerceObj);
+            }
+        },
+
+        detailProductClicks: function (element) {
+            var products = [];
+            let name = $(element).closest('.gtm_bundle').find('.gtm_title').length > 0 ?
+                $(element).closest('.gtm_bundle').find('.gtm_title').text() : $('.gtm_col1').find('.gtm_title').text();
+
+            var productObj =
+                {
+                    name: $.trim(name),
+                    id: $(element).closest('.gtm_product').find('#gtm_isbn13').val(),
+                    category: $.trim($(element).closest('.gtm_product').find('.gtm_category').text()),
+                    position: $(element).closest('.gtm_product').find('#gtm_position').val()
+                };
+
+            if ($(element).closest('.gtm_product').find('.gtm_price').length > 0) {
+                productObj.price = new Number(parseFloat($(element).closest('.gtm_product').find('.gtm_price').text().split('$')[1].replace(/,/g, ''))).toFixed(2);
+            }
+
+            if (isValidProductObject(productObj)) {
+                products.push(productObj);
+
+                var ecommerceObj = {
+                    'click': {
+                        'actionField': { 'list': 'Product Details' },      // Optional list property.
+                        'products': products
+                    }
+                };
+
+                this._pushToGtmDataLayer("productClick", ecommerceObj);
+            }
+        },
+
+        productDetailImpressions: function () {
+            var products = [];
+            let position = impressionPosition;
+
+            $('.gtm_bundle').find('.gtm_product').each(function (index, element) {
+                let name = $('.gtm_bundle').find('.gtm_title').length > 0 ?
+                    $('.gtm_bundle').find('.gtm_title').text() : $('.gtm_col1').find('.gtm_title').text();
+
+                var productObj =
+                    {
+                        name: $.trim(name),
+                        id: $(element).find('#gtm_isbn13').val(),
+                        category: $.trim($(element).find('.gtm_category').text()),
+                        position: ++position
+                    };
+
+                if ($(element).find('.gtm_price').length > 0) {
+                    // no price can is been displayed for these related products
+                    productObj.price = new Number(parseFloat($(element).find('.gtm_price').text().split('$')[1].replace(/,/g, ''))).toFixed(2);
+                }
+
+                if (isValidProductObject(productObj)) {
+                    products.push(productObj);
+                    addPositionElement($(element), productObj.position);
+                } else { --position; }
+            });
+
+            if (products.length > 0) {
+                impressionPosition = position;
+                var ecommerceObj = {
+                    'detail': {
+                        'actionField': { 'list': 'Product Details' },    // 'detail' actions have an optional list property.
+                        'products': products
+                    }
+                };
+                this._pushToGtmDataLayer(null, ecommerceObj);
+            }
+        },
+
+        detailAddToCart: function (element, type) {
+            var products = [];
+            var productObj = null;
+
+            if (type == 'StoreBrowse#Click') {
+                let name = $(element).closest('.gtm_bundle').find('.gtm_title').length > 0 ?
+                    $(element).closest('.gtm_bundle').find('.gtm_title').text() : $('.gtm_col1').find('.gtm_title').text();
+
+                productObj =
+                    {
+                        name: $.trim(name),
+                        id: $(element).closest('.gtm_bundle').find('#gtm_isbn13').val(),
+                        price: new Number(parseFloat($(element).closest('.gtm_product').find('.gtm_price').text().split('$')[1].replace(/,/g, ''))).toFixed(2),
+                        category: $.trim($(element).closest('.gtm_product').find('.gtm_category').text()),
+                        position: $(element).closest('.gtm_product').find('#gtm_position').val(),
+                        quantity: 1
+                    };
+
+            }
+            else if (type == 'Deal#Click') {
+                productObj =
+                    {
+                        name: $.trim($('.gtm_product').find('.gtm_title').text()),
+                        id: $.trim($('#gtm_isbn').val()),
+                        price: new Number(parseFloat($.trim($('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                        category: $.trim($('.gtm_category').text()),
+                        quantity: 1
+                    }
+            }
+            else if (type == 'DealHome#Click') {
+                productObj =
+                    {
+                        name: $.trim($(element).closest('.gtm_deal').find('.gtm_name').text()),
+                        id: $.trim($(element).closest('.gtm_deal').find('#gtm_isbn13').val()),
+                        price: new Number(parseFloat($(element).closest('.gtm_deal').find('.gtm_price').text().split("$")[1].replace(/,/g, ''))).toFixed(2),
+                        category: $.trim($.trim($(element).closest('.gtm_deal').find('.gtm_deal_category').attr('alt')).split(' ')[0]),
+                        position: $.trim($(element).closest('.gtm_deal').find('#gtm_position').val()),
+                        quantity: 1
+                    }
+            }
+            else if (type == 'Promotion#PlainList') {
+                let clicked_isbn = element;
+                productObj =
+                    {
+                        name: $.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#productName').val()),
+                        id: $.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#isbn13').val()),
+                        price: new Number(parseFloat($.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#customerPrice').val()))).toFixed(2),
+                        category: $.trim($.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#displayName').val())),
+                        position: $.trim($.trim($('.gtm_promo_template_product_list').find('.gtm_product.' + clicked_isbn).find('#gtm_position').val())),
+                        quantity: 1
+                    }
+            }
+            else if (type == 'Promotion') {
+                productObj =
+                    {
+                        name: $.trim($(element).closest('.gtm_product').find('#productName').val()),
+                        id: $.trim($(element).closest('.gtm_product').find('#isbn13').val()),
+                        price: new Number(parseFloat($.trim($(element).closest('.gtm_product').find('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                        category: $.trim($.trim($(element).closest('.gtm_product').find('#displayName').val())),
+                        position: $.trim($(element).closest('.gtm_product').find('#gtm_position').val()),
+                        quantity: 1
+                    }
+            }
+            else if (type == 'StoreDeal#Click') {
+                productObj = {
+                    name: $.trim($(element).closest('.gtm_deal').find('.gtm_name').text()),
+                    id: $(element).closest('.gtm_deal').find('#gtm_isbn13').val(),
+                    position: $(element).closest('.gtm_deal').find('#gtm_position').val(),
+                    price: new Number(parseFloat($.trim($(element).closest('.gtm_deal').find('.gtm_price').text().split("$")[1].replace(/,/g, '')))).toFixed(2),
+                    category: $.trim($.trim($(element).closest('.gtm_deal').find('.gtm_deal_category').attr('alt')).split(' ')[0]),
+                    quantity: 1
+                };
+            }
+
+            if (isValidProductObject(productObj)) {
+                products.push(productObj);
+                var ecommerceObj = {
+                    'currencyCode': 'USD',
+                    'add': {                                // 'add' actionFieldObject measures.
+                        'products': products
+                    }
+                };
+
+                this._pushToGtmDataLayer("addToCart", ecommerceObj);
+            }
+        },
+
+        updateQuantity: function (element) {
+            var quantity = $(element).closest('.row').find('input[name=quantity]').val();
+            if (isInteger(quantity)) {
+                if (quantity > 50) {
+                    quantity = 50;
+                }
+                var products = [];
+                var productObj =
+                    {
+                        name: $(element).closest('.row').find('#productName').val(),
+                        id: $(element).closest('.row').find('#isbn13').val(),
+                        quantity: quantity,
+                        price: new Number(parseFloat($(element).closest('.row').find('#customerPrice').val())).toFixed(2),
+                        category: $(element).closest('.row').find('#displayName').val()
+                    };
+                products.push(productObj);
+
+                var ecommerceObj = {
+                    'currencyCode': 'USD',
+                    'add': {                                // 'add' actionFieldObject measures.
+                        'products': products
+                    }
+                };
+
+                this._pushToGtmDataLayer("addToCart", ecommerceObj);
+            }
+        },
+
+        removeItem: function (element) {
+            var products = [];
+            var quantity = $(element).closest('.row').find('#quantity').val();
+            if (isInteger(quantity)) {
+                var productObj =
+                    {
+                        name: $(element).closest('.row').find('#productName').val(),
+                        id: $(element).closest('.row').find('#isbn13').val(),
+                        quantity: quantity,
+                        price: new Number(parseFloat($(element).closest('.row').find('#customerPrice').val())).toFixed(2),
+                        category: $(element).closest('.row').find('#displayName').val()
+                    };
+                products.push(productObj);
+
+                var ecommerceObj = {
+                    'remove': {                               // 'remove' actionFieldObject measures.
+                        'products': products
+                    }
+                };
+
+                this._pushToGtmDataLayer("removeFromCart", ecommerceObj);
+            }
+        },
+
+        checkout: function (step, option) {
+
+            var products = [];
+            var grandTotal = 0;
+            var tax = 0
+            var shipping = 0;
+            var discount = 0;
+
+            if (step == 1) {
+                $('#cartBody').find('.row').each(function () {
+                    if ($(this).find('#productName').val() != undefined) {
+                        var productObj =
+                            {
+                                name: $(this).find('#productName').val(),
+                                id: $(this).find('#isbn13').val(),
+                                quantity: $(this).find('input[name=quantity]').val(),
+                                price: new Number(parseFloat($(this).find('#customerPrice').val())).toFixed(2),
+                                category: $(this).find('#displayName').val()
+                            };
+                        grandTotal = new Number(grandTotal) + new Number($(this).find('#item_total').val());
+                        products.push(productObj);
+                    }
+                    grandTotal = grandTotal.toFixed(2);
+                    discount = new Number(parseFloat($.trim($('.gtm_cart').find('.gtm_discount').text().split('$')[1]))).toFixed(2);
+                });
+            }
+            else if (step == 2 || step == 3 || step == 4) {
+                $('#miniCart').find('.miniCartItems').each(function () {
+                    if ($(this).find('#productName').val() != undefined) {
+                        var productObj =
+                            {
+                                name: $(this).find('#productName').val(),
+                                id: $(this).find('#isbn13').val(),
+                                quantity: $(this).find('#quantity').val(),
+                                price: new Number(parseFloat($(this).find('#customerPrice').val())).toFixed(2),
+                                category: $(this).find('#displayName').val()
+                            };
+                        products.push(productObj);
+                    }
+                });
+
+                discount = $('#miniCart').find('#gtmDiscount').val();
+                shipping = $('#miniCart').find('#gtmShippingAmount').val();
+                tax = $('#miniCart').find('#gtmTaxAmount').val();
+                grandTotal = $('#miniCart').find('#gtmOrderTotal').val().replace(',', '');
+            }
+
+            var ecommerceObj = {
+                'checkout': {
+                    'actionField': {
+                        'step': step,
+                        'option': option,
+                        'revenue': grandTotal,
+                        'tax': tax,
+                        'shipping': shipping,
+                        'discount': discount
+                    },
+                    'products': products
+                }
+            };
+
+            this._pushToGtmDataLayer("checkout", ecommerceObj);
+        },
+
+        purchases: function (transactionId, storeName, grandTotal, shipping, tax, shippingMethod) {
+            var products = [];
+            $('#purchases').find('.item.row').each(function () {
+                if ($(this).find('#productName').val() != undefined) {
+                    var productObj =
+                        {
+                            name: $(this).find('#productName').val(),
+                            id: $(this).find('#isbn13').val(),
+                            price: $(this).find('#customerPrice').val(),
+                            category: $(this).find('#displayName').val(),
+                            quantity: $(this).find('#quantity').val()
+                        };
+                    products.push(productObj);
+                }
+            });
+            var ecommerceObj = {
+                'purchase': {
+                    'actionField': {
+                        'id': transactionId,                         // Transaction ID.
+                        'affiliation': storeName,
+                        'revenue': grandTotal,                     // Total transaction value (incl. tax and shipping)
+                        //'tax': tax, // remove this one since hybris is not sending correct data - ref SPTG-12614
+                        'shippingMethod': shippingMethod,
+                        'discountCode': $('#discountCode').val()
+                    },
+                    'products': products
+                }
+            };
+            this._pushToGtmDataLayer(null, ecommerceObj);
+        },
+
+        _pushToGtmDataLayer: function (event, ecommerceObj) {
+            var dataLayerObj = {};
+            if (event) dataLayerObj.event = event;
+            dataLayerObj.ecommerce = ecommerceObj;
+            dataLayer.push(dataLayerObj);
+            console.log(dataLayerObj);
+        }
+    }
+
+function addPositionElement(element, position) {
+    $('<input>').attr({ id: 'gtm_position', name: 'gtm_position', type: 'hidden', value: position }).appendTo($(element))
+}
+
+function bindClickEvent(element, type, eventType) {
+    $(function () {
+        $(element).on("click", function () {
+            if (eventType == 'promotionClick') { gtmManager.promotionClick(this, type); }
+            else if (eventType == 'productClicks') { gtmManager.productClicks(this, type) }
+            else if (eventType == 'detailAddToCart') { gtmManager.detailAddToCart(this, type) }
+        });
+    });
+}
+
+function getLastValueofURI(uri, splitter) {
+    const uriArray = uri.split(splitter);
+    return uriArray[uriArray.length - 1];
+}
+
+function isValidProductObject(object) {
+    let isValid = true;
+    if (object == null || object.name.length == 0 || object.id.length == 0) {
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function isValidPromotionObj(object) {
+    let isValid = true;
+    if (object.name.length == 0) {
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function isValidStr(str, patten) {
+    return str.match(patten);
+}
+

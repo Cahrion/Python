@@ -1,0 +1,1 @@
+SELECT * FROM `node-app`.products;products

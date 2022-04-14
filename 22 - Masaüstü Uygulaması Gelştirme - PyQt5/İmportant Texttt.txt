@@ -1,0 +1,2 @@
+pyuic5 MainWindow.ui -o MainWindow.py 
+# Bu üsteki kod ui dosyasını py değerine çeviriyor ve bu kullanışlı sakin unutma.

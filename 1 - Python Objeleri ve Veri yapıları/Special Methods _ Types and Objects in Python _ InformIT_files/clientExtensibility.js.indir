@@ -1,0 +1,816 @@
+// Default parameters for the intercept and required parameters for the mcxInterceptScript. Can all be overridden in the mcxSiteInterceptTriggers
+mcxSiteInterceptParameters = {
+    surveyURL: "https://pearson.mcxplatform.de/cgi-bin/qwebcorporate.dll?idx=KPM5TN", // must contain ?idx=... parameter
+    showOnLoad: true,
+    invitationID: "mcxInvitationModal",
+    width: 540, // px
+    height: 500, // px
+    probability: 20, // %
+    pageVisit: 5, // default pageVisit 5
+    expireDaysIfYes: 90, //number of days if they accept the survey
+    expireDaysIfNo: 90, // number of days if they decline the survey
+    debug: false,
+    mcxRandomID: 'KXMPND'
+  };
+  
+  /*
+  * Rules that trigger the intercept modal to appear and customize it. Each trigger/rule must contain:
+  * matchUrl: String or regexp. If the value matches all/part of the URL the intercept parameters in the rule will be applied and modal will be shown.
+  * privacyPolicyUrl: String. The URL of the privacy policy link in the modal.
+  * 
+  * Trigger rule can also contain:
+  * addPrepopFields: Object, no nested objects, string/numeric values only. A list of prepop fields to add to the surveyURL. Each key is the field tag, value is the field's value
+  * 
+  * Other allowed but not required parameters include all those in mcxSiteInterceptParameters. When triggered, matching parameters will override those in mcxSiteInterceptParameters
+  */
+  mcxSiteInterceptTriggers = [
+  {
+    matchUrl: 'www.adobepress.com',
+    privacyPolicyUrl: 'http://www.adobepress.com/about/privacy.asp',
+    addPrepopFields: {"DOMAIN_LIST": 0}
+  },
+  {
+    matchUrl: 'br.pearson.com',
+    privacyPolicyUrl: 'https://br.pearson.com/politica-de-privacidade.html',
+    addPrepopFields: {"DOMAIN_LIST": 1}
+  },
+  {
+    matchUrl: 'www.ciscopress.com',
+    privacyPolicyUrl: 'http://www.ciscopress.com/about/privacy.asp',
+    addPrepopFields: {"DOMAIN_LIST": 2}
+  },
+  {
+    matchUrl: 'de.pearson.com/de_DE.html',
+    privacyPolicyUrl: 'https://de.pearson.com/de_DE/Datenschutz.html',
+    addPrepopFields: {"DOMAIN_LIST": 3}
+  },
+  {
+    matchUrl: 'fle.pearson.es',
+    privacyPolicyUrl: 'http://pearson.es/espa%C3%B1a/pol%C3%ADtica-protecci%C3%B3n-de-datos',
+    addPrepopFields: {"DOMAIN_LIST": 4}
+  },
+  {
+    matchUrl: 'in.pearson.com',
+    privacyPolicyUrl: 'https://in.pearson.com/footer/data-privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 5}
+  },
+  {
+    matchUrl: 'www.informit.com',
+    privacyPolicyUrl: 'http://www.informit.com/about/privacy.aspx',
+    addPrepopFields: {"DOMAIN_LIST": 6}
+  },
+  {
+    matchUrl: 'lamusicade.pearson.es',
+    privacyPolicyUrl: 'http://pearson.es/espa%C3%B1a/pol%C3%ADtica-protecci%C3%B3n-de-datos',
+    addPrepopFields: {"DOMAIN_LIST": 7}
+  },
+  {
+    matchUrl: 'www.microsoftpressstore.com',
+    privacyPolicyUrl: 'https://www.microsoftpressstore.com/about/privacy',
+    addPrepopFields: {"DOMAIN_LIST": 8}
+  },
+  {
+    matchUrl: 'www.mypearsonstore.com',
+    privacyPolicyUrl: 'http://www.mypearsonstore.com/about/privacy.asp',
+    addPrepopFields: {"DOMAIN_LIST": 9}
+  },
+  {
+    matchUrl: 'www.peachpit.com',
+    privacyPolicyUrl: 'http://www.peachpit.com/about/privacy.aspx',
+    addPrepopFields: {"DOMAIN_LIST": 10}
+  },
+  {
+    matchUrl: 'www.pearson.com/au/revel',
+    privacyPolicyUrl: 'https://www.pearson.com/us/privacy-statement.html',
+    addPrepopFields: {"DOMAIN_LIST": 11}
+  },
+  {
+    matchUrl: 'pearson.com.au',
+    privacyPolicyUrl: 'https://pearson.com.au/privacy-policy',
+    addPrepopFields: {"DOMAIN_LIST": 12}
+  },
+  {
+    matchUrl: 'www.pearson.com/asia',
+    privacyPolicyUrl: 'https://www.pearson.com/asia/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 13}
+  },
+  {
+    matchUrl: 'www.pearsoncanadaschool.com',
+    privacyPolicyUrl: 'https://www.pearson.com/ca/en/legal/privacy-statement.html',
+    addPrepopFields: {"DOMAIN_LIST": 14}
+  },
+  {
+    matchUrl: 'www.pearson.com/english',
+    privacyPolicyUrl: 'https://www.pearson.com/legal-information/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 15}
+  },
+  {
+    matchUrl: 'www.pearsonitcertification.com',
+    privacyPolicyUrl: 'http://www.pearsonitcertification.com/about/privacy.aspx',
+    addPrepopFields: {"DOMAIN_LIST": 16}
+  },
+  {
+    matchUrl: 'www.pearsonmylabandmastering.com/global',
+    privacyPolicyUrl: 'https://pi.pearsoned.com/v1/piapi/policies/static/html/PearsonPrivacyPolicy.html',
+    addPrepopFields: {"DOMAIN_LIST": 17}
+  },
+  {
+    matchUrl: 'pearsonpte.com',
+    privacyPolicyUrl: 'https://pearsonpte.com/privacy-policy',
+    addPrepopFields: {"DOMAIN_LIST": 18}
+  },
+  {
+    matchUrl: 'www.pearson.com/ca',
+    privacyPolicyUrl: 'https://www.pearson.com/ca/en/legal/privacy-statement.html',
+    pageVisit: 3,
+    addPrepopFields: {"DOMAIN_LIST": 19}
+  },
+  {
+    matchUrl: 'www.pearson.com/us',
+    privacyPolicyUrl: 'https://www.pearson.com/us/privacy-statement.html',
+    pageVisit: 8,
+    addPrepopFields: {"DOMAIN_LIST": 20}
+  },
+  {
+    matchUrl: 'www.pearson.com/uk',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 21}
+  },
+  {
+    matchUrl: 'www.pearson.com/corporate',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 22}
+  },
+  {
+    matchUrl: 'www.pearsonschoolsandfecolleges.co.uk',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 23}
+  },
+  {
+    matchUrl: 'www.pearsonclinical.co.uk',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 24}
+  },
+  {
+    matchUrl: 'www.pearsoned.co.uk/bookshop',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 25}
+  },
+  {
+    matchUrl: 'catalogue.pearsoned.co.uk/pearsonhigheredgb/educator/search/advanceSearch.page',
+    privacyPolicyUrl: 'https://www.pearson.com/en-us/legal-information/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 26}
+  },
+  {
+    matchUrl: 'www.pearson.com/africa',
+    privacyPolicyUrl: 'https://www.pearson.com/legal-information/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 27}
+  },
+  {
+    matchUrl: 'www.pearson.com/store/en-ca',
+    privacyPolicyUrl: 'https://www.pearson.com/ca/en/legal/privacy-statement.html',
+    addPrepopFields: {"DOMAIN_LIST": 28}
+  },
+  {
+    matchUrl: 'www.pearson.com/store/en-us',
+    privacyPolicyUrl: 'https://www.pearson.com/en-us/legal-information/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 29}
+  },
+  {
+    matchUrl: 'www-global-store-pearson-com-stg2.pmc.pearsondev.tech',
+    privacyPolicyUrl: 'https://www.pearson.com/corporate/privacy-notice.html',
+    addPrepopFields: {"DOMAIN_LIST": 30}
+  },
+  {
+    matchUrl: 'www.pearson.com/store/p',
+    privacyPolicyUrl: 'https://www.pearson.com/en-us/legal-information/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 31}
+  },
+  {
+    matchUrl: 'pearson.com/en-us/learner',
+    privacyPolicyUrl: 'https://www.pearson.com/en-us/legal-information/privacy-policy.html',
+    addPrepopFields: {"DOMAIN_LIST": 32}
+  },
+  {
+    matchUrl: 'pearson.com/en-ca/learner',
+    privacyPolicyUrl: 'https://www.pearson.com/ca/en/legal/privacy-statement.html',
+    addPrepopFields: {"DOMAIN_LIST": 33}
+  }
+  ];
+  
+  mcxSetTriggers(); // set triggers, first - modify mcxSiteInterceptParameters
+  mcxAddModal(); // create modal, second - add modal customizations and prepare for intercept script
+  mcxInterceptMods(); // add GAID to surveyURL
+  mcxInterceptScript(); // run intercept script last - after all setup is complete
+  
+  function mcxSetTriggers() {
+    // do not allow intercept to show before trigger rules have been checked
+    mcxSiteInterceptParameters.enabled = false;
+  
+    // check all privacyPolicyUrl values in triggers and terminate intercept if matched
+    for (var i = 0; i < mcxSiteInterceptTriggers.length; i++) {
+      var params = mcxSiteInterceptTriggers[i];
+      // try to match URL
+      if (typeof params.privacyPolicyUrl === 'string') {
+        if (window.location.href.indexOf(params.privacyPolicyUrl) != -1) return;
+      }
+    }
+  
+    // check all matchUrl values in triggers and run the first successful rule
+    for (var i = 0; i < mcxSiteInterceptTriggers.length; i++) {
+      var params = mcxSiteInterceptTriggers[i];
+  
+      // try to match URL
+      if (typeof params.matchUrl === 'string') {
+        if (window.location.href.indexOf(params.matchUrl) == -1) continue; // no match
+      } else if (params.matchUrl instanceof RegExp) {
+        if (!params.matchUrl.test(window.location.href)) continue; // no match
+      } else {
+        continue; // wrong type or missing, no match
+      }
+  
+      // matched
+      // add prepop fields to URL
+      var prepops = params.addPrepopFields;
+      if (typeof prepops === 'object') {
+        for (const fieldTag in prepops) {
+          if (prepops.hasOwnProperty(fieldTag) && /string|number/.test(typeof prepops[fieldTag])) {
+            // assumes mcxSiteInterceptParameters.surveyURL string already has ?idx=... as first parameter
+            mcxSiteInterceptParameters.surveyURL += '&' + fieldTag + '=' + prepops[fieldTag];
+          } 
+        }
+      }
+      // override props in mcxSiteInterceptParameters
+      for (const prop in params) {
+        if (params.hasOwnProperty(prop)) {
+          // ignore rule-only props, not needed anymore. privacyPolicyUrl still added for mcxAddModal()
+          if ((/matchUrl|addPrepopFields/).test(prop)) continue;
+          // copy all properties in rule to mcxSiteInteceptParameters. Any unrecognized props will be ignored
+          mcxSiteInterceptParameters[prop] = params[prop];
+        } 
+      }
+      // re-enable intercept
+      mcxSiteInterceptParameters.enabled = true;
+  
+      break;
+    }
+  }
+  
+  function mcxAddModal() {
+  var privacyPolicyUrl = mcxSiteInterceptParameters.privacyPolicyUrl // copied to mcxSiteInterceptParameters in mcxSetTriggers()
+  var invitationModal = document.createElement('div');
+  document.body.insertBefore(invitationModal, document.body.firstChild);
+  // element with ID in mcxSiteInterceptParameters.invitationID must have style "display: none"
+  invitationModal.outerHTML =
+    '<div id="mcxInvitationModal"'+
+    '    style="display: none; background: rgba(0, 0, 0, 0.3); z-index: 100001; height: 100%; width: 100%; position: fixed; top: 0px; left: 0px; overflow: hidden; text-align: center; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; vertical-align: baseline; cursor: default; margin: 0px; padding: 0px; font-weight: 400; text-indent: 0px; text-shadow: none; line-height: 1.4; font-size: 100% !important; font-family: \'Open Sans\', Helvetica, sans-serif !important; float: none !important;">'+
+    '    <div id="mcxFloating"'+
+    '        style="border-radius: 22px; position: relative; margin-top: 5%; display: inline-block; background: rgba(0, 0, 0, 0.35); margin-left: auto !important; margin-right: auto !important; padding: 0.5em !important;">'+
+    '        <div id="mcxCenter"'+
+    '            style="border-radius: 16px; display: block; background-color: rgb(255, 255, 255); position: relative; min-width: 300px; max-width: 600px; max-height: 800px; padding: 0.1em !important;">'+
+    '            <div id="mcxContainer"'+
+    '                style="border-radius: 16px; display: block; background-color: rgb(255, 255, 255); position: relative; padding: 1em !important;">'+
+    '                <div id="mcxInvitationContainer">'+
+    '                    <div>'+
+    '                        <div id="mcxLogos" style="overflow: hidden; display: block; position: relative; margin-bottom: 1em !important;">'+
+    '                            <img id="mcxCompLogo" alt="Pearson logo" style="margin-top: 0px; height: auto; float: left !important;"'+
+    '                                src="https://pearson.mcxplatform.de/surveys/images/RCDV64/pearsonlogo.png">'+
+    '                        </div>'+
+    '                        <p id="mcxText1" style="margin-bottom: 0.6em; color: rgb(68, 68, 68); font-size: 18px;">'+
+    '                            Thank you for visiting Pearson today. We would like your opinions on how we can make your website'+
+    '                            experience better. When you have completed your visit please take a few minutes to provide your feedback.'+
+    '                        </p>'+
+    '                        <a id="declineSurvey" href="#" onclick="McxSiteInterceptOnExit.declineSurvey()" style="color: rgb(0, 122, 156); padding-right: 18px;">'+
+    '                            No Thanks'+
+    '                        </a>'+
+    '                        <a id="btn" href="#" onclick="McxSiteInterceptOnExit.acceptSurvey()"'+
+    '                            style="border: medium none; border-radius: 2px; display: inline-block; min-width: 8.33333em; text-align: center; text-decoration: none; margin: 0px 0px 0.66667em 0.27778em; line-height: 2.83333em; background-color: rgb(0, 122, 156); color: rgb(255, 255, 255); font-size: 12pt; font-weight: bold; font-family: \'Open Sans\', Helvetica, sans-serif !important;">'+
+    '                            Yes, I\'ll help!'+
+    '                        </a>'+
+    '                    </div>'+
+    '                    <a id="privacyPolicy" href="' + privacyPolicyUrl + '" target="_blank" title="Privacy Policy" style="color: rgb(0, 122, 156); font-size: 11px; padding: 0px 15px;">'+
+    '                        Privacy Policy'+
+    '                    </a>'+
+    '                </div>'+
+    '                <div id="mcxSurveyContainer"></div>'+
+    '            </div>'+
+    '        </div>'+
+    '    </div>'+
+    '</div>';
+  }
+
+function mcxInterceptMods() {
+    // implement the customized probability feature
+    if (typeof mcxSiteInterceptParameters.probability !== 'undefined') {
+        // generate random number and save to session storage
+        var mcxRandomID = mcxSiteInterceptParameters.mcxRandomID !== 'undefined'? '_' + mcxSiteInterceptParameters.mcxRandomID : '';
+        var mcxRandomVarName = 'mcxRandom' + mcxRandomID;
+        var rand = parseInt(sessionStorage.getItem(mcxRandomVarName));
+        if (isNaN(rand)) {
+            rand = Math.floor(Math.random() * 100);
+            sessionStorage.setItem(mcxRandomVarName, rand);
+        }
+
+        // disable intercept if random number is greater than probability (reverse of default mcx intercept script)
+        if (rand > mcxSiteInterceptParameters.probability) mcxSiteInterceptParameters.enabled = false;
+        // set the probability parameter to 100 so that default mcx intercept script probability function does not interfere
+        mcxSiteInterceptParameters.probability = 100;
+    }
+
+    // add GAID and Filter prepop
+    if (typeof window.CXSurveyConfig !== 'undefined') {
+        if (window.CXSurveyConfig.hasOwnProperty('gaId')) {
+            mcxSiteInterceptParameters.surveyURL += '&GAID=' + window.CXSurveyConfig.gaId;
+        }
+        if (window.CXSurveyConfig.hasOwnProperty('filter01')) {
+            mcxSiteInterceptParameters.surveyURL += '&FILTER_1=' + window.CXSurveyConfig.filter01;
+        }
+        if (window.CXSurveyConfig.hasOwnProperty('filter02')) {
+            mcxSiteInterceptParameters.surveyURL += '&FILTER_2=' + window.CXSurveyConfig.filter02;
+        }
+        if (window.CXSurveyConfig.hasOwnProperty('filter03')) {
+            mcxSiteInterceptParameters.surveyURL += '&FILTER_3=' + window.CXSurveyConfig.filter03;
+        }
+    }
+}
+  
+  function mcxInterceptScript() {
+    /*#######################################################################################
+        MARITZCX SITE INTERCEPT SCRIPT v1.6.1
+        Copyright (C) MaritzCX - All Rights Reserved
+        Unauthorized copying of this file, via any medium is strictly prohibited
+        Proprietary and confidential
+        Original Author Date: Aug 28, 2014
+        Last updated: June 20, 2017
+        
+        Parameters:
+        
+        surveyURL           The URL of the target survey.
+        showOnLoad			Whether the survey modal will show right away or wait until showModal is called.
+        invitationID        The CSS ID of the DOM element that will prompt the user to take the survey.
+        probability         The probability (percentage) determines the likelihood that the user will be prompted to take the survey.
+        width               The width (in pixels) of the pop-up.
+        height              The height (in pixels) of the pop-up.
+        cookieID			The unique identifier that will be added to the cookie. This is needed if you are implementing this script across multiple surveys.
+        expireDaysIfYes     The days that must pass before the user is eligible to take the survey again if they select to take the survey.
+        expireDaysIfNo      The days that must pass before the user is asked to take the survey again if they selected NOT to take the survey.
+        delay               How long the page will wait (in milliseconds) before asking to the user to take the survey.
+        waitUntilClose		Whether the survey will show right away, or wait until the current window has been closed.
+        placeholderURL     	This URL will be loaded in the background window as a place-holder prior to the survey. (waitUntilClose must be true.)
+        showInline			Whether the survey will be displayed on the page rather than a pop-up.
+        inlineID     		The ID of the container that will contain the survey IFrame.
+        inlineWrapperID     The ID of the wrapper that will be injected into the inlineID.
+        inlineCloseID       The ID of the close div that will be injected into the inlineID.
+        cleaseCookie        Should be false. Setting this to true will clear out any saved cookies relating to the display of the survey. Useful for testing.
+        debug				Determines whether or not debug messages will come up as the script runs. Should be set to false when everything is working. 
+        ignoreWarning		Determines whether to not console warnings will display if the script is set-up improperly. Should be false.
+        enabled				Determines whether to the survey should be enabled or not. Setting this option to false will stop the survey from ever popping up.				
+        
+    #######################################################################################*/
+  
+    /*
+    Paste the variable below (mcxSiteInterceptParameters) into your client extensibility. Change the parameters to suit your needs. 
+    Any parameters left undefined will revert to their default values, as defined in the site intercept script file.
+    Please note that the type for each parameter must match the type displayed in the comment after the parameter or it will revert to the default value.
+  
+  
+    var mcxSiteInterceptParameters = {
+        surveyURL: 			undefined, //string
+        showOnLoad: 		undefined, //boolean
+        invitationID: 		undefined, //string
+        probability: 		undefined, //number (0 - 100 (%))
+        width: 				undefined, //number (px)
+        height: 			undefined, //number (px)
+        cookieID:			undefined, //string
+        expireDaysIfYes: 	undefined, //number (days)
+        expireDaysIfNo: 	undefined, //number (days)
+        delay: 				undefined, //number (ms)
+        waitUntilClose: 	undefined, //boolean
+        placeholderURL: 	undefined, //string
+        showInline: 		undefined, //boolean
+        inlineID: 			undefined, //string
+        inlineWrapperID: 	undefined, //string
+        inlineCloseID: 		undefined, //string
+        cleanseCookie:		false, //boolean
+        debug:				false, //boolean
+        ignoreWarning:		false, //boolean
+        enabled:			true //boolean
+    }
+    */
+    ; (function (w) {
+      "use strict";
+      //Check to make sure custom parameters exist
+      if (typeof w.mcxSiteInterceptParameters === 'undefined') {
+        //Backward compatibility (for customers who have <v1.3)
+        if (typeof w.allegianceSiteInterceptParameters !== 'undefined') {
+          w.mcxSiteInterceptParameters = w.allegianceSiteInterceptParameters;
+          console.warn("The parameters variable (allegianceSiteInterceptParameters) needs to be renamed to mcxSiteInterceptParameters inside of the client extensibility. allegianceSiteInterceptParameters may be deprecated in future versions.");
+        } else {
+          console.warn("mcxSiteInterceptParameters undefined, ensure that it is defined in client extensibility and that the site intercept script is loaded in after the client extensibility script. Default parameters used.");
+          w.mcxSiteInterceptParameters = "";
+        }
+      }
+  
+      var isArray = function () { return w.mcxSiteInterceptParameters && w.mcxSiteInterceptParameters.constructor === Array && w.mcxSiteInterceptParameters.length > 0; };
+      if (isArray()) {
+        var MCX_DEFAULT = 'MCX_DEFAULT';
+        var mcxUniqueID = w.mcxUniqueID || MCX_DEFAULT;
+        //Check over each item to see if a uniqueID matches
+        for (var i = 0; i < w.mcxSiteInterceptParameters.length; i++) {
+          if (w.mcxSiteInterceptParameters[i].uniqueID && mcxUniqueID == w.mcxSiteInterceptParameters[i].uniqueID) {
+            w.mcxSiteInterceptParameters = w.mcxSiteInterceptParameters[i];
+          }
+        }
+        //If no matches were found, attempt to assign default
+        if (isArray()) {
+          for (var j = 0; j < w.mcxSiteInterceptParameters.length; j++) {
+            if (w.mcxSiteInterceptParameters[j].uniqueID && MCX_DEFAULT == w.mcxSiteInterceptParameters[j].uniqueID) {
+              w.mcxSiteInterceptParameters = w.mcxSiteInterceptParameters[j];
+            }
+          }
+          //If no default was assigned, use the first item
+          if (isArray()) {
+            w.mcxSiteInterceptParameters = w.mcxSiteInterceptParameters[0];
+          }
+        }
+      }
+  
+      var mcxPresetParam = w.mcxSiteInterceptParameters;
+  
+      w.McxSiteInterceptOnExit = {
+        //Parameters used for customizing script
+        parameters: {
+          //Defaults
+          surveyURL: typeof mcxPresetParam.surveyURL === 'string' ? mcxPresetParam.surveyURL : "",
+          showOnLoad: typeof mcxPresetParam.showOnLoad === 'boolean' ? mcxPresetParam.showOnLoad : true,
+          invitationID: typeof mcxPresetParam.invitationID === 'string' ? mcxPresetParam.invitationID : "",
+          probability: typeof mcxPresetParam.probability === 'number' ? mcxPresetParam.probability : 100, //0 - 100%
+          width: typeof mcxPresetParam.width === 'number' ? mcxPresetParam.width : 550, //px
+          height: typeof mcxPresetParam.height === 'number' ? mcxPresetParam.height : 520, //px
+          cookieID: typeof mcxPresetParam.cookieID === 'string' ? mcxPresetParam.cookieID : "",
+          expireDaysIfYes: typeof mcxPresetParam.expireDaysIfYes === 'number' ? mcxPresetParam.expireDaysIfYes : 30, //days
+          expireDaysIfNo: typeof mcxPresetParam.expireDaysIfNo === 'number' ? mcxPresetParam.expireDaysIfNo : 30, //days
+          delay: typeof mcxPresetParam.delay === 'number' ? mcxPresetParam.delay : 0, //ms
+          waitUntilClose: typeof mcxPresetParam.waitUntilClose === 'boolean' ? mcxPresetParam.waitUntilClose : false,
+          placeholderURL: typeof mcxPresetParam.placeholderURL === 'string' ? mcxPresetParam.placeholderURL : "",
+          showInline: typeof mcxPresetParam.showInline === 'boolean' ? mcxPresetParam.showInline : false,
+          inlineID: typeof mcxPresetParam.inlineID === 'string' ? mcxPresetParam.inlineID : "mcxSurveyDialog",
+          inlineWrapperID: typeof mcxPresetParam.inlineWrapperID === 'string' ? mcxPresetParam.inlineWrapperID : "mcxSurveyWrapper",
+          inlineCloseID: typeof mcxPresetParam.inlineCloseID === 'string' ? mcxPresetParam.inlineCloseID : "mcxSurveyClose",
+          cleanseCookie: typeof mcxPresetParam.cleanseCookie === 'boolean' ? mcxPresetParam.cleanseCookie : false,
+          debug: typeof mcxPresetParam.debug === 'boolean' ? mcxPresetParam.debug : false,
+          ignoreWarning: typeof mcxPresetParam.ignoreWarning === 'boolean' ? mcxPresetParam.ignoreWarning : false,
+          enabled: typeof mcxPresetParam.enabled === 'boolean' ? mcxPresetParam.enabled : true,
+          multiSurveys: typeof mcxPresetParam.multiSurveys === 'boolean' ? mcxPresetParam.multiSurveys : false,
+          pageVisit: typeof mcxPresetParam.pageVisit === 'number' ? mcxPresetParam.pageVisit : 1,
+          mcxBlackList: typeof mcxPresetParam.mcxBlackList === 'object' ? mcxPresetParam.mcxBlackList : [],
+          surveyList: typeof mcxPresetParam.surveyList === 'object' ? mcxPresetParam.surveyList : [],
+          domainChecker: typeof mcxPresetParam.domainChecker === 'object' ? mcxPresetParam.domainChecker : [],
+          domainPath: typeof mcxPresetParam.domainPath === 'string' ? mcxPresetParam.domainPath : ""
+        },
+  
+        takeSurvey: false, //Script-level variable, leave false.
+        surveyWindow: undefined, //Survey window, leave undefined.
+        surveyURLParams: undefined,
+        cachedHTML: undefined,
+  
+        //Called when the page is loaded. Executes logic to determine whether to show the invitation or not.
+        onPageLoad: function () {
+          w.mcxLog('onPageLoad');
+          if (w.McxSiteInterceptOnExit.parameters.multiSurveys) {
+            w.mcxLog('Multiple surveys are being used.');
+            w.McxSiteInterceptOnExit.checkMultiSurveys();
+          }
+          w.McxSiteInterceptOnExit.cookieVisitCount();
+          if (w.McxSiteInterceptOnExit.parameters.uniqueID) { w.mcxLog('uniqueID: ' + w.McxSiteInterceptOnExit.parameters.uniqueID); }
+          w.McxSiteInterceptOnExit.surveyURLParams = sessionStorage["mcx.surveyURLParams"];
+          if (!w.McxSiteInterceptOnExit.surveyURLParams) { sessionStorage["mcx.surveyURLParams"] = '[{}]'; }
+          var rand = Math.floor(Math.random() * 100);
+          if (w.McxSiteInterceptOnExit.parameters.probability < 1 && w.McxSiteInterceptOnExit.parameters.probability > 0) {
+            var decimal = w.McxSiteInterceptOnExit.parameters.probability;
+            w.McxSiteInterceptOnExit.parameters.probability = Math.floor(w.McxSiteInterceptOnExit.parameters.probability * 100);
+            w.mcxWarn('mcxSiteIntercept warning: The script detected a probability between 0 and 1. Probability should be a whole number between 0 and 100. The script has converted it to a whole number: ' + decimal + ' -> ' + w.McxSiteInterceptOnExit.parameters.probability);
+          }
+          if (w.McxSiteInterceptOnExit.parameters.probability <= 0) {
+            w.mcxWarn('mcxSiteIntercept warning: Probability it set to ' + w.McxSiteInterceptOnExit.parameters.probability + '. It must be greater than 0 to have any chance of displaying the survey.');
+          }
+  
+          //Check if random number is less than probability (less than means probability met) and that survey is enabled
+          if (rand < w.McxSiteInterceptOnExit.parameters.probability && w.McxSiteInterceptOnExit.parameters.enabled && parseInt(w.McxSiteInterceptOnExit.RgetCookie('McxPageVisit')) >= w.McxSiteInterceptOnExit.parameters.pageVisit && w.McxSiteInterceptOnExit.McxBlackList() === false) {
+            //If no cookie exists, and showOnLoad is true, display the survey modal
+            if (!w.McxSiteInterceptOnExit.hasCookie() && w.McxSiteInterceptOnExit.parameters.showOnLoad) {
+              if (w.McxSiteInterceptOnExit.parameters.invitationID.length > 0) {
+                w.McxSiteInterceptOnExit.showModal();
+              } else {
+                w.mcxLog('delay ' + w.McxSiteInterceptOnExit.parameters.delay + ' ...');
+                w.setTimeout(function () {
+                  w.mcxLog('... delay ');
+                  w.McxSiteInterceptOnExit.popUp();
+                }, w.McxSiteInterceptOnExit.parameters.delay);
+              }
+            }
+          } else {
+            if (!w.McxSiteInterceptOnExit.parameters.enabled) {
+              w.mcxLog('Survey is disabled');
+            } else {
+              w.mcxLog('Probability fail. Chance to succeed: ' + w.McxSiteInterceptOnExit.parameters.probability + '%');
+            }
+          }
+        },
+        //Page visit count
+        cookieVisitCount: function () {
+          if (w.McxSiteInterceptOnExit.RgetCookie('McxPageVisit') == "") {
+            document.cookie = 'McxPageVisit=1; path=/';
+            //document.cookie = 'path=/';
+            //document.cookie = 'domain='+ (w.McxSiteInterceptOnExit.parameters.domainPath);
+          } else {
+            var pageVisit = parseInt(w.McxSiteInterceptOnExit.RgetCookie('McxPageVisit'));
+            document.cookie = 'McxPageVisit=' + (pageVisit + 1) + "; path=/";
+            //document.cookie = 'path=/';
+            //document.cookie = 'domain='+ (w.McxSiteInterceptOnExit.parameters.domainPath);
+          }
+        },
+        RgetCookie: function (cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+          }
+          return "";
+        },
+        McxBlackList: function () {
+          var checkArray = w.McxSiteInterceptOnExit.parameters.mcxBlackList;
+          var aL = checkArray.length;
+          var curUrl = window.location.href;
+          for (var i = 0; i < aL; i++) {
+            var testEx = RegExp(checkArray[i]);
+            var finalCheck = testEx.test(curUrl);
+            if (finalCheck) { return true; }
+          }
+          return false;
+        },
+        //Function to add a parameter to URL
+        addUrlParameter: function (value, name) {
+          w.mcxLog('Added URL parameter: [' + value + ', ' + name + ']');
+          w.McxSiteInterceptOnExit.surveyURLParams = sessionStorage["mcx.surveyURLParams"];
+          var object = JSON.parse(w.McxSiteInterceptOnExit.surveyURLParams);
+          object[0][value] = name;
+          sessionStorage["mcx.surveyURLParams"] = JSON.stringify(object);
+          w.McxSiteInterceptOnExit.surveyURLParams = sessionStorage["mcx.surveyURLParams"];
+        },
+  
+        //Function to remove a parameter from URL
+        removeUrlParameter: function (value) {
+          w.mcxLog('Removed URL parameter: [' + value + ']');
+          var object = JSON.parse(w.McxSiteInterceptOnExit.surveyURLParams);
+          delete object[0][value];
+          sessionStorage["mcx.surveyURLParams"] = JSON.stringify(object);
+          w.McxSiteInterceptOnExit.surveyURLParams = sessionStorage["mcx.surveyURLParams"];
+        },
+        checkMultiSurveys: function () {
+          var curURL = window.location.href.toLowerCase();
+          if (w.McxSiteInterceptOnExit.parameters.domainChecker.length > 0) {
+            for (i = 0; i < w.McxSiteInterceptOnExit.parameters.domainChecker.length; i++) {
+              var reg = new RegExp(w.McxSiteInterceptOnExit.parameters.domainChecker[i]);
+              var domainCheck = reg.test(curURL);
+              if (domainCheck) {
+                w.McxSiteInterceptOnExit.parameters.surveyURL = w.McxSiteInterceptOnExit.parameters.surveyList[i];
+                break;
+              }
+            }
+          }
+        },
+  
+        //Converts the URL parameters to a query string that will get appended to the survey URL
+        urlParametersToQueryString: function () {
+          w.mcxLog('urlParametersToQueryString ...');
+          if (w.McxSiteInterceptOnExit.surveyURLParams) {
+            var parameters = JSON.parse(w.McxSiteInterceptOnExit.surveyURLParams)[0];
+            var queryString = [];
+            for (var property in parameters) {
+              if (parameters.hasOwnProperty(property)) {
+                queryString.push(property + "=" + parameters[property]);
+              }
+            }
+            w.mcxLog('... urlParametersToQueryString ');
+            return "&" + queryString.join('&');
+          } else { return ""; }
+        },
+  
+        //Creates a cookie with the given parameters
+        createCookie: function (name, value, days) {
+          w.mcxLog('createCookie: [' + name + ', ' + value + ', ' + days + ']');
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          w.docCookies.setItem(name, value, date);
+        },
+  
+        hasCookie: function () {
+          var hasCookie = w.docCookies.hasItem('mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID, w.McxSiteInterceptOnExit.parameters.cleanseCookie);
+          w.mcxLog('hasCookie: ' + 'mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID + ': ' + hasCookie);
+          return hasCookie;
+        },
+  
+        //Called when page is closed or domain is changed.
+        onPageClose: function () {
+          w.mcxLog('onPageClose');
+          if (w.McxSiteInterceptOnExit.parameters.enabled) {
+            try {
+              w.McxSiteInterceptOnExit.addUrlParameter("lastVisitedURL", encodeURIComponent(w.location.href));
+            } catch (err) {
+              w.mcxLog(err);
+            }
+            if (w.McxSiteInterceptOnExit.takeSurvey && w.McxSiteInterceptOnExit.surveyWindow && w.McxSiteInterceptOnExit.surveyWindow.opener && !w.McxSiteInterceptOnExit.surveyWindow.opener.closed) {
+              w.McxSiteInterceptOnExit.surveyWindow.location = (w.McxSiteInterceptOnExit.parameters.surveyURL + w.McxSiteInterceptOnExit.urlParametersToQueryString());
+            } else { return; }
+          }
+        },
+  
+        //Brings up the survey
+        popUp: function () {
+          w.mcxLog('popUp');
+          if ((!w.McxSiteInterceptOnExit.hasCookie()) && w.McxSiteInterceptOnExit.parameters.enabled) {
+            var strWindowFeatures = "menubar=0,resizable=1,scrollbars=1,toolbar=0,status=1,width=" + w.McxSiteInterceptOnExit.parameters.width + ",height=" + w.McxSiteInterceptOnExit.parameters.height;
+            w.McxSiteInterceptOnExit.takeSurvey = true;
+            w.McxSiteInterceptOnExit.createCookie(
+              ('mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID),
+              ('mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID),
+  
+              w.McxSiteInterceptOnExit.parameters.expireDaysIfYes);
+            var inv = document.getElementById(w.McxSiteInterceptOnExit.parameters.invitationID);
+            if (inv) { inv.style.display = 'none'; }
+            if (w.McxSiteInterceptOnExit.parameters.waitUntilClose) {
+              //Opens window and shows placeholderURL
+              w.McxSiteInterceptOnExit.surveyWindow = w.open(w.McxSiteInterceptOnExit.parameters.placeholderURL, "mcxWindow", strWindowFeatures);
+              w.McxSiteInterceptOnExit.surveyWindow.blur();
+              window.global.focus();
+            } else {
+              //Logic for showing survey on the page rather than a separate window
+              if (w.McxSiteInterceptOnExit.parameters.showInline) {
+                var elem = document.getElementById(w.McxSiteInterceptOnExit.parameters.inlineID);
+                //Make sure elem exists on page, otherwise create a DIV with inlineID
+                if (!elem) {
+                  elem = document.createElement('div');
+                  elem.setAttribute("id", w.McxSiteInterceptOnExit.parameters.inlineID);
+                  document.body.appendChild(elem);
+                }
+                //Preserve existing HTML
+                if (typeof w.McxSiteInterceptOnExit.cachedHTML === 'undefined') { w.McxSiteInterceptOnExit.cachedHTML = elem.innerHTML; }
+                //Inject additional required HTML and survey
+                elem.innerHTML = w.McxSiteInterceptOnExit.cachedHTML +
+                  '<div id="' + w.McxSiteInterceptOnExit.parameters.inlineWrapperID + '">' +
+                  '<div id="' + w.McxSiteInterceptOnExit.parameters.inlineCloseID + '"></div>' +
+                  '<iframe frameborder="0" src="' + (w.McxSiteInterceptOnExit.parameters.surveyURL + w.McxSiteInterceptOnExit.urlParametersToQueryString()) +
+                  '" width="' + w.McxSiteInterceptOnExit.parameters.width + '" height="' +
+                  w.McxSiteInterceptOnExit.parameters.height + '"></iframe></div>';
+                elem.style.display = 'block';
+  
+                //Event listener for closing the dialog
+                var el = document.getElementById(w.McxSiteInterceptOnExit.parameters.inlineCloseID);
+                if (el.addEventListener) { el.addEventListener("click", w.McxSiteInterceptOnExit.closeSurveyModal, false); }
+                else { el.attachEvent("onclick", w.McxSiteInterceptOnExit.closeSurveyModal); }
+              } else {
+                //Shows survey right away (if both waitUntilClose and showInline are false)
+                w.McxSiteInterceptOnExit.surveyWindow = w.open((w.McxSiteInterceptOnExit.parameters.surveyURL + w.McxSiteInterceptOnExit.urlParametersToQueryString()), "mcxWindow", strWindowFeatures);
+              }
+            }
+            w.focus();
+          }
+        },
+  
+        //Hides modal
+        closeSurveyModal: function () {
+          w.mcxLog('closeSurveyModal');
+          document.getElementById(w.McxSiteInterceptOnExit.parameters.inlineID).style.display = 'none';
+        },
+        //Accepts the invitation.
+        acceptSurvey: function () {
+          w.mcxLog('acceptSurvey');
+          w.McxSiteInterceptOnExit.popUp();
+        },
+  
+        //Creates a quarantine cookie and hides the invitation.
+        declineSurvey: function () {
+          w.mcxLog('declineSurvey');
+          w.McxSiteInterceptOnExit.createCookie(
+            ('mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID),
+            ('mcxSurveyQuarantine' + w.McxSiteInterceptOnExit.parameters.cookieID),
+            w.McxSiteInterceptOnExit.parameters.expireDaysIfNo);
+          document.getElementById(w.McxSiteInterceptOnExit.parameters.invitationID).style.display = 'none';
+        },
+  
+        //Shows the invitation
+        showModal: function (delay) {
+          w.mcxLog('showModal ...');
+          if (w.McxSiteInterceptOnExit.parameters.enabled) {
+            if (!delay) { delay = w.McxSiteInterceptOnExit.parameters.delay; }
+            w.setTimeout(function () {
+              w.mcxLog('... showModal');
+              var invitation = document.getElementById(w.McxSiteInterceptOnExit.parameters.invitationID);
+              if (invitation) { invitation.style.display = 'block'; }
+            }, delay);
+          }
+        },
+  
+        addOnLoadEvent: function (func) {
+          var oldonload = w.onload;
+          if (typeof w.onload != 'function') {
+            w.onload = func;
+          } else {
+            w.onload = function () {
+              if (oldonload) { oldonload(); }
+              func();
+            };
+          }
+        },
+        addBeforeUnLoadEvent: function (func) {
+          var oldonload = w.onbeforeunload;
+          if (typeof w.onbeforeunload != 'function') {
+            w.onbeforeunload = func;
+          } else {
+            w.onbeforeunload = function () {
+              if (oldonload) { oldonload(); }
+              func();
+            };
+          }
+        },
+        addOnUnLoadEvent: function (func) {
+          var oldonload = w.onunload;
+          if (typeof w.onunload != 'function') {
+            w.onunload = func;
+          } else {
+            w.onunload = function () {
+              if (oldonload) { oldonload(); }
+              func();
+            };
+          }
+        }
+      };
+  
+      w.docCookies = {
+        getItem: function (sKey) {
+          if (!sKey) { return null; }
+          return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+        },
+        setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+          if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+          var sExpires = "";
+          if (vEnd) {
+            switch (vEnd.constructor) {
+              case Number:
+                sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+                break;
+              case String:
+                sExpires = "; expires=" + vEnd;
+                break;
+              case Date:
+                sExpires = "; expires=" + vEnd.toUTCString();
+                break;
+            }
+          }
+          document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + /*"; domain=" + McxSiteInterceptOnExit.parameters.domainPath +*/ "; path=/";
+          return true;
+        },
+        removeItem: function (sKey) {
+          if (!this.hasItem(sKey)) { return false; }
+          document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=" + McxSiteInterceptOnExit.parameters.domainPath + "; path=/";
+          return true;
+        },
+        hasItem: function (sKey, cleanseCookie) {
+          if (!sKey) { return false; }
+          if (cleanseCookie === true) {
+            this.removeItem(sKey);
+          }
+          return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+        },
+        keys: function () {
+          var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+          for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+          return aKeys;
+        }
+      };
+  
+      w.mcxWarn = function (warning, ignorePrefix) {
+        var consoleWarn = typeof console !== "undefined" && console.warn && w.McxSiteInterceptOnExit.parameters.ignoreWarning === false;
+        if (consoleWarn) {
+          var prefix = ignorePrefix ? '' : 'mcxSiteIntercept: ';
+          console.warn(prefix + warning);
+        }
+      };
+      w.mcxLog = function (log, ignorePrefix) {
+        var consoleLog = typeof console !== "undefined" && console.log && w.McxSiteInterceptOnExit.parameters.debug === true;
+        if (consoleLog) {
+          var prefix = ignorePrefix ? '' : 'mcxSiteIntercept: ';
+          console.log(prefix + log);
+        }
+      };
+  
+      w.AllegianceSiteInterceptOnExit = w.McxSiteInterceptOnExit; //Backward compatibility (for customers who have <v1.3)
+      w.McxSiteInterceptOnExit.addOnUnLoadEvent(w.McxSiteInterceptOnExit.onPageClose); //ensures that other events are retained
+      w.McxSiteInterceptOnExit.addBeforeUnLoadEvent(w.McxSiteInterceptOnExit.onPageClose); //ensures that other events are retained
+      w.McxSiteInterceptOnExit.addOnLoadEvent(w.McxSiteInterceptOnExit.onPageLoad); //ensures that other events are retained
+      w.mcxLog("script loaded");
+    }(this));
+  }
